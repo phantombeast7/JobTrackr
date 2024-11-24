@@ -48,25 +48,69 @@ export function AddApplicationModal({ onApplicationAdded }: { onApplicationAdded
     }
 
     try {
-      const response = await fetch('/api/auth/google-drive/authorize')
-      const { authUrl } = await response.json()
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
+
+      const response = await fetch('/api/auth/google-drive/authorize', {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        signal: controller.signal,
+        cache: 'no-store', // Prevent caching
+      });
       
-      const width = 600
-      const height = 600
-      const left = window.screenX + (window.outerWidth - width) / 2
-      const top = window.screenY + (window.outerHeight - height) / 2
+      clearTimeout(timeoutId);
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.error || `HTTP error! status: ${response.status}`);
+      }
+      
+      const data = await response.json();
+      
+      if (!data.authUrl) {
+        throw new Error('No authorization URL received');
+      }
+
+      // Log the auth URL for debugging (remove in production)
+      console.log('Auth URL:', data.authUrl);
+
+      const width = 600;
+      const height = 600;
+      const left = window.screenX + (window.outerWidth - width) / 2;
+      const top = window.screenY + (window.outerHeight - height) / 2;
       
       const popup = window.open(
-        authUrl,
+        data.authUrl,
         'Google Drive Authorization',
         `width=${width},height=${height},left=${left},top=${top}`
-      )
-      setAuthWindow(popup)
+      );
+
+      if (!popup) {
+        throw new Error('Popup was blocked. Please allow popups for this site.');
+      }
+
+      setAuthWindow(popup);
     } catch (error) {
-      console.error('Error initiating Google Drive auth:', error)
-      toast.error('Failed to initiate Google Drive authorization.')
+      let errorMessage = 'Failed to initiate Google Drive authorization';
+      
+      if (error instanceof Error) {
+        if (error.name === 'AbortError') {
+          errorMessage = 'Request timed out. Please try again.';
+        } else if (error.message.includes('Failed to fetch')) {
+          errorMessage = 'Network error. Please check your connection and try again.';
+        } else {
+          errorMessage = error.message;
+        }
+      }
+      
+      console.error('Error initiating Google Drive auth:', error);
+      toast.error(errorMessage);
+      setDriveAuthorized(false);
     }
-  }
+  };
 
   const resetForm = () => {
     setResumeFile(null)
@@ -75,50 +119,61 @@ export function AddApplicationModal({ onApplicationAdded }: { onApplicationAdded
   }
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+    e.preventDefault();
     if (!auth.currentUser) {
-      toast.error('User not authenticated.')
-      return
+      toast.error('User not authenticated.');
+      return;
     }
 
     if (resumeFile && !driveAuthorized) {
-      await handleDriveAuth()
-      return
+      await handleDriveAuth();
+      return;
     }
 
-    setLoading(true)
-    setProgress(20) // Start progress
-    const formData = new FormData(e.currentTarget)
+    setLoading(true);
+    setProgress(20); // Start progress
+    const formData = new FormData(e.currentTarget);
     
     try {
-      let resumeUrl = ''
+      let resumeUrl = '';
       if (resumeFile && driveAuthorized) {
-        const tokens = tokenStorage.getTokens()
+        const tokens = tokenStorage.getTokens();
         if (!tokens) {
-          throw new Error('No Google Drive tokens found')
+          throw new Error('No Google Drive tokens found');
         }
 
-        const uploadFormData = new FormData()
-        uploadFormData.append('file', resumeFile)
-        uploadFormData.append('companyName', formData.get('companyName') as string)
-        uploadFormData.append('userId', auth.currentUser.uid)
-        uploadFormData.append('accessToken', tokens.access_token)
+        try {
+          const uploadFormData = new FormData();
+          uploadFormData.append('file', resumeFile);
+          uploadFormData.append('companyName', formData.get('companyName') as string);
+          uploadFormData.append('userId', auth.currentUser.uid);
+          uploadFormData.append('accessToken', tokens.access_token);
 
-        const uploadResponse = await fetch('/api/google-drive/upload', {
-          method: 'POST',
-          body: uploadFormData,
-        })
+          const uploadResponse = await fetch('/api/google-drive/upload', {
+            method: 'POST',
+            body: uploadFormData,
+          });
 
-        if (!uploadResponse.ok) {
-          const errorData = await uploadResponse.json()
-          throw new Error(errorData.error || 'Upload failed')
+          if (!uploadResponse.ok) {
+            const errorData = await uploadResponse.json();
+            throw new Error(errorData.error || 'Upload failed');
+          }
+          
+          const { fileId } = await uploadResponse.json();
+          if (fileId) {
+            resumeUrl = fileId;
+            setProgress(60); // Update progress after successful upload
+          } else {
+            console.warn('File uploaded but no fileId received');
+          }
+        } catch (uploadError) {
+          // Log the upload error but continue with application submission
+          console.warn('Resume upload error:', uploadError);
+          toast.warn('Resume upload failed, but continuing with application submission');
         }
-        
-        const { fileId } = await uploadResponse.json()
-        resumeUrl = fileId
       }
 
-      setProgress(60) // Midway progress
+      setProgress(80); // Progress before final submission
 
       const applicationData = {
         userId: auth.currentUser.uid,
@@ -130,33 +185,37 @@ export function AddApplicationModal({ onApplicationAdded }: { onApplicationAdded
         notes: formData.get('notes') as string,
         resumeUrl,
         location: formData.get('location') as string,
-      }
+      };
 
       // Validate required fields
       if (!applicationData.companyName || !applicationData.jobTitle || !applicationData.status) {
-        throw new Error('Please fill in all required fields')
+        throw new Error('Please fill in all required fields');
       }
 
-      await addApplication(applicationData)
+      await addApplication(applicationData);
       
-      setProgress(100) // Complete progress
-      toast.success('Application added successfully!')
-      onApplicationAdded()
-      resetForm()
-      e.currentTarget.reset()
+      setProgress(100); // Complete progress
+      toast.success('Application added successfully!');
+      onApplicationAdded();
+      resetForm();
+      e.currentTarget.reset();
     } catch (error) {
-      console.error('Error adding application:', error)
+      let errorMessage = 'Error adding application';
       if (error instanceof Error) {
         if (error.message.includes('authorization')) {
-          setDriveAuthorized(false)
-          tokenStorage.clearTokens()
+          setDriveAuthorized(false);
+          tokenStorage.clearTokens();
+          errorMessage = 'Google Drive authorization expired. Please try again.';
+        } else {
+          errorMessage = error.message;
         }
-        toast.error(error.message)
       }
+      console.warn('Error in submission:', error); // Changed from console.error to console.warn
+      toast.error(errorMessage);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
@@ -264,15 +323,22 @@ export function AddApplicationModal({ onApplicationAdded }: { onApplicationAdded
                 accept=".pdf,.doc,.docx"
                 onChange={(e) => {
                   setResumeFile(e.target.files?.[0] || null)
-                  if (e.target.files?.[0] && !driveAuthorized) {
-                    handleDriveAuth()
-                  }
                 }}
                 className="bg-gray-700"
               />
-              {resumeFile && (
-                <span className={`text-sm ${driveAuthorized ? 'text-green-400' : 'text-yellow-400'}`}>
-                  {driveAuthorized ? '✓ Ready' : 'Needs permission'}
+              {resumeFile && !driveAuthorized && (
+                <Button
+                  type="button"
+                  onClick={handleDriveAuth}
+                  variant="outline"
+                  className="whitespace-nowrap text-yellow-400 border-yellow-400 hover:bg-yellow-400/10"
+                >
+                  Authorize Drive
+                </Button>
+              )}
+              {resumeFile && driveAuthorized && (
+                <span className="text-sm text-green-400">
+                  ✓ Ready
                 </span>
               )}
             </div>
@@ -286,7 +352,7 @@ export function AddApplicationModal({ onApplicationAdded }: { onApplicationAdded
             disabled={loading || Boolean(resumeFile && !driveAuthorized)}
             className="w-full bg-yellow-500 hover:bg-yellow-600 text-gray-900"
           >
-            {loading ? 'Adding...' : resumeFile && !driveAuthorized ? 'Authorize Google Drive' : 'Add Application'}
+            {loading ? 'Adding...' : 'Add Application'}
           </Button>
         </form>
       </DialogContent>

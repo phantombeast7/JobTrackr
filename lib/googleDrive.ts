@@ -1,12 +1,40 @@
 import { google } from 'googleapis'
 
+if (!process.env.NEXT_PUBLIC_GOOGLE_DRIVE_CLIENT_ID || 
+    !process.env.GOOGLE_DRIVE_CLIENT_SECRET || 
+    !process.env.NEXT_PUBLIC_GOOGLE_DRIVE_REDIRECT_URI) {
+  throw new Error('Missing Google Drive credentials in environment variables');
+}
+
 const oauth2Client = new google.auth.OAuth2(
   process.env.NEXT_PUBLIC_GOOGLE_DRIVE_CLIENT_ID,
-  process.env.NEXT_PUBLIC_GOOGLE_DRIVE_CLIENT_SECRET,
+  process.env.GOOGLE_DRIVE_CLIENT_SECRET,
   process.env.NEXT_PUBLIC_GOOGLE_DRIVE_REDIRECT_URI
 )
 
-export async function uploadToGoogleDrive(file: File, companyName: string, userId: string) {
+export function getAuthUrl() {
+  return oauth2Client.generateAuthUrl({
+    access_type: 'offline',
+    scope: [
+      'https://www.googleapis.com/auth/drive.file',
+      'https://www.googleapis.com/auth/drive.metadata.readonly'
+    ],
+    prompt: 'consent'
+  })
+}
+
+export async function setCredentials(code: string) {
+  try {
+    const { tokens } = await oauth2Client.getToken(code)
+    oauth2Client.setCredentials(tokens)
+    return tokens
+  } catch (error) {
+    console.error('Error getting tokens:', error)
+    throw error
+  }
+}
+
+export async function uploadToGoogleDrive(file: any, companyName: string, userId: string) {
   try {
     const drive = google.drive({ version: 'v3', auth: oauth2Client })
     
@@ -39,7 +67,8 @@ export async function uploadToGoogleDrive(file: File, companyName: string, userI
       media: {
         mimeType: file.type,
         body: file
-      }
+      },
+      fields: 'id, webViewLink'
     })
 
     return response.data.id
@@ -54,24 +83,12 @@ async function getFolderIdByName(folderName: string) {
     const drive = google.drive({ version: 'v3', auth: oauth2Client })
     const response = await drive.files.list({
       q: `mimeType='application/vnd.google-apps.folder' and name='${folderName}'`,
-      fields: 'files(id)'
+      fields: 'files(id)',
+      spaces: 'drive'
     })
     return response.data.files?.[0]?.id
   } catch (error) {
     console.error('Error getting folder:', error)
     throw error
   }
-}
-
-export function getAuthUrl() {
-  return oauth2Client.generateAuthUrl({
-    access_type: 'offline',
-    scope: ['https://www.googleapis.com/auth/drive.file']
-  })
-}
-
-export async function setCredentials(code: string) {
-  const { tokens } = await oauth2Client.getToken(code)
-  oauth2Client.setCredentials(tokens)
-  return tokens
 } 

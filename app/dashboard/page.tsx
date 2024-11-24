@@ -183,245 +183,247 @@ export default function Dashboard() {
   }
 
   return (
-    <>
-      {/* Header */}
-      <div className="flex justify-between items-center mb-8">
-        <h2 className="text-2xl font-bold">Dashboard</h2>
-        <AddJobModal onApplicationAdded={handleApplicationAdded} />
-      </div>
+    <div className="min-h-screen w-full overflow-x-hidden">
+      <div className="container mx-auto px-4">
+        {/* Header */}
+        <div className="flex justify-between items-center mb-8">
+          <h2 className="text-2xl font-bold">Dashboard</h2>
+          <AddJobModal onApplicationAdded={handleApplicationAdded} />
+        </div>
 
-      {/* Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-        {/* Total Applications */}
-        <Card className="bg-gray-800 border-gray-700">
-          <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium text-gray-200">Total Applications</CardTitle>
-            <Briefcase className="h-4 w-4 text-yellow-400" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold text-white">{stats.total}</div>
-            <Progress value={monthlyProgress} className="mt-2" />
-            <p className="text-xs text-gray-400 mt-2">
-              {monthlyProgress}% of your monthly goal
-            </p>
-          </CardContent>
-        </Card>
-
-        {/* Applied */}
-        <Card className="bg-gray-800 border-gray-700">
-          <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium text-gray-200">Applied</CardTitle>
-            <PieChart className="h-4 w-4 text-green-400" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold text-white">{stats.applied}</div>
-            <div className="flex items-center justify-between mt-2">
-              <p className="text-sm text-gray-400">Success Rate</p>
-              <p className="text-sm font-medium text-green-400">
-                {((stats.applied / stats.total) * 100).toFixed(1)}%
+        {/* Stats Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+          {/* Total Applications */}
+          <Card className="bg-gray-800 border-gray-700">
+            <CardHeader className="flex flex-row items-center justify-between pb-2">
+              <CardTitle className="text-sm font-medium text-gray-200">Total Applications</CardTitle>
+              <Briefcase className="h-4 w-4 text-yellow-400" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold text-white">{stats.total}</div>
+              <Progress value={monthlyProgress} className="mt-2" />
+              <p className="text-xs text-gray-400 mt-2">
+                {monthlyProgress}% of your monthly goal
               </p>
-            </div>
-          </CardContent>
-        </Card>
+            </CardContent>
+          </Card>
 
-        {/* Interviews */}
-        <Card className="bg-gray-800 border-gray-700">
-          <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium text-gray-200">Interviews</CardTitle>
-            <Users className="h-4 w-4 text-blue-400" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold text-white">{stats.interviewing}</div>
-            <div className="flex items-center justify-between mt-2">
-              <p className="text-sm text-gray-400">Conversion Rate</p>
-              <p className="text-sm font-medium text-blue-400">
-                {((stats.interviewing / stats.applied) * 100).toFixed(1)}%
-              </p>
-            </div>
-          </CardContent>
-        </Card>
+          {/* Applied */}
+          <Card className="bg-gray-800 border-gray-700">
+            <CardHeader className="flex flex-row items-center justify-between pb-2">
+              <CardTitle className="text-sm font-medium text-gray-200">Applied</CardTitle>
+              <PieChart className="h-4 w-4 text-green-400" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold text-white">{stats.applied}</div>
+              <div className="flex items-center justify-between mt-2">
+                <p className="text-sm text-gray-400">Success Rate</p>
+                <p className="text-sm font-medium text-green-400">
+                  {((stats.applied / stats.total) * 100).toFixed(1)}%
+                </p>
+              </div>
+            </CardContent>
+          </Card>
 
-        {/* Offers */}
-        <Card className="bg-gray-800 border-gray-700">
-          <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium text-gray-200">Offers</CardTitle>
-            <BarChart className="h-4 w-4 text-yellow-400" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold text-white">{stats.offered}</div>
-            <div className="flex items-center justify-between mt-2">
-              <p className="text-sm text-gray-400">Success Rate</p>
-              <p className="text-sm font-medium text-yellow-400">
-                {((stats.offered / stats.interviewing) * 100).toFixed(1)}%
-              </p>
-            </div>
-          </CardContent>
-        </Card>
+          {/* Interviews */}
+          <Card className="bg-gray-800 border-gray-700">
+            <CardHeader className="flex flex-row items-center justify-between pb-2">
+              <CardTitle className="text-sm font-medium text-gray-200">Interviews</CardTitle>
+              <Users className="h-4 w-4 text-blue-400" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold text-white">{stats.interviewing}</div>
+              <div className="flex items-center justify-between mt-2">
+                <p className="text-sm text-gray-400">Conversion Rate</p>
+                <p className="text-sm font-medium text-blue-400">
+                  {((stats.interviewing / stats.applied) * 100).toFixed(1)}%
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Offers */}
+          <Card className="bg-gray-800 border-gray-700">
+            <CardHeader className="flex flex-row items-center justify-between pb-2">
+              <CardTitle className="text-sm font-medium text-gray-200">Offers</CardTitle>
+              <BarChart className="h-4 w-4 text-yellow-400" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold text-white">{stats.offered}</div>
+              <div className="flex items-center justify-between mt-2">
+                <p className="text-sm text-gray-400">Success Rate</p>
+                <p className="text-sm font-medium text-yellow-400">
+                  {((stats.offered / stats.interviewing) * 100).toFixed(1)}%
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Second Row: Applications Table and Status Chart */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+          {/* Recent Applications */}
+          <Card className="bg-gray-800 border-gray-700">
+            <CardHeader>
+              <CardTitle className="text-white">Last Job Applications</CardTitle>
+            </CardHeader>
+            <CardContent>
+              {applications.length === 0 ? (
+                <p className="text-center text-gray-400 py-8">
+                  No applications yet. Click "Add Job" to get started!
+                </p>
+              ) : (
+                <JobApplicationsTable applications={applications.slice(0, 5)} />
+              )}
+            </CardContent>
+          </Card>
+
+          {/* Application Status Chart */}
+          <Card className="bg-gray-800 border-gray-700">
+            <CardHeader>
+              <CardTitle className="text-white">Application Status</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="h-[300px] mt-4">
+                <ResponsiveContainer width="100%" height="100%">
+                  <RechartsPieChart>
+                    <Pie
+                      data={pieChartData}
+                      cx="50%"
+                      cy="50%"
+                      innerRadius={60}
+                      outerRadius={80}
+                      fill="#8884d8"
+                      paddingAngle={5}
+                      dataKey="value"
+                    >
+                      {pieChartData.map((entry, index) => (
+                        <Cell 
+                          key={`cell-${index}`} 
+                          fill={
+                            index === 0 ? '#10B981' : // emerald-500 for Applied
+                            index === 1 ? '#3B82F6' : // blue-500 for Interviewing
+                            index === 2 ? '#F59E0B' : // amber-500 for Offered
+                            '#EF4444'                 // rose-500 for Rejected
+                          }
+                        />
+                      ))}
+                    </Pie>
+                    <Tooltip 
+                      formatter={(value: number) => [value, 'Applications']}
+                      contentStyle={{ background: '#1F2937', border: 'none', borderRadius: '8px' }}
+                      labelStyle={{ color: '#F9FAFB' }}
+                    />
+                    <Legend 
+                      verticalAlign="bottom" 
+                      height={36}
+                      formatter={(value) => <span style={{ color: '#F9FAFB' }}>{value}</span>}
+                    />
+                  </RechartsPieChart>
+                </ResponsiveContainer>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Third Row: Salary and Trend Charts */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+          {/* Salary Comparison */}
+          <Card className="bg-gray-800 border-gray-700">
+            <CardHeader>
+              <CardTitle className="text-white">Average Salary Comparison</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="h-[300px] mt-4">
+                <ResponsiveContainer width="100%" height="100%">
+                  <RechartsBarChart data={barChartData}>
+                    <XAxis 
+                      dataKey="name" 
+                      stroke="#9CA3AF"
+                      tick={{ fill: '#F9FAFB' }}
+                    />
+                    <YAxis 
+                      stroke="#9CA3AF"
+                      tick={{ fill: '#F9FAFB' }}
+                      tickFormatter={(value) => 
+                        new Intl.NumberFormat('en-US', {
+                          style: 'currency',
+                          currency: 'USD',
+                          minimumFractionDigits: 0,
+                          maximumFractionDigits: 0,
+                        }).format(value)
+                      }
+                    />
+                    <Tooltip 
+                      formatter={(value: number) => 
+                        new Intl.NumberFormat('en-US', {
+                          style: 'currency',
+                          currency: 'USD',
+                          minimumFractionDigits: 0,
+                          maximumFractionDigits: 0,
+                        }).format(value)
+                      }
+                      contentStyle={{ background: '#1F2937', border: 'none', borderRadius: '8px' }}
+                      labelStyle={{ color: '#F9FAFB' }}
+                    />
+                    <Legend 
+                      formatter={(value) => <span style={{ color: '#F9FAFB' }}>{value}</span>}
+                    />
+                    <Bar 
+                      dataKey="Salary" 
+                      fill="#EAB308"
+                      radius={[4, 4, 0, 0]}
+                    />
+                  </RechartsBarChart>
+                </ResponsiveContainer>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Application Trend */}
+          <Card className="bg-gray-800 border-gray-700">
+            <CardHeader>
+              <CardTitle className="text-white">Application vs Interview Trend</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="h-[300px] mt-4">
+                <ResponsiveContainer width="100%" height="100%">
+                  <RechartsLineChart data={applicationTrendData}>
+                    <XAxis 
+                      dataKey="date" 
+                      stroke="#9CA3AF"
+                      tick={{ fill: '#F9FAFB' }}
+                    />
+                    <YAxis 
+                      stroke="#9CA3AF"
+                      tick={{ fill: '#F9FAFB' }}
+                    />
+                    <Tooltip 
+                      contentStyle={{ background: '#1F2937', border: 'none', borderRadius: '8px' }}
+                      labelStyle={{ color: '#F9FAFB' }}
+                    />
+                    <Legend 
+                      formatter={(value) => <span style={{ color: '#F9FAFB' }}>{value}</span>}
+                    />
+                    <RechartsLine 
+                      type="monotone" 
+                      dataKey="applications" 
+                      stroke="#10B981" 
+                      strokeWidth={2}
+                    />
+                    <RechartsLine 
+                      type="monotone" 
+                      dataKey="interviews" 
+                      stroke="#3B82F6" 
+                      strokeWidth={2}
+                    />
+                  </RechartsLineChart>
+                </ResponsiveContainer>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
       </div>
-
-      {/* Second Row: Applications Table and Status Chart */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-        {/* Recent Applications */}
-        <Card className="bg-gray-800 border-gray-700">
-          <CardHeader>
-            <CardTitle className="text-white">Last Job Applications</CardTitle>
-          </CardHeader>
-          <CardContent>
-            {applications.length === 0 ? (
-              <p className="text-center text-gray-400 py-8">
-                No applications yet. Click "Add Job" to get started!
-              </p>
-            ) : (
-              <JobApplicationsTable applications={applications.slice(0, 5)} />
-            )}
-          </CardContent>
-        </Card>
-
-        {/* Application Status Chart */}
-        <Card className="bg-gray-800 border-gray-700">
-          <CardHeader>
-            <CardTitle className="text-white">Application Status</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="h-[300px] mt-4">
-              <ResponsiveContainer width="100%" height="100%">
-                <RechartsPieChart>
-                  <Pie
-                    data={pieChartData}
-                    cx="50%"
-                    cy="50%"
-                    innerRadius={60}
-                    outerRadius={80}
-                    fill="#8884d8"
-                    paddingAngle={5}
-                    dataKey="value"
-                  >
-                    {pieChartData.map((entry, index) => (
-                      <Cell 
-                        key={`cell-${index}`} 
-                        fill={
-                          index === 0 ? '#10B981' : // emerald-500 for Applied
-                          index === 1 ? '#3B82F6' : // blue-500 for Interviewing
-                          index === 2 ? '#F59E0B' : // amber-500 for Offered
-                          '#EF4444'                 // rose-500 for Rejected
-                        }
-                      />
-                    ))}
-                  </Pie>
-                  <Tooltip 
-                    formatter={(value: number) => [value, 'Applications']}
-                    contentStyle={{ background: '#1F2937', border: 'none', borderRadius: '8px' }}
-                    labelStyle={{ color: '#F9FAFB' }}
-                  />
-                  <Legend 
-                    verticalAlign="bottom" 
-                    height={36}
-                    formatter={(value) => <span style={{ color: '#F9FAFB' }}>{value}</span>}
-                  />
-                </RechartsPieChart>
-              </ResponsiveContainer>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-
-      {/* Third Row: Salary and Trend Charts */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-        {/* Salary Comparison */}
-        <Card className="bg-gray-800 border-gray-700">
-          <CardHeader>
-            <CardTitle className="text-white">Average Salary Comparison</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="h-[300px] mt-4">
-              <ResponsiveContainer width="100%" height="100%">
-                <RechartsBarChart data={barChartData}>
-                  <XAxis 
-                    dataKey="name" 
-                    stroke="#9CA3AF"
-                    tick={{ fill: '#F9FAFB' }}
-                  />
-                  <YAxis 
-                    stroke="#9CA3AF"
-                    tick={{ fill: '#F9FAFB' }}
-                    tickFormatter={(value) => 
-                      new Intl.NumberFormat('en-US', {
-                        style: 'currency',
-                        currency: 'USD',
-                        minimumFractionDigits: 0,
-                        maximumFractionDigits: 0,
-                      }).format(value)
-                    }
-                  />
-                  <Tooltip 
-                    formatter={(value: number) => 
-                      new Intl.NumberFormat('en-US', {
-                        style: 'currency',
-                        currency: 'USD',
-                        minimumFractionDigits: 0,
-                        maximumFractionDigits: 0,
-                      }).format(value)
-                    }
-                    contentStyle={{ background: '#1F2937', border: 'none', borderRadius: '8px' }}
-                    labelStyle={{ color: '#F9FAFB' }}
-                  />
-                  <Legend 
-                    formatter={(value) => <span style={{ color: '#F9FAFB' }}>{value}</span>}
-                  />
-                  <Bar 
-                    dataKey="Salary" 
-                    fill="#EAB308"
-                    radius={[4, 4, 0, 0]}
-                  />
-                </RechartsBarChart>
-              </ResponsiveContainer>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Application Trend */}
-        <Card className="bg-gray-800 border-gray-700">
-          <CardHeader>
-            <CardTitle className="text-white">Application vs Interview Trend</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="h-[300px] mt-4">
-              <ResponsiveContainer width="100%" height="100%">
-                <RechartsLineChart data={applicationTrendData}>
-                  <XAxis 
-                    dataKey="date" 
-                    stroke="#9CA3AF"
-                    tick={{ fill: '#F9FAFB' }}
-                  />
-                  <YAxis 
-                    stroke="#9CA3AF"
-                    tick={{ fill: '#F9FAFB' }}
-                  />
-                  <Tooltip 
-                    contentStyle={{ background: '#1F2937', border: 'none', borderRadius: '8px' }}
-                    labelStyle={{ color: '#F9FAFB' }}
-                  />
-                  <Legend 
-                    formatter={(value) => <span style={{ color: '#F9FAFB' }}>{value}</span>}
-                  />
-                  <RechartsLine 
-                    type="monotone" 
-                    dataKey="applications" 
-                    stroke="#10B981" 
-                    strokeWidth={2}
-                  />
-                  <RechartsLine 
-                    type="monotone" 
-                    dataKey="interviews" 
-                    stroke="#3B82F6" 
-                    strokeWidth={2}
-                  />
-                </RechartsLineChart>
-              </ResponsiveContainer>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-    </>
+    </div>
   )
 } 

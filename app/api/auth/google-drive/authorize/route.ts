@@ -1,18 +1,45 @@
-import { NextResponse } from 'next/server'
-import { google } from 'googleapis'
+import { getAuthUrl } from '@/lib/googleDrive';
+import { NextResponse } from 'next/server';
 
-const oauth2Client = new google.auth.OAuth2(
-  process.env.NEXT_PUBLIC_GOOGLE_DRIVE_CLIENT_ID,
-  process.env.NEXT_PUBLIC_GOOGLE_DRIVE_CLIENT_SECRET,
-  'http://localhost:3000/api/auth/google-drive/callback'
-)
+export const dynamic = 'force-dynamic';
 
 export async function GET() {
-  const authUrl = oauth2Client.generateAuthUrl({
-    access_type: 'offline',
-    scope: ['https://www.googleapis.com/auth/drive.file'],
-    prompt: 'consent'
-  })
+  try {
+    const authUrl = getAuthUrl();
+    
+    if (!authUrl) {
+      throw new Error('Failed to generate authorization URL');
+    }
 
-  return NextResponse.json({ authUrl })
+    const headers = {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+    };
+
+    return NextResponse.json({ authUrl }, { headers });
+  } catch (error) {
+    console.error('Error generating auth URL:', error);
+    
+    const headers = {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+    };
+
+    return NextResponse.json(
+      { error: 'Failed to generate authorization URL' },
+      { status: 500, headers }
+    );
+  }
+}
+
+export async function OPTIONS() {
+  return NextResponse.json({}, {
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+    },
+  });
 } 

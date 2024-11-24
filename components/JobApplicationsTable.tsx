@@ -12,7 +12,7 @@ interface JobApplicationsTableProps {
   onUpdate?: () => void
 }
 
-export function JobApplicationsTable({ applications, onUpdate }: JobApplicationsTableProps) {
+export const JobApplicationsTable = ({ applications, onUpdate }: JobApplicationsTableProps) => {
   const [editingApplication, setEditingApplication] = useState<JobApplication | null>(null)
   const [viewingResume, setViewingResume] = useState<string | null>(null)
 

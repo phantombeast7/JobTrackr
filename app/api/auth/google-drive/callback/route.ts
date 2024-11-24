@@ -1,65 +1,53 @@
-import { NextRequest } from 'next/server'
-import { google } from 'googleapis'
-
-const oauth2Client = new google.auth.OAuth2(
-  process.env.NEXT_PUBLIC_GOOGLE_DRIVE_CLIENT_ID,
-  process.env.NEXT_PUBLIC_GOOGLE_DRIVE_CLIENT_SECRET,
-  'http://localhost:3000/api/auth/google-drive/callback'
-)
+import { setCredentials } from '@/lib/googleDrive';
+import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(request: NextRequest) {
-  const searchParams = request.nextUrl.searchParams
-  const code = searchParams.get('code')
-
-  if (!code) {
-    return new Response(
-      `
-      <script>
-        window.opener.postMessage({ type: 'GOOGLE_DRIVE_AUTH_ERROR' }, '*');
-        window.close();
-      </script>
-      `,
-      {
-        headers: {
-          'Content-Type': 'text/html',
-        },
-      }
-    )
-  }
-
   try {
-    const { tokens } = await oauth2Client.getToken(code)
-    
-    return new Response(
+    const url = new URL(request.url);
+    const code = url.searchParams.get('code');
+    const error = url.searchParams.get('error');
+
+    if (error) {
+      throw new Error(`Authorization failed: ${error}`);
+    }
+
+    if (!code) {
+      throw new Error('No authorization code received');
+    }
+
+    const tokens = await setCredentials(code);
+
+    // Return HTML that sends the tokens to the parent window and closes itself
+    return new NextResponse(
       `
-      <script>
-        window.opener.postMessage({ 
-          type: 'GOOGLE_DRIVE_AUTH_SUCCESS', 
-          tokens: ${JSON.stringify(tokens)}
-        }, '*');
-        window.close();
-      </script>
+      <html>
+        <body>
+          <script>
+            if (window.opener) {
+              window.opener.postMessage(
+                { 
+                  type: 'GOOGLE_DRIVE_AUTH_SUCCESS', 
+                  tokens: ${JSON.stringify(tokens)}
+                }, 
+                '*'
+              );
+              window.close();
+            }
+          </script>
+        </body>
+      </html>
       `,
       {
         headers: {
           'Content-Type': 'text/html',
         },
       }
-    )
+    );
   } catch (error) {
-    console.error('Error getting tokens:', error)
-    return new Response(
-      `
-      <script>
-        window.opener.postMessage({ type: 'GOOGLE_DRIVE_AUTH_ERROR' }, '*');
-        window.close();
-      </script>
-      `,
-      {
-        headers: {
-          'Content-Type': 'text/html',
-        },
-      }
-    )
+    console.error('Callback error:', error);
+    return NextResponse.json(
+      { error: 'Authorization failed' },
+      { status: 500 }
+    );
   }
 } 
