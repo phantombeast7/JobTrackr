@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Navigation from "../components/Navigation";
 import { Box } from "@mui/material";
+import { AuthProvider } from '@/context/AuthContext'
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -28,10 +29,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <Box sx={{ minHeight: '100vh', pb: { xs: 7, sm: 0 } }}>
-          {children}
-          <Navigation />
-        </Box>
+        <AuthProvider>
+          <Box sx={{ minHeight: '100vh', pb: { xs: 7, sm: 0 } }}>
+            {children}
+            <Navigation />
+          </Box>
+        </AuthProvider>
       </body>
     </html>
   );

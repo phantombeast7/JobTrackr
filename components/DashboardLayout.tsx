@@ -2,7 +2,6 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import Navigation from '@/components/Navigation'
 
 export default function DashboardLayout({
   children,

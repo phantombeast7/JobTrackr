@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Briefcase, Home, BarChart, Settings, Bell, LogOut, User } from 'lucide-react';
+import { Briefcase, Home, BarChart, Settings, Bell, LogOut, User, PieChart } from 'lucide-react';
 import { auth } from '@/lib/firebase';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
@@ -36,7 +36,6 @@ export default function Navigation() {
   const navItems = [
     { href: '/dashboard', label: 'Dashboard', icon: Home },
     { href: '/applications', label: 'Applications', icon: Briefcase },
-    { href: '/analytics', label: 'Analytics', icon: BarChart },
     { href: '/reminders', label: 'Reminders', icon: Bell },
   ];
 
