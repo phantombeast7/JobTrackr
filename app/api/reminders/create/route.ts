@@ -1,52 +1,72 @@
-import { NextResponse } from 'next/server';
-
-const TESTMAIL_API_KEY = process.env.TESTMAIL_API_KEY;
-const TESTMAIL_NAMESPACE = process.env.TESTMAIL_NAMESPACE;
+import { NextResponse } from 'next/server'
+import { addReminderServer } from '@/lib/firebase/server/reminders'
+import { adminAuth } from '@/lib/firebase/server'
 
 export async function POST(request: Request) {
   try {
-    const { title, date, email, company } = await request.json();
+    // Get the authorization token from headers
+    const authHeader = request.headers.get('Authorization');
+    if (!authHeader?.startsWith('Bearer ')) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
 
-    // Format the email content
-    const emailContent = `
-      Dear User,
+    const token = authHeader.split('Bearer ')[1];
+    
+    // Verify the token and get user info
+    const decodedToken = await adminAuth.verifyIdToken(token);
+    const userId = decodedToken.uid;
+    const userEmail = decodedToken.email;
+
+    if (!userEmail) {
+      return NextResponse.json({ error: 'User email not found' }, { status: 400 });
+    }
+
+    // Get reminder data from request body
+    const reminderData = await request.json();
+    const scheduledDate = new Date(reminderData.scheduledFor);
+
+    // Add user information to reminder data
+    const reminderWithUser = {
+      ...reminderData,
+      userId,
+      userEmail,
+      sent: false
+    };
+
+    // Add reminder to Firebase
+    const newReminder = await addReminderServer(reminderWithUser);
+
+    // Schedule the email
+    const timeUntilReminder = scheduledDate.getTime() - Date.now();
+    if (timeUntilReminder > 0) {
+      // Schedule the email sending
+      const scheduledTime = new Date(scheduledDate).toISOString();
       
-      This is a reminder for your job application at ${company}.
-      
-      Details:
-      - Company: ${company}
-      - Reminder: ${title}
-      - Date: ${new Date(date).toLocaleString()}
-      
-      Best regards,
-      JobTrackr Team
-    `;
+      // Use Edge Runtime for long-running tasks
+      const response = await fetch(new URL('/api/reminders/send', request.url).toString(), {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${process.env.API_SECRET_KEY}`
+        },
+        body: JSON.stringify({
+          reminderId: newReminder.id,
+          userEmail,
+          reminderDetails: {
+            companyName: reminderData.companyName,
+            jobTitle: reminderData.jobTitle,
+            note: reminderData.note,
+            scheduledFor: scheduledDate
+          }
+        })
+      });
 
-    // Send email using TestMail.app REST API
-    const response = await fetch('https://api.testmail.app/api/json/send', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${TESTMAIL_API_KEY}`
-      },
-      body: JSON.stringify({
-        to: email,
-        subject: 'Reminder from JobTrackr',
-        text: emailContent,
-        from: `jobtrackr.${TESTMAIL_NAMESPACE}@testmail.app`,
-        schedule: new Date(date).toISOString()
-      })
-    });
+      if (!response.ok) {
+        console.error('Failed to schedule reminder email');
+      }
+    }
 
-    const result = await response.json();
-
-    return NextResponse.json({
-      id: result.id,
-      title,
-      date,
-      email,
-      company
-    });
+    return NextResponse.json(newReminder);
   } catch (error) {
     console.error('Error creating reminder:', error);
     return NextResponse.json(
@@ -54,4 +74,7 @@ export async function POST(request: Request) {
       { status: 500 }
     );
   }
-} 
+}
+
+// Remove this line
+// export const runtime = 'edge'; 

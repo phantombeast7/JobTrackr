@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import Navigation from "../components/Navigation";
 import { Box } from "@mui/material";
 import { AuthProvider } from '@/context/AuthContext'
+import ClientLayout from '../components/ClientLayout'
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -30,10 +30,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <AuthProvider>
-          <Box sx={{ minHeight: '100vh', pb: { xs: 7, sm: 0 } }}>
+          <ClientLayout>
             {children}
-            <Navigation />
-          </Box>
+          </ClientLayout>
         </AuthProvider>
       </body>
     </html>
