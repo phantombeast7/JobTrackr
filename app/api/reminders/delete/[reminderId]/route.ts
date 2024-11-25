@@ -1,22 +1,21 @@
-import { NextResponse } from 'next/server';
-import { adminAuth } from '@/lib/firebase/server';
-import { deleteReminderServer } from '@/lib/firebase/server/reminders';
+import { NextRequest, NextResponse } from 'next/server';
+import { deleteReminder } from '@/lib/firebase/reminders';
+import { verifyAuth } from '@/lib/auth';
 
 export async function DELETE(
-  request: Request,
+  request: NextRequest,
   { params }: { params: { reminderId: string } }
 ) {
   try {
-    const authHeader = request.headers.get('Authorization');
-    if (!authHeader?.startsWith('Bearer ')) {
+    const session = await verifyAuth();
+    if (!session) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const token = authHeader.split('Bearer ')[1];
-    await adminAuth.verifyIdToken(token);
+    const { reminderId } = params;
+    await deleteReminder(reminderId);
 
-    await deleteReminderServer(params.reminderId);
-    return NextResponse.json({ success: true });
+    return NextResponse.json({ message: 'Reminder deleted successfully' });
   } catch (error) {
     console.error('Error deleting reminder:', error);
     return NextResponse.json(
