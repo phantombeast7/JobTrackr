@@ -2,9 +2,15 @@ import { NextRequest, NextResponse } from 'next/server';
 import { deleteReminder } from '@/lib/firebase/reminders';
 import { verifyAuth } from '@/lib/auth';
 
+type RouteContext = {
+  params: {
+    reminderId: string;
+  };
+};
+
 export async function DELETE(
-  request: NextRequest,
-  { params }: { params: { reminderId: string } }
+  req: NextRequest,
+  context: RouteContext
 ) {
   try {
     const session = await verifyAuth();
@@ -12,7 +18,7 @@ export async function DELETE(
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const { reminderId } = params;
+    const { reminderId } = context.params;
     await deleteReminder(reminderId);
 
     return NextResponse.json({ message: 'Reminder deleted successfully' });
