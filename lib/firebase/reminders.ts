@@ -76,6 +76,10 @@ export const createReminder = async (reminderData: CreateReminderData) => {
 }
 
 export const deleteReminder = async (reminderId: string): Promise<void> => {
+  if (!reminderId) {
+    throw new Error('Reminder ID is required');
+  }
+  
   try {
     const reminderRef = doc(db, 'reminders', reminderId);
     await deleteDoc(reminderRef);

@@ -78,6 +78,7 @@ export function RemindersSection() {
   const [reminders, setReminders] = useState<Reminder[]>([])
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [retryCount, setRetryCount] = useState(0);
+  const [deletingReminders, setDeletingReminders] = useState<Set<string>>(new Set());
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
@@ -209,29 +210,40 @@ export function RemindersSection() {
     resetForm
   ]);
 
-  const handleDeleteReminder = useCallback(async (reminderId: string) => {
+  const handleDeleteReminder = async (reminderId: string) => {
+    if (!reminderId) return;
+    
     try {
-      setLoading(true);
-      await deleteReminder(reminderId);
+      setDeletingReminders(prev => new Set(prev).add(reminderId));
       
+      if (!auth.currentUser) {
+        throw new Error('Not authenticated');
+      }
+
+      // Delete directly using the Firebase function
+      await deleteReminder(reminderId);
+
       toast({
-        title: 'Reminder Deleted',
-        description: 'The reminder has been successfully deleted.',
+        title: 'Success',
+        description: 'Reminder deleted successfully',
         variant: 'default',
-        duration: 3000,
       });
+
     } catch (error) {
       console.error('Error deleting reminder:', error);
       toast({
         title: 'Error',
         description: error instanceof Error ? error.message : 'Failed to delete reminder',
         variant: 'destructive',
-        duration: 5000,
       });
     } finally {
-      setLoading(false);
+      setDeletingReminders(prev => {
+        const next = new Set(prev);
+        next.delete(reminderId);
+        return next;
+      });
     }
-  }, [toast]);
+  };
 
   return (
     <div className="space-y-6">
@@ -414,9 +426,9 @@ export function RemindersSection() {
                               onClick={() => handleDeleteReminder(reminder.id!)}
                               className="p-1 hover:bg-red-100 rounded-full transition-colors disabled:opacity-50"
                               title="Delete reminder"
-                              disabled={loading}
+                              disabled={deletingReminders.has(reminder.id!)}
                             >
-                              {loading ? (
+                              {deletingReminders.has(reminder.id!) ? (
                                 <div className="animate-spin h-4 w-4">
                                   <svg 
                                     className="h-4 w-4 text-red-500" 
