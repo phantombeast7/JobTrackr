@@ -73,4 +73,27 @@ export const createReminder = async (reminderData: CreateReminderData) => {
     console.error('Error creating reminder:', error);
     throw error;
   }
-} 
+}
+
+export const deleteReminder = async (reminderId: string) => {
+  try {
+    if (!auth.currentUser) throw new Error('Not authenticated');
+    
+    const token = await auth.currentUser.getIdToken();
+    const response = await fetch(`/api/reminders/delete/${reminderId}`, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to delete reminder');
+    }
+
+    return true;
+  } catch (error) {
+    console.error('Error deleting reminder:', error);
+    throw error;
+  }
+}; 

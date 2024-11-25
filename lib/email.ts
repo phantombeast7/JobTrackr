@@ -1,23 +1,17 @@
 import nodemailer from 'nodemailer';
 
-if (!process.env.AWS_SES_SMTP_HOST) throw new Error('AWS_SES_SMTP_HOST is not defined');
-if (!process.env.AWS_SES_SMTP_PORT) throw new Error('AWS_SES_SMTP_PORT is not defined');
-if (!process.env.AWS_SES_USER) throw new Error('AWS_SES_USER is not defined');
-if (!process.env.AWS_SES_PASSWORD) throw new Error('AWS_SES_PASSWORD is not defined');
-if (!process.env.AWS_SES_FROM_EMAIL) throw new Error('AWS_SES_FROM_EMAIL is not defined');
-
-// Create AWS SES transporter
+// Create the transporter with Amazon's recommended configuration
 const transporter = nodemailer.createTransport({
   host: process.env.AWS_SES_SMTP_HOST,
-  port: Number(process.env.AWS_SES_SMTP_PORT),
+  port: 587,
   secure: false, // Use TLS
   auth: {
-    user: process.env.AWS_SES_USER,
-    pass: process.env.AWS_SES_PASSWORD,
-  },
-  debug: true // Enable debug logs
+    user: process.env.AWS_SES_USER!,
+    pass: process.env.AWS_SES_PASSWORD!
+  }
 });
 
+// Remove the previous configuration checks and simplify the email sending
 export async function sendReminderEmail(
   userEmail: string,
   subject: string,
@@ -26,128 +20,73 @@ export async function sendReminderEmail(
     jobTitle: string;
     note: string;
     scheduledFor: Date;
+    status?: string;
+    applicationDate?: string;
   }
 ): Promise<boolean> {
   try {
-    console.log('Sending reminder email to:', userEmail);
+    console.log('=== Email Sending Process Started ===');
+    console.log('To:', userEmail);
+    console.log('From:', process.env.AWS_SES_FROM_EMAIL);
 
     const info = await transporter.sendMail({
-      from: {
-        name: 'JobTrackr',
-        address: process.env.AWS_SES_FROM_EMAIL!
-      },
+      from: process.env.AWS_SES_FROM_EMAIL!, // Must be verified in SES
       to: userEmail,
-      subject,
-      html: `
-        <!DOCTYPE html>
-        <html>
-          <head>
-            <meta charset="utf-8">
-            <style>
-              body { 
-                font-family: Arial, sans-serif; 
-                line-height: 1.6; 
-                color: #333;
-                margin: 0;
-                padding: 0;
-              }
-              .container { 
-                max-width: 600px; 
-                margin: 0 auto; 
-                padding: 20px;
-                background-color: #ffffff;
-              }
-              .header { 
-                background-color: #2563eb;
-                padding: 20px;
-                border-radius: 5px 5px 0 0;
-                text-align: center;
-              }
-              .header h2 {
-                color: #ffffff;
-                margin: 0;
-              }
-              .content { 
-                margin: 20px 0;
-                padding: 20px;
-                background-color: #f8f9fa;
-                border-radius: 5px;
-              }
-              .details {
-                background-color: #ffffff;
-                padding: 15px;
-                border-radius: 5px;
-                margin: 15px 0;
-              }
-              .footer { 
-                font-size: 12px;
-                color: #666;
-                margin-top: 30px;
-                text-align: center;
-                border-top: 1px solid #eee;
-                padding-top: 20px;
-              }
-            </style>
-          </head>
-          <body>
-            <div class="container">
-              <div class="header">
-                <h2>Job Application Reminder</h2>
-              </div>
-              <div class="content">
-                <p>Hello,</p>
-                <p>This is your scheduled reminder for your job application at <strong>${reminderDetails.companyName}</strong>.</p>
-                
-                <div class="details">
-                  <h3>Application Details:</h3>
-                  <ul>
-                    <li><strong>Company:</strong> ${reminderDetails.companyName}</li>
-                    <li><strong>Position:</strong> ${reminderDetails.jobTitle}</li>
-                    <li><strong>Scheduled For:</strong> ${reminderDetails.scheduledFor.toLocaleString('en-US', {
-                      weekday: 'long',
-                      year: 'numeric',
-                      month: 'long',
-                      day: 'numeric',
-                      hour: '2-digit',
-                      minute: '2-digit'
-                    })}</li>
-                  </ul>
-                  
-                  <h3>Your Note:</h3>
-                  <p>${reminderDetails.note}</p>
-                </div>
+      subject: `JobTrackr: ${reminderDetails.companyName} Follow-up Reminder`,
+      text: `
+Dear User,
 
-                <p>Good luck with your application!</p>
-              </div>
-              <div class="footer">
-                <p>This is an automated reminder from JobTrackr.</p>
-                <p>Please do not reply to this email.</p>
-              </div>
-            </div>
-          </body>
-        </html>
-      `,
-      headers: {
-        'X-Priority': '1',
-        'X-MSMail-Priority': 'High',
-        'Importance': 'high'
-      }
+This is a reminder for your job application follow-up:
+
+Company: ${reminderDetails.companyName}
+Position: ${reminderDetails.jobTitle}
+Status: ${reminderDetails.status || 'Applied'}
+Scheduled for: ${reminderDetails.scheduledFor.toLocaleString()}
+
+Note: ${reminderDetails.note}
+
+Best regards,
+JobTrackr Team`,
+      html: `<p>Dear User,</p>
+<p>This is a reminder for your job application follow-up:</p>
+<p>
+<strong>Company:</strong> ${reminderDetails.companyName}<br>
+<strong>Position:</strong> ${reminderDetails.jobTitle}<br>
+<strong>Status:</strong> ${reminderDetails.status || 'Applied'}<br>
+<strong>Scheduled for:</strong> ${reminderDetails.scheduledFor.toLocaleString()}
+</p>
+<p><strong>Note:</strong> ${reminderDetails.note}</p>
+<p>Best regards,<br>JobTrackr Team</p>`
     });
 
-    console.log('Email sent successfully:', info.messageId);
+    console.log('=== Email Sending Response ===');
+    console.log('Message ID:', info.messageId);
+    console.log('Response:', info.response);
+    
     return true;
   } catch (error) {
-    console.error('Error sending email:', error);
+    console.error('=== Email Sending Error ===');
+    console.error('Error:', error);
     throw error;
   }
 }
 
-// Verify email connection on startup
-transporter.verify()
-  .then(() => {
-    console.log('AWS SES connection verified successfully');
-  })
-  .catch((error) => {
-    console.error('AWS SES connection error:', error);
-  });
+// Add a simple test function
+export async function testEmail(toEmail: string) {
+  try {
+    const info = await transporter.sendMail({
+      from: process.env.AWS_SES_FROM_EMAIL!,
+      to: toEmail,
+      subject: 'Test Email from JobTrackr',
+      text: 'This is a test email from JobTrackr.',
+      html: '<p>This is a test email from JobTrackr.</p>'
+    });
+    
+    console.log('Test email sent:', info.messageId);
+    return true;
+  } catch (error) {
+    console.error('Test email failed:', error);
+    return false;
+  }
+}
  

@@ -1,10 +1,10 @@
 import { NextResponse } from 'next/server'
-import { addReminderServer } from '@/lib/firebase/server/reminders'
+import { addReminderServer, updateReminderStatusServer } from '@/lib/firebase/server/reminders'
 import { adminAuth } from '@/lib/firebase/server'
+import { sendReminderEmail } from '@/lib/email'
 
 export async function POST(request: Request) {
   try {
-    // Get the authorization token from headers
     const authHeader = request.headers.get('Authorization');
     if (!authHeader?.startsWith('Bearer ')) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
@@ -12,7 +12,6 @@ export async function POST(request: Request) {
 
     const token = authHeader.split('Bearer ')[1];
     
-    // Verify the token and get user info
     const decodedToken = await adminAuth.verifyIdToken(token);
     const userId = decodedToken.uid;
     const userEmail = decodedToken.email;
@@ -36,33 +35,44 @@ export async function POST(request: Request) {
     // Add reminder to Firebase
     const newReminder = await addReminderServer(reminderWithUser);
 
-    // Schedule the email
-    const timeUntilReminder = scheduledDate.getTime() - Date.now();
-    if (timeUntilReminder > 0) {
-      // Schedule the email sending
-      const scheduledTime = new Date(scheduledDate).toISOString();
-      
-      // Use Edge Runtime for long-running tasks
-      const response = await fetch(new URL('/api/reminders/send', request.url).toString(), {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${process.env.API_SECRET_KEY}`
-        },
-        body: JSON.stringify({
-          reminderId: newReminder.id,
-          userEmail,
-          reminderDetails: {
-            companyName: reminderData.companyName,
-            jobTitle: reminderData.jobTitle,
-            note: reminderData.note,
-            scheduledFor: scheduledDate
-          }
-        })
+    try {
+      console.log('Attempting to send email immediately...');
+      console.log('User Email:', userEmail);
+      console.log('Reminder Details:', {
+        companyName: reminderData.companyName,
+        jobTitle: reminderData.jobTitle,
+        scheduledFor: scheduledDate,
+        status: reminderData.status,
+        applicationDate: reminderData.applicationDate
       });
 
-      if (!response.ok) {
-        console.error('Failed to schedule reminder email');
+      // Send email immediately
+      await sendReminderEmail(
+        userEmail,
+        `Reminder: Follow-up for ${reminderData.companyName}`,
+        {
+          companyName: reminderData.companyName,
+          jobTitle: reminderData.jobTitle,
+          note: reminderData.note,
+          scheduledFor: scheduledDate,
+          status: reminderData.status,
+          applicationDate: reminderData.applicationDate
+        }
+      );
+
+      // Update reminder status to sent
+      await updateReminderStatusServer(newReminder.id, true);
+      console.log('Email sent and reminder status updated successfully');
+
+    } catch (emailError) {
+      console.error('Failed to send email:', emailError);
+      // Log detailed error information
+      if (emailError instanceof Error) {
+        console.error('Error details:', {
+          message: emailError.message,
+          stack: emailError.stack,
+          name: emailError.name
+        });
       }
     }
 
