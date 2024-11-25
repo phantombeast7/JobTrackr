@@ -3,7 +3,7 @@ import { deleteReminder } from '@/lib/firebase/reminders';
 import { verifyAuth } from '@/lib/auth';
 
 export async function DELETE(
-  _request: NextRequest,
+  request: NextRequest,
   { params }: { params: { reminderId: string } }
 ): Promise<NextResponse> {
   try {
@@ -21,4 +21,7 @@ export async function DELETE(
       { status: 500 }
     );
   }
-} 
+}
+
+// Specify that this is a dynamic route
+export const dynamic = 'force-dynamic'; 
