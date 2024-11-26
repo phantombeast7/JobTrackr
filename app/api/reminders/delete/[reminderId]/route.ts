@@ -4,7 +4,7 @@ import { verifyAuth } from '@/lib/auth';
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { reminderId: string } }
+  { params }: { params: Promise<{ reminderId: string }> }
 ): Promise<NextResponse> {
   try {
     const session = await verifyAuth();
@@ -12,7 +12,8 @@ export async function DELETE(
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    await deleteReminder(params.reminderId);
+    const { reminderId } = await params;
+    await deleteReminder(reminderId);
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error('Error deleting reminder:', error);
