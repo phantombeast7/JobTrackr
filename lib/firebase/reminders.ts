@@ -4,6 +4,8 @@ import { auth } from '@/lib/firebase'
 
 export interface Reminder {
   id?: string
+  title: string
+  description: string
   userId: string
   companyId: string
   companyName: string
@@ -16,7 +18,10 @@ export interface Reminder {
   userEmail?: string | null
 }
 
-export type CreateReminderData = Omit<Reminder, 'id' | 'createdAt' | 'sent' | 'userId' | 'userEmail'>
+export type CreateReminderData = Omit<Reminder, 'id' | 'createdAt' | 'sent' | 'userId' | 'userEmail'> & {
+  title: string;
+  description: string;
+}
 
 export const getUserReminders = async () => {
   try {

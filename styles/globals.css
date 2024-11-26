@@ -1,0 +1,322 @@
+/* Base colors and theme */
+:root {
+  --background: #000000;
+  --primary: #000000;
+  --secondary: #0C0C0C;
+  --text-primary: #ffffff;
+  --text-secondary: #888888;
+  --accent: #ffffff;
+  --border: #1a1a1a;
+  --error: #ff4444;
+  --success: #00ff00;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--text-primary);
+}
+
+/* Navigation and header styles */
+.navbar {
+  background-color: var(--primary);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-link {
+  color: var(--text-secondary);
+}
+
+.nav-link:hover {
+  color: var(--text-primary);
+}
+
+/* Card and container styles */
+.card {
+  background-color: var(--primary);
+  border: 1px solid var(--border);
+}
+
+.container {
+  background-color: var(--primary);
+}
+
+/* Form elements */
+input, textarea, select {
+  background-color: var(--secondary);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+}
+
+input:focus, textarea:focus, select:focus {
+  border-color: var(--text-primary);
+}
+
+/* Buttons */
+.button {
+  background-color: var(--text-primary);
+  color: var(--background);
+}
+
+.button:hover {
+  opacity: 0.9;
+}
+
+/* Table styles */
+table {
+  background-color: var(--primary);
+}
+
+tr:nth-child(even) {
+  background-color: var(--secondary);
+}
+
+/* Links */
+a {
+  color: var(--text-primary);
+}
+
+a:hover {
+  color: var(--text-secondary);
+}
+
+/* Scrollbar customization */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}
+
+/* Additional section-specific styles */
+.dashboard-card {
+  background-color: var(--primary);
+  border: 1px solid var(--border);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar {
+  background-color: var(--primary);
+  border-right: 1px solid var(--border);
+}
+
+.main-content {
+  background-color: var(--background);
+}
+
+/* Applications section */
+.application-list {
+  background-color: var(--primary);
+  border: 1px solid var(--border);
+}
+
+.application-item {
+  border-bottom: 1px solid var(--border);
+  background-color: var(--primary);
+}
+
+.application-item:hover {
+  background-color: var(--secondary);
+}
+
+/* Reminders section */
+.reminder-card {
+  background-color: var(--primary);
+  border: 1px solid var(--border);
+}
+
+.reminder-item {
+  border-bottom: 1px solid var(--border);
+}
+
+/* Navigation styles */
+.top-nav {
+  background-color: var(--primary);
+  border-bottom: 1px solid var(--border);
+}
+
+.dropdown-menu {
+  background-color: var(--primary);
+  border: 1px solid var(--border);
+}
+
+.dropdown-item {
+  color: var(--text-primary);
+}
+
+.dropdown-item:hover {
+  background-color: var(--secondary);
+  color: var(--text-primary);
+}
+
+/* Status indicators */
+.status-badge {
+  background-color: var(--secondary);
+  color: var(--text-primary);
+}
+
+/* Search bar */
+.search-input {
+  background-color: var(--secondary);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+}
+
+.search-input::placeholder {
+  color: var(--text-secondary);
+}
+
+/* Tabs */
+.tab {
+  background-color: var(--primary);
+  border: 1px solid var(--border);
+}
+
+.tab.active {
+  background-color: var(--secondary);
+  border-bottom-color: var(--accent);
+}
+
+/* Modal */
+.modal-content {
+  background-color: var(--primary);
+  border: 1px solid var(--border);
+}
+
+.modal-header {
+  border-bottom: 1px solid var(--border);
+}
+
+.modal-footer {
+  border-top: 1px solid var(--border);
+}
+
+/* Update existing components */
+.bg-gray-800 {
+  background-color: var(--primary);
+}
+
+.bg-gray-900 {
+  background-color: var(--background);
+}
+
+.border-gray-700 {
+  border-color: var(--border);
+}
+
+/* Calendar styles */
+.rbc-calendar {
+  background-color: var(--primary);
+  border-color: var(--border);
+}
+
+.rbc-header {
+  background-color: var(--secondary);
+  border-color: var(--border);
+}
+
+.rbc-event {
+  background-color: var(--accent);
+  color: var(--background);
+}
+
+/* Table styles in ApplicationsTable */
+.table-container {
+  background-color: var(--primary);
+}
+
+/* Dashboard cards */
+.card {
+  background-color: var(--primary);
+  border-color: var(--border);
+}
+
+/* Form elements in modals */
+.dialog-content {
+  background-color: var(--primary);
+  border-color: var(--border);
+}
+
+/* Navigation */
+.navbar {
+  background-color: var(--primary);
+  border-bottom-color: var(--border);
+}
+
+/* Add these styles */
+.select-trigger {
+  width: 100%;
+  cursor: pointer;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="time"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  cursor: pointer;
+}
+
+textarea:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.select-content {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+/* Add these specific styles for the reminder textarea */
+.reminder-textarea {
+  background-color: #1a1a1a !important;
+  color: white !important;
+  border: 1px solid #333333 !important;
+}
+
+.reminder-textarea:focus {
+  border-color: #3b82f6 !important;
+  box-shadow: 0 0 0 1px #3b82f6 !important;
+  outline: none !important;
+}
+
+.reminder-textarea::placeholder {
+  color: #666666 !important;
+}
+
+/* Add these styles for the textarea */
+textarea {
+  background-color: #1a1a1a !important;
+  color: white !important;
+  border: 1px solid #333333 !important;
+  position: relative !important;
+  z-index: 10 !important;
+  pointer-events: auto !important;
+}
+
+textarea:focus {
+  border-color: #3b82f6 !important;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5) !important;
+  outline: none !important;
+}
+
+textarea::placeholder {
+  color: #666666 !important;
+}
+
+/* Ensure form elements are clickable */
+.card > div[class*="absolute"] {
+  pointer-events: none;
+}
+
+.card > div:not([class*="absolute"]) {
+  position: relative;
+  z-index: 1;
+} 

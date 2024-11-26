@@ -16,4 +16,221 @@
 
 .rbc-today {
   background-color: var(--accent);
+}
+
+.reminder-calendar {
+  min-height: 500px !important;
+  background: transparent !important;
+  border: none !important;
+}
+
+.reminder-calendar .rbc-header {
+  color: #ffffff;
+  padding: 8px;
+  border-color: #333333;
+  background: #1a1a1a;
+}
+
+.reminder-calendar .rbc-month-view {
+  border-color: #333333;
+  min-height: 400px;
+}
+
+.reminder-calendar .rbc-day-bg {
+  background: #1a1a1a;
+}
+
+.reminder-calendar .rbc-off-range-bg {
+  background: #0C0C0C;
+}
+
+.reminder-calendar .rbc-today {
+  background: #262626;
+}
+
+.reminder-calendar .rbc-event {
+  background: linear-gradient(to right, #3b82f6, #8b5cf6);
+  border: none;
+}
+
+.reminder-calendar .rbc-event.rbc-selected {
+  background: linear-gradient(to right, #2563eb, #7c3aed);
+}
+
+.reminder-calendar .rbc-date-cell {
+  color: #ffffff;
+  padding: 4px;
+}
+
+.reminder-calendar .rbc-off-range {
+  color: #666666;
+}
+
+.reminder-calendar .rbc-toolbar {
+  margin-bottom: 20px;
+  padding: 10px;
+  background: #1a1a1a;
+  border-radius: 8px;
+  border: 1px solid #333333;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  position: relative;
+  z-index: 5;
+}
+
+.reminder-calendar .rbc-toolbar button {
+  color: white;
+  background: #1a1a1a;
+  border: 1px solid #333333;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin: 0 2px;
+  position: relative;
+  z-index: 10;
+  pointer-events: auto;
+}
+
+.reminder-calendar .rbc-toolbar button:hover {
+  background: #262626;
+  border-color: #404040;
+}
+
+.reminder-calendar .rbc-toolbar button:active,
+.reminder-calendar .rbc-toolbar button.rbc-active {
+  background: #404040;
+  border-color: #525252;
+}
+
+.reminder-calendar .rbc-toolbar-label {
+  font-weight: 600;
+  color: white;
+  position: relative;
+  z-index: 10;
+}
+
+.reminder-calendar .rbc-today {
+  background: rgba(59, 130, 246, 0.1);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.reminder-calendar .rbc-current {
+  color: #3b82f6;
+  font-weight: 600;
+}
+
+.reminder-calendar .rbc-row-content {
+  z-index: 0;
+}
+
+.reminder-calendar .rbc-date-cell {
+  padding: 8px;
+  text-align: center;
+}
+
+.reminder-calendar .rbc-button-link {
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+}
+
+.reminder-calendar .rbc-button-link:hover {
+  background: #262626;
+}
+
+.reminder-calendar {
+  /* General calendar styles */
+  background-color: #1a1a1a;
+  color: white;
+}
+
+/* Calendar header and navigation buttons */
+.rbc-toolbar {
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.rbc-toolbar button {
+  color: white;
+  border: 1px solid #333333;
+  background: transparent;
+  padding: 0.5rem 1rem;
+  margin: 0;
+  transition: all 0.2s;
+}
+
+.rbc-toolbar button:hover {
+  background-color: #262626;
+  border-color: #404040;
+}
+
+.rbc-toolbar button.rbc-active {
+  background-color: #262626;
+  border-color: #404040;
+}
+
+/* Calendar cells */
+.rbc-month-view {
+  border: 1px solid #333333;
+}
+
+.rbc-day-bg {
+  border: 1px solid #333333;
+}
+
+.rbc-today {
+  background-color: rgba(59, 130, 246, 0.1);
+}
+
+.rbc-off-range-bg {
+  background-color: #262626;
+}
+
+.rbc-header {
+  padding: 0.5rem;
+  font-weight: 500;
+  border-bottom: 1px solid #333333;
+}
+
+/* Event styles */
+.rbc-event {
+  background-color: #3b82f6;
+  border: none;
+  border-radius: 4px;
+  padding: 2px 5px;
+}
+
+.rbc-event.rbc-selected {
+  background-color: #2563eb;
+}
+
+/* Time grid */
+.rbc-time-content {
+  border-top: 1px solid #333333;
+}
+
+.rbc-time-header-content {
+  border-left: 1px solid #333333;
+}
+
+/* Make sure the calendar is responsive */
+@media (max-width: 640px) {
+  .rbc-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .rbc-toolbar-label {
+    text-align: center;
+    margin: 0.5rem 0;
+  }
 } 

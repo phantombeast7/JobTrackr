@@ -35,6 +35,33 @@ import { onSnapshot, query, collection, where, orderBy } from 'firebase/firestor
 import { db } from '@/lib/firebase';
 import { Trash2 } from 'lucide-react';
 import { deleteReminder } from '@/lib/firebase/reminders';
+import { Loader2 } from 'lucide-react';
+import { StatusBadge } from '@/components/StatusBadge'
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table'
+import { Calendar as CalendarIcon, ChevronLeft, ChevronRight } from 'lucide-react'
+import { Label } from '@/components/ui/label'
+import { cn } from "@/lib/utils"
+
+interface FirebaseTimestamp {
+  toDate(): Date;
+  seconds: number;
+  nanoseconds: number;
+}
+
+interface ReminderType extends Omit<Reminder, 'scheduledFor'> {
+  scheduledFor: {
+    toDate(): Date;
+    seconds: number;
+    nanoseconds: number;
+  };
+}
 
 const locales = {
   'en-US': require('date-fns/locale/en-US')
@@ -67,18 +94,38 @@ const formatDate = (date: Date | Timestamp | any): string => {
   }
 };
 
+const ReminderCard = ({ reminder }: { reminder: Reminder }) => {
+  return (
+    <div className="relative flex items-center gap-2 rounded-lg border p-3 shadow-sm">
+      <div className="flex flex-1 items-center gap-2">
+        <div className="flex flex-1 flex-col">
+          <span className="text-sm font-medium">{reminder.companyName}</span>
+          <span className="text-xs text-gray-500">{reminder.note}</span>
+        </div>
+      </div>
+      <button
+        className="rounded-lg border p-1 hover:bg-gray-100"
+        onClick={() => {/* ... */}}
+      >
+        <Trash2 className="h-4 w-4 text-gray-500" />
+      </button>
+    </div>
+  )
+}
+
 export function RemindersSection() {
   const [selectedDate, setSelectedDate] = useState<Date>(new Date())
   const [selectedTime, setSelectedTime] = useState<string>('12:00')
   const [selectedCompany, setSelectedCompany] = useState<JobApplication | null>(null)
-  const [note, setNote] = useState('')
+  const [note, setNote] = useState<string>('')
   const [applications, setApplications] = useState<JobApplication[]>([])
   const [loading, setLoading] = useState(true)
   const { toast } = useToast()
-  const [reminders, setReminders] = useState<Reminder[]>([])
+  const [reminders, setReminders] = useState<ReminderType[]>([])
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [retryCount, setRetryCount] = useState(0);
   const [deletingReminders, setDeletingReminders] = useState<Set<string>>(new Set());
+  const [currentDate, setCurrentDate] = useState(new Date());
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
@@ -105,7 +152,7 @@ export function RemindersSection() {
             const updatedReminders = snapshot.docs.map(doc => ({
               id: doc.id,
               ...doc.data()
-            })) as Reminder[];
+            })) as ReminderType[];
             setReminders(updatedReminders);
             setLoading(false);
           },
@@ -146,10 +193,12 @@ export function RemindersSection() {
   }, []);
 
   const handleCreateReminder = useCallback(async () => {
-    if (!selectedCompany || !selectedDate || !selectedTime || !note || !auth.currentUser) {
+    console.log('Creating reminder with note:', note);
+
+    if (!selectedCompany || !selectedDate || !selectedTime || !note.trim()) {
       toast({
         title: 'Error',
-        description: 'Please fill in all fields',
+        description: 'Please fill in all fields including the note',
         variant: 'destructive',
       });
       return;
@@ -157,7 +206,6 @@ export function RemindersSection() {
 
     try {
       setIsSubmitting(true);
-      setLoading(true);
 
       const [hours, minutes] = selectedTime.split(':');
       const scheduledDate = new Date(selectedDate);
@@ -172,21 +220,24 @@ export function RemindersSection() {
         return;
       }
 
-      const reminderData = {
+      const reminderData: CreateReminderData = {
         companyId: selectedCompany.id || '',
         companyName: selectedCompany.companyName,
         jobTitle: selectedCompany.jobTitle || '',
         status: selectedCompany.status || 'Applied',
-        note,
-        scheduledFor: Timestamp.fromDate(scheduledDate)
+        note: note.trim(),
+        scheduledFor: Timestamp.fromDate(scheduledDate),
+        title: selectedCompany.companyName,
+        description: note.trim()
       };
+
+      console.log('Reminder data:', reminderData);
 
       await createReminder(reminderData);
 
       toast({
         title: 'Success',
         description: `Reminder scheduled for ${scheduledDate.toLocaleString()}`,
-        variant: 'default',
       });
 
       resetForm();
@@ -199,16 +250,8 @@ export function RemindersSection() {
       });
     } finally {
       setIsSubmitting(false);
-      setLoading(false);
     }
-  }, [
-    selectedCompany,
-    selectedDate,
-    selectedTime,
-    note,
-    toast,
-    resetForm
-  ]);
+  }, [selectedCompany, selectedDate, selectedTime, note, toast, resetForm]);
 
   const handleDeleteReminder = async (reminderId: string) => {
     if (!reminderId) return;
@@ -245,65 +288,133 @@ export function RemindersSection() {
     }
   };
 
+  const handlePreviousDay = () => {
+    const newDate = new Date(currentDate);
+    newDate.setDate(currentDate.getDate() - 1);
+    setCurrentDate(newDate);
+  };
+
+  const handleNextDay = () => {
+    const newDate = new Date(currentDate);
+    newDate.setDate(currentDate.getDate() + 1);
+    setCurrentDate(newDate);
+  };
+
+  const handleToday = () => {
+    setCurrentDate(new Date());
+  };
+
   return (
     <div className="space-y-6">
-      <Card className="col-span-3">
-        <CardHeader>
-          <CardTitle>Set Reminders</CardTitle>
-          <CardDescription>Schedule follow-ups for your applications</CardDescription>
-        </CardHeader>
-        <CardContent className="grid grid-cols-2 gap-4">
-          <div className="col-span-1 space-y-4">
-            <div className="border rounded-lg p-4">
-              <label className="text-sm font-medium mb-2 block">Select Date</label>
+      {/* Main Grid Layout */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Calendar Section */}
+        <Card className="col-span-1 bg-black border border-[#1a1a1a] transition-colors overflow-hidden relative">
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 transition-opacity" />
+          <CardHeader>
+            <CardTitle className="text-lg sm:text-xl text-white">Calendar</CardTitle>
+            <CardDescription>Schedule and track your follow-ups</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="border rounded-lg p-4 bg-[#1a1a1a] border-[#333333]">
               <Calendar
                 localizer={localizer}
-                events={[]}
+                events={reminders.map(reminder => {
+                  let date: Date;
+                  const scheduledFor = reminder.scheduledFor;
+                  
+                  if (scheduledFor instanceof Timestamp) {
+                    date = scheduledFor.toDate();
+                  } else if ('seconds' in scheduledFor) {
+                    date = new Timestamp(
+                      scheduledFor.seconds,
+                      scheduledFor.nanoseconds
+                    ).toDate();
+                  } else {
+                    date = new Date(scheduledFor as any);
+                  }
+
+                  return {
+                    title: `${reminder.companyName} - ${reminder.note}`,
+                    start: date,
+                    end: date,
+                    reminder: reminder
+                  };
+                })}
                 startAccessor="start"
                 endAccessor="end"
-                style={{ height: 400 }}
+                style={{ height: 500 }}
                 onSelectSlot={handleSelectSlot}
                 selectable
-                defaultDate={selectedDate}
+                date={selectedDate}
+                onNavigate={(date) => setSelectedDate(date)}
                 defaultView="month"
                 views={['month']}
-                toolbar={true}
+                className="reminder-calendar"
+                components={{
+                  toolbar: (props) => (
+                    <div className="rbc-toolbar">
+                      <span className="rbc-btn-group flex items-center gap-2">
+                        <button 
+                          type="button" 
+                          onClick={() => props.onNavigate('PREV')}
+                          className="hover:bg-[#262626] text-white p-2 rounded-lg transition-colors relative z-10"
+                        >
+                          <ChevronLeft className="h-5 w-5" />
+                        </button>
+                        <button 
+                          type="button" 
+                          onClick={() => props.onNavigate('TODAY')}
+                          className="hover:bg-[#262626] text-white px-4 py-2 rounded-lg transition-colors relative z-10"
+                        >
+                          Today
+                        </button>
+                        <button 
+                          type="button" 
+                          onClick={() => props.onNavigate('NEXT')}
+                          className="hover:bg-[#262626] text-white p-2 rounded-lg transition-colors relative z-10"
+                        >
+                          <ChevronRight className="h-5 w-5" />
+                        </button>
+                      </span>
+                      <span className="rbc-toolbar-label relative z-10">{props.label}</span>
+                    </div>
+                  )
+                }}
               />
             </div>
-            <div>
-              <label className="text-sm font-medium">Selected Date</label>
-              <p className="text-sm mt-1">
-                {selectedDate.toLocaleDateString('en-US', {
-                  weekday: 'long',
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric',
-                })}
-              </p>
-            </div>
-          </div>
+          </CardContent>
+        </Card>
 
-          <div className="col-span-1 space-y-4">
-            <div>
-              <label className="text-sm font-medium">Select Company</label>
+        {/* Reminder Form Section */}
+        <Card className="col-span-1 bg-black border border-[#1a1a1a] transition-colors overflow-hidden relative">
+          <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/10 to-teal-500/10" 
+               style={{ pointerEvents: 'none' }} />
+          <CardHeader>
+            <CardTitle className="text-lg sm:text-xl text-white">Set Reminder</CardTitle>
+            <CardDescription>Schedule a new follow-up reminder</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4 relative">
+            <div className="space-y-2">
+              <Label className="text-sm text-gray-400">Company</Label>
               <Select
                 onValueChange={(value) => {
                   const company = applications.find(app => app.id === value)
                   setSelectedCompany(company || null)
                 }}
+                value={selectedCompany?.id}
               >
-                <SelectTrigger className="w-full text-white">
-                  <SelectValue 
-                    placeholder="Select a company" 
-                    className="text-white"
-                  />
+                <SelectTrigger className="w-full bg-[#1a1a1a] border-[#333333] text-white hover:bg-[#262626] cursor-pointer">
+                  <div className="flex items-center justify-between w-full">
+                    <SelectValue placeholder="Select a company" />
+                  </div>
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="bg-[#1a1a1a] border-[#333333]">
                   {applications.map((application) => (
                     <SelectItem 
                       key={application.id} 
                       value={application.id || ''}
-                      className="text-white"
+                      className="text-white cursor-pointer hover:bg-[#262626]"
                     >
                       {application.companyName} - {application.jobTitle}
                     </SelectItem>
@@ -313,162 +424,182 @@ export function RemindersSection() {
             </div>
 
             {selectedCompany && (
-              <div className="space-y-2">
-                <p className="text-sm ">Position: {selectedCompany.jobTitle}</p>
-                <p className="text-sm">Status: {selectedCompany.status}</p>
-                <p className="text-sm  ">Applied: {selectedCompany.applicationDate}</p>
+              <div className="p-4 rounded-lg bg-[#1a1a1a] border border-[#333333] space-y-2">
+                <div className="flex justify-between items-center">
+                  <span className="text-sm text-gray-400">Position</span>
+                  <span className="text-sm text-white">{selectedCompany.jobTitle}</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-sm text-gray-400">Status</span>
+                  <StatusBadge status={selectedCompany.status} />
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-sm text-gray-400">Applied</span>
+                  <span className="text-sm text-white">{selectedCompany.applicationDate}</span>
+                </div>
               </div>
             )}
 
-            <div>
-              <label className="text-sm font-medium">Select Time</label>
-              <Input
-                type="time"
-                value={selectedTime}
-                onChange={(e) => setSelectedTime(e.target.value)}
-                className="mt-1"
-              />
+            <div className="space-y-2">
+              <Label className="text-sm text-gray-400">Reminder Date & Time</Label>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="relative">
+                  <Input
+                    type="date"
+                    value={selectedDate.toISOString().split('T')[0]}
+                    onChange={(e) => setSelectedDate(new Date(e.target.value))}
+                    className="w-full bg-[#1a1a1a] border-[#333333] text-white cursor-pointer hover:border-[#404040] focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                    min={new Date().toISOString().split('T')[0]}
+                  />
+                </div>
+                <div className="relative">
+                  <Input
+                    type="time"
+                    value={selectedTime}
+                    onChange={(e) => setSelectedTime(e.target.value)}
+                    className="w-full bg-[#1a1a1a] border-[#333333] text-white cursor-pointer hover:border-[#404040] focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                  />
+                </div>
+              </div>
             </div>
 
-            <div>
-              <label className="text-sm font-medium">Add Note</label>
+            <div className="space-y-2">
+              <Label className="text-sm text-gray-400">Note</Label>
               <Textarea
                 value={note}
                 onChange={(e) => setNote(e.target.value)}
                 placeholder="Enter your reminder note..."
-                className="mt-1"
+                className="min-h-[100px] w-full resize-y rounded-md border border-[#333333] bg-[#1a1a1a] px-3 py-2 text-sm text-white placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:cursor-not-allowed disabled:opacity-50 pointer-events-auto"
+                style={{ 
+                  zIndex: 10,
+                  position: 'relative',
+                  pointerEvents: 'auto'
+                }}
               />
+              <p className="text-xs text-gray-400 mt-1">
+                {note.length} characters
+              </p>
             </div>
 
             <Button 
-              onClick={handleCreateReminder} 
-              className="w-full bg-primary hover:bg-primary/90 text-white"
+              onClick={handleCreateReminder}
+              className="w-full bg-gradient-to-r from-emerald-500 to-teal-500 text-white hover:opacity-90"
               disabled={!selectedCompany || !note || !selectedTime || isSubmitting}
             >
               {isSubmitting ? (
                 <div className="flex items-center justify-center">
-                  <svg 
-                    className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" 
-                    xmlns="http://www.w3.org/2000/svg" 
-                    fill="none" 
-                    viewBox="0 0 24 24"
-                  >
-                    <circle 
-                      className="opacity-25" 
-                      cx="12" 
-                      cy="12" 
-                      r="10" 
-                      stroke="currentColor" 
-                      strokeWidth="4"
-                    />
-                    <path 
-                      className="opacity-75" 
-                      fill="currentColor" 
-                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                    />
-                  </svg>
-                  Scheduling...
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  <span>Scheduling...</span>
                 </div>
               ) : (
                 'Schedule Reminder'
               )}
             </Button>
-          </div>
-        </CardContent>
-      </Card>
+          </CardContent>
+        </Card>
+      </div>
 
       {/* Reminders List */}
-      <Card className="col-span-3">
+      <Card className="bg-black border border-[#1a1a1a] transition-colors overflow-hidden relative">
+        <div className="absolute inset-0 bg-gradient-to-r from-orange-500/10 to-amber-500/10 transition-opacity" />
         <CardHeader>
-          <CardTitle>Scheduled Reminders</CardTitle>
-          <CardDescription>Your upcoming reminders</CardDescription>
+          <div className="flex justify-between items-center">
+            <div>
+              <CardTitle className="text-lg sm:text-xl text-white">Scheduled Reminders</CardTitle>
+              <CardDescription>Your upcoming follow-ups</CardDescription>
+            </div>
+            <Select
+              defaultValue="all"
+              onValueChange={(value) => {
+                // Add filter functionality here
+              }}
+            >
+              <SelectTrigger className="w-[150px] bg-[#1a1a1a] border-[#333333] text-white">
+                <SelectValue placeholder="Filter" />
+              </SelectTrigger>
+              <SelectContent className="bg-[#1a1a1a] border-[#333333]">
+                <SelectItem value="all">All Reminders</SelectItem>
+                <SelectItem value="pending">Pending</SelectItem>
+                <SelectItem value="sent">Sent</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
         </CardHeader>
         <CardContent>
-          <div className="rounded-md border">
+          <div className="rounded-md border border-[#333333]">
             {loading ? (
               <div className="p-8 text-center">
-                <div className="animate-spin inline-block w-8 h-8 border-4 border-current border-t-transparent text-primary rounded-full" role="status">
-                  <span className="sr-only">Loading...</span>
-                </div>
-                <p className="mt-2 text-sm text-muted-foreground">
-                  Loading reminders...
-                </p>
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-yellow-400 mx-auto"></div>
+                <p className="mt-2 text-sm text-gray-400">Loading reminders...</p>
               </div>
             ) : (
-              <table className="w-full">
-                <thead>
-                  <tr className="border-b bg-muted/50">
-                    <th className="p-2 text-left">Company</th>
-                    <th className="p-2 text-left">Position</th>
-                    <th className="p-2 text-left">Scheduled For</th>
-                    <th className="p-2 text-left">Note</th>
-                    <th className="p-2 text-left">Status</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {reminders.map((reminder) => {
-                    return (
-                      <tr key={reminder.id} className="border-b">
-                        <td className="p-2">{reminder.companyName}</td>
-                        <td className="p-2">{reminder.jobTitle}</td>
-                        <td className="p-2">
+              <Table>
+                <TableHeader className="bg-[#1a1a1a]">
+                  <TableRow>
+                    <TableHead className="text-left text-white">Company</TableHead>
+                    <TableHead className="text-left text-white">Position</TableHead>
+                    <TableHead className="text-left text-white">Scheduled For</TableHead>
+                    <TableHead className="text-left text-white">Note</TableHead>
+                    <TableHead className="text-left text-white">Status</TableHead>
+                    <TableHead className="text-right text-white">Actions</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {reminders.length === 0 ? (
+                    <TableRow>
+                      <TableCell colSpan={6} className="text-center py-8">
+                        <div className="flex flex-col items-center justify-center text-gray-400">
+                          <CalendarIcon className="h-12 w-12 mb-2 opacity-50" />
+                          <p>No reminders scheduled</p>
+                          <p className="text-sm">Set up your first reminder above</p>
+                        </div>
+                      </TableCell>
+                    </TableRow>
+                  ) : (
+                    reminders.map((reminder) => (
+                      <TableRow 
+                        key={reminder.id}
+                        className="group hover:bg-[#1a1a1a] transition-colors"
+                      >
+                        <TableCell className="font-medium text-white">
+                          {reminder.companyName}
+                        </TableCell>
+                        <TableCell className="text-gray-300">
+                          {reminder.jobTitle}
+                        </TableCell>
+                        <TableCell className="text-gray-300">
                           {formatDate(reminder.scheduledFor)}
-                        </td>
-                        <td className="p-2">{reminder.note}</td>
-                        <td className="p-2">
-                          <div className="flex items-center gap-2">
-                            <span className={`px-2 py-1 rounded-full text-xs ${
-                              reminder.sent ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'
-                            }`}>
-                              {reminder.sent ? 'Sent' : 'Pending'}
-                            </span>
-                            <button
-                              onClick={() => handleDeleteReminder(reminder.id!)}
-                              className="p-1 hover:bg-red-100 rounded-full transition-colors disabled:opacity-50"
-                              title="Delete reminder"
-                              disabled={deletingReminders.has(reminder.id!)}
-                            >
-                              {deletingReminders.has(reminder.id!) ? (
-                                <div className="animate-spin h-4 w-4">
-                                  <svg 
-                                    className="h-4 w-4 text-red-500" 
-                                    xmlns="http://www.w3.org/2000/svg" 
-                                    fill="none" 
-                                    viewBox="0 0 24 24"
-                                  >
-                                    <circle 
-                                      className="opacity-25" 
-                                      cx="12" 
-                                      cy="12" 
-                                      r="10" 
-                                      stroke="currentColor" 
-                                      strokeWidth="4"
-                                    />
-                                    <path 
-                                      className="opacity-75" 
-                                      fill="currentColor" 
-                                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                                    />
-                                  </svg>
-                                </div>
-                              ) : (
-                                <Trash2 className="h-4 w-4 text-red-500" />
-                              )}
-                            </button>
-                          </div>
-                        </td>
-                      </tr>
-                    );
-                  })}
-                  {reminders.length === 0 && (
-                    <tr>
-                      <td colSpan={5} className="p-4 text-center text-muted-foreground">
-                        No reminders scheduled
-                      </td>
-                    </tr>
+                        </TableCell>
+                        <TableCell className="text-gray-300">
+                          {reminder.note}
+                        </TableCell>
+                        <TableCell>
+                          <span className={`px-2 py-1 rounded-full text-xs ${
+                            reminder.sent ? 'bg-emerald-500/20 text-emerald-400' : 'bg-amber-500/20 text-amber-400'
+                          }`}>
+                            {reminder.sent ? 'Sent' : 'Pending'}
+                          </span>
+                        </TableCell>
+                        <TableCell className="text-right">
+                          <Button
+                            variant="ghost"
+                            size="icon"
+                            onClick={() => handleDeleteReminder(reminder.id!)}
+                            className="hover:bg-red-500/10 hover:text-red-500"
+                            disabled={deletingReminders.has(reminder.id!)}
+                          >
+                            {deletingReminders.has(reminder.id!) ? (
+                              <Loader2 className="h-4 w-4 animate-spin" />
+                            ) : (
+                              <Trash2 className="h-4 w-4" />
+                            )}
+                          </Button>
+                        </TableCell>
+                      </TableRow>
+                    ))
                   )}
-                </tbody>
-              </table>
+                </TableBody>
+              </Table>
             )}
           </div>
         </CardContent>
