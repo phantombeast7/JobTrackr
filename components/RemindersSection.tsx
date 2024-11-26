@@ -63,6 +63,17 @@ interface ReminderType extends Omit<Reminder, 'scheduledFor'> {
   };
 }
 
+interface CreateReminderData {
+  companyId: string;
+  companyName: string;
+  jobTitle: string;
+  status: string;
+  note: string;
+  scheduledFor: Timestamp;
+  title: string;
+  description: string;
+}
+
 const locales = {
   'en-US': require('date-fns/locale/en-US')
 }
