@@ -1,9 +1,8 @@
 'use client'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Suspense } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Search, Briefcase, RefreshCw, Activity, Trophy, Users } from 'lucide-react'
-import { AddApplicationModal } from '@/components/AddApplicationModal'
 import { ApplicationsTable } from '@/components/ApplicationsTable'
 import { getUserApplications } from '@/lib/firebase/applications'
 import { auth } from '@/lib/firebase'
@@ -12,8 +11,10 @@ import { JobApplication } from "@/lib/firebase/applications"
 import { motion } from 'framer-motion'
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/components/ui/select'
 import { Button } from '@/components/ui/button'
+import { AddApplicationModal } from '@/components/AddApplicationModal'
 
-export default function ApplicationsPage() {
+// Create a wrapper component that uses searchParams
+function ApplicationsPageContent() {
   const [applications, setApplications] = useState<JobApplication[]>([])
   const [searchTerm, setSearchTerm] = useState('')
   const [statusFilter, setStatusFilter] = useState('all')
@@ -60,7 +61,7 @@ export default function ApplicationsPage() {
     setStatusFilter('all')
   }
 
-  const filteredApplications = applications.filter(app => {
+  const filteredApplications = applications.filter((app: JobApplication) => {
     const matchesSearch = 
       app.companyName.toLowerCase().includes(searchTerm.toLowerCase()) ||
       app.jobTitle.toLowerCase().includes(searchTerm.toLowerCase())
@@ -95,11 +96,6 @@ export default function ApplicationsPage() {
                 <h1 className="text-2xl sm:text-3xl font-bold text-white">Applications</h1>
                 <p className="text-gray-400 mt-1">Track and manage your job applications</p>
               </div>
-              <AddApplicationModal 
-                isOpen={isAddModalOpen} 
-                onClose={() => setIsAddModalOpen(false)}
-                onApplicationAdded={handleApplicationAdded} 
-              />
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -207,8 +203,27 @@ export default function ApplicationsPage() {
               </div>
             </CardContent>
           </Card>
+
+          <AddApplicationModal 
+            isOpen={isAddModalOpen}
+            onClose={() => setIsAddModalOpen(false)}
+            onApplicationAdded={handleApplicationAdded}
+          />
         </motion.div>
       </div>
     </div>
+  )
+}
+
+// Main component with Suspense
+export default function ApplicationsPage() {
+  return (
+    <Suspense fallback={
+      <div className="flex items-center justify-center min-h-screen bg-black">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-yellow-400"></div>
+      </div>
+    }>
+      <ApplicationsPageContent />
+    </Suspense>
   )
 } 

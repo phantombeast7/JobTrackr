@@ -14,13 +14,22 @@ import { Progress } from '@/components/ui/progress'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
-export function AddApplicationModal({ onApplicationAdded }: { onApplicationAdded: () => void }) {
+interface AddApplicationModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  onApplicationAdded: () => Promise<void>;
+}
+
+export const AddApplicationModal: React.FC<AddApplicationModalProps> = ({
+  isOpen,
+  onClose,
+  onApplicationAdded,
+}) => {
   const [loading, setLoading] = useState(false)
   const [progress, setProgress] = useState(0)
   const [resumeFile, setResumeFile] = useState<File | null>(null)
   const [driveAuthorized, setDriveAuthorized] = useState(() => tokenStorage.isAuthorized())
   const [authWindow, setAuthWindow] = useState<Window | null>(null)
-  const [isOpen, setIsOpen] = useState(false)
 
   useEffect(() => {
     setDriveAuthorized(tokenStorage.isAuthorized())
@@ -114,7 +123,7 @@ export function AddApplicationModal({ onApplicationAdded }: { onApplicationAdded
 
   const resetForm = () => {
     setResumeFile(null)
-    setIsOpen(false)
+    onClose()
     setProgress(0)
   }
 
@@ -218,11 +227,11 @@ export function AddApplicationModal({ onApplicationAdded }: { onApplicationAdded
   };
 
   return (
-    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+    <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogTrigger asChild>
         <Button 
           className="bg-yellow-500 hover:bg-yellow-600 text-gray-900"
-          onClick={() => setIsOpen(true)}
+          onClick={() => onClose()}
         >
           <Plus className="mr-2 h-4 w-4" />
           Add Application
