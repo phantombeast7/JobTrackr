@@ -193,7 +193,13 @@ export default function Dashboard() {
             <h1 className="text-2xl sm:text-3xl font-bold text-white">Dashboard</h1>
             <p className="text-gray-400 mt-1">Track your job application progress</p>
           </div>
-          <AddJobModal onApplicationAdded={handleApplicationAdded} />
+          <Button
+            onClick={() => router.push('/applications?openAddModal=true')}
+            className="bg-yellow-500 hover:bg-yellow-600 text-black font-medium"
+          >
+            <Plus className="h-4 w-4 mr-2" />
+            Add Job
+          </Button>
         </div>
 
         {/* Stats Grid - Responsive for all screens */}

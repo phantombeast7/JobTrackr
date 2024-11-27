@@ -7,7 +7,7 @@ import { AddApplicationModal } from '@/components/AddApplicationModal'
 import { ApplicationsTable } from '@/components/ApplicationsTable'
 import { getUserApplications } from '@/lib/firebase/applications'
 import { auth } from '@/lib/firebase'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { JobApplication } from "@/lib/firebase/applications"
 import { motion } from 'framer-motion'
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/components/ui/select'
@@ -19,6 +19,8 @@ export default function ApplicationsPage() {
   const [statusFilter, setStatusFilter] = useState('all')
   const [loading, setLoading] = useState(true)
   const router = useRouter()
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false)
+  const searchParams = useSearchParams()
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
@@ -39,6 +41,12 @@ export default function ApplicationsPage() {
 
     return () => unsubscribe()
   }, [router])
+
+  useEffect(() => {
+    if (searchParams.get('openAddModal') === 'true') {
+      setIsAddModalOpen(true)
+    }
+  }, [searchParams])
 
   const handleApplicationAdded = async () => {
     if (auth.currentUser) {
@@ -87,7 +95,11 @@ export default function ApplicationsPage() {
                 <h1 className="text-2xl sm:text-3xl font-bold text-white">Applications</h1>
                 <p className="text-gray-400 mt-1">Track and manage your job applications</p>
               </div>
-              <AddApplicationModal onApplicationAdded={handleApplicationAdded} />
+              <AddApplicationModal 
+                isOpen={isAddModalOpen} 
+                onClose={() => setIsAddModalOpen(false)}
+                onApplicationAdded={handleApplicationAdded} 
+              />
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
