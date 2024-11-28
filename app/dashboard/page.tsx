@@ -304,7 +304,7 @@ export default function Dashboard() {
                     </Pie>
                     <Tooltip 
                       contentStyle={{ 
-                        background: '#000000', 
+                        background: '#FFFFFF', 
                         border: '1px solid #1a1a1a', 
                         borderRadius: '8px',
                         boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)'
