@@ -11,7 +11,7 @@ import { JobApplication } from "@/lib/firebase/applications"
 import { motion } from 'framer-motion'
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/components/ui/select'
 import { Button } from '@/components/ui/button'
-import { AddApplicationModal } from '@/components/AddApplicationModal'
+import { AddApplicationModal, AddApplicationButton } from '@/components/AddApplicationModal'
 
 // Create a wrapper component that uses searchParams
 function ApplicationsPageContent() {
@@ -96,6 +96,7 @@ function ApplicationsPageContent() {
                 <h1 className="text-2xl sm:text-3xl font-bold text-white">Applications</h1>
                 <p className="text-gray-400 mt-1">Track and manage your job applications</p>
               </div>
+              <AddApplicationButton onClick={() => setIsAddModalOpen(true)} />
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">

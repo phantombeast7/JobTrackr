@@ -228,15 +228,6 @@ export const AddApplicationModal: React.FC<AddApplicationModalProps> = ({
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogTrigger asChild>
-        <Button 
-          className="bg-yellow-500 hover:bg-yellow-600 text-gray-900"
-          onClick={() => onClose()}
-        >
-          <Plus className="mr-2 h-4 w-4" />
-          Add Application
-        </Button>
-      </DialogTrigger>
       <DialogContent className="sm:max-w-[425px] bg-gray-800 text-white">
         <DialogHeader>
           <DialogTitle>Add New Application</DialogTitle>
@@ -367,4 +358,18 @@ export const AddApplicationModal: React.FC<AddApplicationModalProps> = ({
       </DialogContent>
     </Dialog>
   )
-} 
+}
+
+export const AddApplicationButton: React.FC<{
+  onClick: () => void;
+}> = ({ onClick }) => {
+  return (
+    <Button 
+      className="bg-yellow-500 hover:bg-yellow-600 text-gray-900"
+      onClick={onClick}
+    >
+      <Plus className="mr-2 h-4 w-4" />
+      Add Application
+    </Button>
+  );
+}; 

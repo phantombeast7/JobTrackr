@@ -7,12 +7,25 @@ function getISTTime(date: Date): string {
   return date.toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })
 }
 
-function parseScheduledTime(scheduledFor: string): Date {
+function parseScheduledTime(scheduledFor: any): Date {
   try {
-    return new Date(scheduledFor)
+    // Handle Firestore Timestamp
+    if (scheduledFor && typeof scheduledFor === 'object' && 'seconds' in scheduledFor) {
+      return new Timestamp(scheduledFor.seconds, scheduledFor.nanoseconds || 0).toDate()
+    }
+    // Handle ISO string
+    if (typeof scheduledFor === 'string') {
+      return new Date(scheduledFor)
+    }
+    // Handle Date object
+    if (scheduledFor instanceof Date) {
+      return scheduledFor
+    }
+    console.error('Unhandled scheduledFor format:', scheduledFor)
+    return new Date(0)
   } catch (error) {
-    console.error('Error parsing scheduled time:', error)
-    return new Date(0) // Return epoch time for invalid dates
+    console.error('Error parsing scheduled time:', error, scheduledFor)
+    return new Date(0)
   }
 }
 
@@ -55,6 +68,8 @@ export function initializeScheduler() {
           const scheduledIST = new Date(scheduledTime.toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }))
 
           console.log(`[Scheduler] Checking reminder ${doc.id}:`)
+          console.log(`Raw scheduledFor:`, reminder.scheduledFor)
+          console.log(`Parsed scheduledTime:`, scheduledTime)
           console.log(`Scheduled for IST: ${getISTTime(scheduledIST)}`)
           console.log(`Current IST: ${getISTTime(istNow)}`)
 
