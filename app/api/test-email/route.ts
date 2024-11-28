@@ -1,23 +1,32 @@
 import { NextResponse } from 'next/server';
-import { testEmail } from '@/lib/email';
+import { sendReminderEmail } from '@/lib/email';
 
-export async function POST(request: Request) {
+export async function GET(request: Request) {
   try {
-    const { email } = await request.json();
-    
-    if (!email) {
-      return NextResponse.json({ error: 'Email is required' }, { status: 400 });
-    }
+    // Get the email from query parameter or use a default
+    const { searchParams } = new URL(request.url);
+    const testEmail = searchParams.get('email') || 'your-email@example.com';
 
-    const result = await testEmail(email);
-    
-    if (result) {
-      return NextResponse.json({ message: 'Test email sent successfully' });
-    } else {
-      return NextResponse.json({ error: 'Failed to send test email' }, { status: 500 });
-    }
+    console.log(`Sending test email to: ${testEmail}`);
+
+    await sendReminderEmail(testEmail, {
+      companyName: 'Test Company',
+      jobTitle: 'Test Position',
+      note: 'This is a test reminder sent at ' + new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })
+    });
+
+    return NextResponse.json({ 
+      status: 'success',
+      message: `Test email sent to ${testEmail}`,
+      timestamp: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })
+    });
   } catch (error) {
-    console.error('Test email error:', error);
-    return NextResponse.json({ error: 'Failed to send test email' }, { status: 500 });
+    console.error('Test email failed:', error);
+    return NextResponse.json({ 
+      status: 'error',
+      error: error instanceof Error ? error.message : 'Failed to send test email'
+    }, { 
+      status: 500 
+    });
   }
 } 

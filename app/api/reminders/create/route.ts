@@ -1,89 +1,54 @@
 import { NextResponse } from 'next/server'
-import { addReminderServer, updateReminderStatusServer } from '@/lib/firebase/server/reminders'
-import { adminAuth } from '@/lib/firebase/server'
-import { sendReminderEmail } from '@/lib/email'
+import { auth } from '@/lib/firebase-admin'
+import { db } from '@/lib/firebase-admin'
+import { Timestamp } from 'firebase-admin/firestore'
 
 export async function POST(request: Request) {
   try {
-    const authHeader = request.headers.get('Authorization');
-    if (!authHeader?.startsWith('Bearer ')) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    const token = request.headers.get('Authorization')?.split('Bearer ')[1]
+    if (!token) throw new Error('No token provided')
+
+    const decodedToken = await auth.verifyIdToken(token)
+    const reminderData = await request.json()
+
+    // Validate the scheduled time
+    const scheduledDate = new Date(reminderData.scheduledFor)
+    if (scheduledDate <= new Date()) {
+      throw new Error('Cannot schedule reminders in the past')
     }
 
-    const token = authHeader.split('Bearer ')[1];
-    
-    const decodedToken = await adminAuth.verifyIdToken(token);
-    const userId = decodedToken.uid;
-    const userEmail = decodedToken.email;
-
-    if (!userEmail) {
-      return NextResponse.json({ error: 'User email not found' }, { status: 400 });
-    }
-
-    // Get reminder data from request body
-    const reminderData = await request.json();
-    const scheduledDate = new Date(reminderData.scheduledFor);
-
-    // Add user information to reminder data
-    const reminderWithUser = {
+    const reminder = {
       ...reminderData,
-      userId,
-      userEmail,
-      sent: false
-    };
-
-    // Add reminder to Firebase
-    const newReminder = await addReminderServer(reminderWithUser);
-
-    try {
-      console.log('Attempting to send email immediately...');
-      console.log('User Email:', userEmail);
-      console.log('Reminder Details:', {
-        companyName: reminderData.companyName,
-        jobTitle: reminderData.jobTitle,
-        scheduledFor: scheduledDate,
-        status: reminderData.status,
-        applicationDate: reminderData.applicationDate
-      });
-
-      // Send email immediately
-      await sendReminderEmail(
-        userEmail,
-        `Reminder: Follow-up for ${reminderData.companyName}`,
-        {
-          companyName: reminderData.companyName,
-          jobTitle: reminderData.jobTitle,
-          note: reminderData.note,
-          scheduledFor: scheduledDate,
-          status: reminderData.status,
-          applicationDate: reminderData.applicationDate
-        }
-      );
-
-      // Update reminder status to sent
-      await updateReminderStatusServer(newReminder.id, true);
-      console.log('Email sent and reminder status updated successfully');
-
-    } catch (emailError) {
-      console.error('Failed to send email:', emailError);
-      // Log detailed error information
-      if (emailError instanceof Error) {
-        console.error('Error details:', {
-          message: emailError.message,
-          stack: emailError.stack,
-          name: emailError.name
-        });
-      }
+      userId: decodedToken.uid,
+      userEmail: decodedToken.email,
+      createdAt: Timestamp.now(),
+      sent: false,
+      timezone: 'Asia/Kolkata'
     }
 
-    return NextResponse.json(newReminder);
+    // Store the reminder
+    const docRef = await db.collection('reminders').add(reminder)
+    console.log(`Created reminder ${docRef.id} for ${new Date(reminder.scheduledFor).toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })} IST`)
+
+    return NextResponse.json({ 
+      id: docRef.id, 
+      ...reminder
+    })
   } catch (error) {
-    console.error('Error creating reminder:', error);
+    console.error('Error creating reminder:', error)
     return NextResponse.json(
-      { error: 'Failed to create reminder' },
+      { error: error instanceof Error ? error.message : 'Failed to create reminder' },
       { status: 500 }
-    );
+    )
   }
+}
+
+async function scheduleEmail(reminderId: string, scheduledDate: Date) {
+  // Just log the scheduling - actual sending will be handled by the cron job
+  console.log(`Reminder ${reminderId} scheduled for ${scheduledDate}`)
+  
+  // The cron job will handle the actual scheduling
+  // No need to make HTTP requests here as it's handled by the scheduler
 }
 
 // Remove this line

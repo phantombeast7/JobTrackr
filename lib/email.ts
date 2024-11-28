@@ -1,92 +1,73 @@
-import nodemailer from 'nodemailer';
+import nodemailer from 'nodemailer'
 
-// Create the transporter with Amazon's recommended configuration
 const transporter = nodemailer.createTransport({
   host: process.env.AWS_SES_SMTP_HOST,
-  port: 587,
-  secure: false, // Use TLS
+  port: Number(process.env.AWS_SES_SMTP_PORT),
+  secure: false,
   auth: {
-    user: process.env.AWS_SES_USER!,
-    pass: process.env.AWS_SES_PASSWORD!
-  }
-});
+    user: process.env.AWS_SES_USER,
+    pass: process.env.AWS_SES_PASSWORD
+  },
+  debug: true
+})
 
-// Remove the previous configuration checks and simplify the email sending
-export async function sendReminderEmail(
-  userEmail: string,
-  subject: string,
-  reminderDetails: {
-    companyName: string;
-    jobTitle: string;
-    note: string;
-    scheduledFor: Date;
-    status?: string;
-    applicationDate?: string;
+export const sendReminderEmail = async (
+  to: string,
+  reminder: {
+    companyName: string
+    jobTitle: string
+    note: string
   }
-): Promise<boolean> {
+) => {
   try {
-    console.log('=== Email Sending Process Started ===');
-    console.log('To:', userEmail);
-    console.log('From:', process.env.AWS_SES_FROM_EMAIL);
+    console.log('[Email Service] Checking email configuration:')
+    console.log('SMTP Host:', process.env.AWS_SES_SMTP_HOST)
+    console.log('SMTP Port:', process.env.AWS_SES_SMTP_PORT)
+    console.log('From Email:', process.env.AWS_SES_FROM_EMAIL)
+    console.log('To Email:', to)
 
-    const info = await transporter.sendMail({
-      from: process.env.AWS_SES_FROM_EMAIL!, // Must be verified in SES
-      to: userEmail,
-      subject: `JobTrackr: ${reminderDetails.companyName} Follow-up Reminder`,
-      text: `
-Dear User,
+    if (!process.env.AWS_SES_FROM_EMAIL) {
+      throw new Error('AWS_SES_FROM_EMAIL is not configured')
+    }
 
-This is a reminder for your job application follow-up:
+    const mailOptions = {
+      from: process.env.AWS_SES_FROM_EMAIL,
+      to: to,
+      subject: `JobTrackr: Follow-up for ${reminder.companyName} - ${reminder.jobTitle}`,
+      text: `Hello,\n\nThis is a reminder to follow up with ${reminder.companyName} regarding your ${reminder.jobTitle} position.\n\nNote: ${reminder.note}\n\nBest regards,\nJobTrackr`,
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <h2>Job Application Follow-up Reminder</h2>
+          <p>Hello,</p>
+          <p>This is a reminder to follow up with <strong>${reminder.companyName}</strong> regarding your <strong>${reminder.jobTitle}</strong> position.</p>
+          <p style="background-color: #f5f5f5; padding: 15px; border-left: 4px solid #333;">
+            Note: ${reminder.note}
+          </p>
+          <p>Best regards,<br>JobTrackr</p>
+        </div>
+      `
+    }
 
-Company: ${reminderDetails.companyName}
-Position: ${reminderDetails.jobTitle}
-Status: ${reminderDetails.status || 'Applied'}
-Scheduled for: ${reminderDetails.scheduledFor.toLocaleString()}
+    console.log('[Email Service] Sending email with options:', mailOptions)
 
-Note: ${reminderDetails.note}
+    await new Promise((resolve, reject) => {
+      transporter.verify(function (error, success) {
+        if (error) {
+          console.error('[Email Service] SMTP Verification failed:', error)
+          reject(error)
+        } else {
+          console.log('[Email Service] SMTP Server is ready to take our messages')
+          resolve(success)
+        }
+      })
+    })
 
-Best regards,
-JobTrackr Team`,
-      html: `<p>Dear User,</p>
-<p>This is a reminder for your job application follow-up:</p>
-<p>
-<strong>Company:</strong> ${reminderDetails.companyName}<br>
-<strong>Position:</strong> ${reminderDetails.jobTitle}<br>
-<strong>Status:</strong> ${reminderDetails.status || 'Applied'}<br>
-<strong>Scheduled for:</strong> ${reminderDetails.scheduledFor.toLocaleString()}
-</p>
-<p><strong>Note:</strong> ${reminderDetails.note}</p>
-<p>Best regards,<br>JobTrackr Team</p>`
-    });
-
-    console.log('=== Email Sending Response ===');
-    console.log('Message ID:', info.messageId);
-    console.log('Response:', info.response);
-    
-    return true;
+    const info = await transporter.sendMail(mailOptions)
+    console.log('[Email Service] Email sent successfully:', info)
+    return info
   } catch (error) {
-    console.error('=== Email Sending Error ===');
-    console.error('Error:', error);
-    throw error;
-  }
-}
-
-// Add a simple test function
-export async function testEmail(toEmail: string) {
-  try {
-    const info = await transporter.sendMail({
-      from: process.env.AWS_SES_FROM_EMAIL!,
-      to: toEmail,
-      subject: 'Test Email from JobTrackr',
-      text: 'This is a test email from JobTrackr.',
-      html: '<p>This is a test email from JobTrackr.</p>'
-    });
-    
-    console.log('Test email sent:', info.messageId);
-    return true;
-  } catch (error) {
-    console.error('Test email failed:', error);
-    return false;
+    console.error('[Email Service] Failed to send email:', error)
+    throw error
   }
 }
  

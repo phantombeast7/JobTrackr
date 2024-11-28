@@ -1,5 +1,5 @@
 import { db } from '@/lib/firebase'
-import { collection, query, where, getDocs, Timestamp, orderBy, deleteDoc, doc } from 'firebase/firestore'
+import { collection, query, where, getDocs, orderBy, deleteDoc, doc } from 'firebase/firestore'
 import { auth } from '@/lib/firebase'
 
 export interface Reminder {
@@ -12,15 +12,23 @@ export interface Reminder {
   jobTitle: string
   status: string
   note: string
-  scheduledFor: Timestamp
-  createdAt?: Timestamp
+  scheduledFor: string
+  createdAt?: Date
   sent?: boolean
+  sentAt?: Date
   userEmail?: string | null
+  timezone?: string
 }
 
-export type CreateReminderData = Omit<Reminder, 'id' | 'createdAt' | 'sent' | 'userId' | 'userEmail'> & {
-  title: string;
-  description: string;
+export interface CreateReminderData {
+  companyId: string
+  companyName: string
+  jobTitle: string
+  status: string
+  note: string
+  scheduledFor: string
+  title: string
+  description: string
 }
 
 export const getUserReminders = async () => {

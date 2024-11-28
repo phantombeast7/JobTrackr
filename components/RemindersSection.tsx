@@ -56,11 +56,7 @@ interface FirebaseTimestamp {
 }
 
 interface ReminderType extends Omit<Reminder, 'scheduledFor'> {
-  scheduledFor: {
-    toDate(): Date;
-    seconds: number;
-    nanoseconds: number;
-  };
+  scheduledFor: string;
 }
 
 interface CreateReminderData {
@@ -69,7 +65,7 @@ interface CreateReminderData {
   jobTitle: string;
   status: string;
   note: string;
-  scheduledFor: Timestamp;
+  scheduledFor: string;
   title: string;
   description: string;
 }
@@ -87,16 +83,13 @@ const localizer = dateFnsLocalizer({
 })
 
 // Helper function to format date
-const formatDate = (date: Date | Timestamp | any): string => {
+const formatDate = (date: string | Date): string => {
   try {
-    if (date instanceof Timestamp) {
-      return date.toDate().toLocaleString();
-    }
-    if (date?.seconds) { // Handle Firestore timestamp object
-      return new Timestamp(date.seconds, date.nanoseconds).toDate().toLocaleString();
+    if (typeof date === 'string') {
+      return new Date(date).toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
     }
     if (date instanceof Date) {
-      return date.toLocaleString();
+      return date.toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
     }
     return 'Invalid Date';
   } catch (error) {
@@ -204,8 +197,6 @@ export function RemindersSection() {
   }, []);
 
   const handleCreateReminder = useCallback(async () => {
-    console.log('Creating reminder with note:', note);
-
     if (!selectedCompany || !selectedDate || !selectedTime || !note.trim()) {
       toast({
         title: 'Error',
@@ -218,11 +209,15 @@ export function RemindersSection() {
     try {
       setIsSubmitting(true);
 
-      const [hours, minutes] = selectedTime.split(':');
+      // Combine date and time
+      const [hours, minutes] = selectedTime.split(':').map(Number);
       const scheduledDate = new Date(selectedDate);
-      scheduledDate.setHours(parseInt(hours), parseInt(minutes), 0, 0);
+      scheduledDate.setHours(hours, minutes, 0, 0);
 
-      if (scheduledDate < new Date()) {
+      // Ensure we're working with IST
+      const istDate = new Date(scheduledDate.toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }));
+
+      if (istDate < new Date()) {
         toast({
           title: 'Error',
           description: 'Cannot schedule reminders in the past',
@@ -237,18 +232,19 @@ export function RemindersSection() {
         jobTitle: selectedCompany.jobTitle || '',
         status: selectedCompany.status || 'Applied',
         note: note.trim(),
-        scheduledFor: Timestamp.fromDate(scheduledDate),
-        title: selectedCompany.companyName,
+        scheduledFor: istDate.toISOString(),
+        title: `Follow-up with ${selectedCompany.companyName}`,
         description: note.trim()
       };
 
-      console.log('Reminder data:', reminderData);
+      console.log('Creating reminder with data:', reminderData);
 
-      await createReminder(reminderData);
+      const response = await createReminder(reminderData);
+      console.log('Reminder created:', response);
 
       toast({
         title: 'Success',
-        description: `Reminder scheduled for ${scheduledDate.toLocaleString()}`,
+        description: `Reminder scheduled for ${istDate.toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}`,
       });
 
       resetForm();
@@ -331,20 +327,7 @@ export function RemindersSection() {
               <Calendar
                 localizer={localizer}
                 events={reminders.map(reminder => {
-                  let date: Date;
-                  const scheduledFor = reminder.scheduledFor;
-                  
-                  if (scheduledFor instanceof Timestamp) {
-                    date = scheduledFor.toDate();
-                  } else if ('seconds' in scheduledFor) {
-                    date = new Timestamp(
-                      scheduledFor.seconds,
-                      scheduledFor.nanoseconds
-                    ).toDate();
-                  } else {
-                    date = new Date(scheduledFor as any);
-                  }
-
+                  const date = new Date(reminder.scheduledFor);
                   return {
                     title: `${reminder.companyName} - ${reminder.note}`,
                     start: date,
