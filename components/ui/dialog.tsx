@@ -81,4 +81,6 @@ export {
   DialogContent,
   DialogHeader,
   DialogTitle,
-} 
+}
+
+export const DialogDescription = DialogPrimitive.Description; 
