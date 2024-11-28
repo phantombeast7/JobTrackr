@@ -17,7 +17,6 @@ export async function POST(request: Request) {
     // Send the email
     await sendReminderEmail(
       userEmail,
-      `Reminder: Follow-up for ${reminderDetails.companyName}`,
       reminderDetails
     );
 

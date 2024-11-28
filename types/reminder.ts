@@ -16,6 +16,7 @@ export interface Reminder {
   sentAt?: Timestamp
   userEmail?: string | null
   timezone?: string
+  emailTemplate?: string
 }
 
 export interface CreateReminderData {

@@ -17,6 +17,7 @@ export const sendReminderEmail = async (
     companyName: string
     jobTitle: string
     note: string
+    emailTemplate?: string
   }
 ) => {
   try {
@@ -35,7 +36,7 @@ export const sendReminderEmail = async (
       to: to,
       subject: `JobTrackr: Follow-up for ${reminder.companyName} - ${reminder.jobTitle}`,
       text: `Hello,\n\nThis is a reminder to follow up with ${reminder.companyName} regarding your ${reminder.jobTitle} position.\n\nNote: ${reminder.note}\n\nBest regards,\nJobTrackr`,
-      html: `
+      html: reminder.emailTemplate || `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <h2>Job Application Follow-up Reminder</h2>
           <p>Hello,</p>

@@ -10,6 +10,10 @@ interface EmailProps {
   customBody?: string
 }
 
+interface EmailRendererProps {
+  data?: any;
+}
+
 export async function generateEmailHtml(props: EmailProps): Promise<string> {
   const template = EmailTemplate(props)
   return convertReactElementToHTML(props)
