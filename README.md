@@ -1,232 +1,237 @@
-# <div align="center">🚀 **JobTrackr**</div>
-
 <div align="center">
 
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=28&duration=3000&pause=1000&color=539BF5&center=true&vCenter=true&repeat=true&width=435&lines=Track+Your+Job+Hunt;Manage+Applications;Schedule+Interviews;Analyze+Progress" alt="Typing SVG" />
+# <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=30&duration=3000&pause=1000&color=6F9EF8&center=true&vCenter=true&width=435&lines=JobTrackr;Your+Job+Hunt+Companion" alt="Typing SVG" />
 
-[![License](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge&labelColor=black)](https://opensource.org/licenses/MIT)
-[![Deploy](https://img.shields.io/badge/Deploy-Netlify-00C7B7?style=for-the-badge&logo=netlify&labelColor=black)](https://jobtrackr7.netlify.app/)
-[![Firebase](https://img.shields.io/badge/Firebase-Connected-FFCA28?style=for-the-badge&logo=firebase&labelColor=black)](https://firebase.google.com/)
-[![Status](https://img.shields.io/badge/Status-Active-4EAA25?style=for-the-badge&labelColor=black)](https://github.com/phantombeast7/JobTrackr)
-
-<br/>
-
-<div align="center">
-  <img src="https://skillicons.dev/icons?i=react,typescript,tailwind,firebase,aws" alt="Tech Stack" />
-</div>
-
-<br/>
+[![License](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
+[![Deploy](https://img.shields.io/badge/Deploy-Netlify-00C7B7?style=for-the-badge&logo=netlify)](https://jobtrackr7.netlify.app/)
+[![Firebase](https://img.shields.io/badge/Firebase-Connected-FFCA28?style=for-the-badge&logo=firebase)](https://firebase.google.com/)
+[![Status](https://img.shields.io/badge/Status-Active-success?style=for-the-badge&logo=statuspage)](https://github.com/phantombeast7/JobTrackr)
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/phantombeast7/JobTrackr/main/public/hero.png" alt="JobTrackr Hero" width="600px" style="border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.2);" />
-</p>
+<img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png" alt="-----------------------------------------------------" />
+
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=6F9EF8&center=true&vCenter=true&width=435&lines=Modern+Job+Application+Tracking;Seamless+Google+Drive+Integration;Smart+Reminder+System;Efficient+Organization" alt="Features Typing" />
+
+**JobTrackr** is a modern job tracking tool designed to streamline your job application process. Track applications, set reminders, store resumes, and access your data seamlessly with Google Drive integration. Built to help job seekers stay organized, efficient, and productive throughout their job search journey.
 
 </div>
 
-<div align="center">
-  <h3>
-    <a href="https://jobtrackr7.netlify.app/demo">View Demo</a>
-    ·
-    <a href="https://github.com/phantombeast7/JobTrackr/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/phantombeast7/JobTrackr/issues">Request Feature</a>
-  </h3>
-</div>
+<img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png" alt="-----------------------------------------------------" />
 
-<br/>
-
-<p align="center">
-  <b>JobTrackr</b> revolutionizes your job search with a modern, intuitive interface and powerful features. Built with cutting-edge technology and following best practices for an exceptional user experience.
-</p>
-
----
-
-## 🌟 **Key Features**
-
-<div align="center">
-<table>
-<tr>
-<td align="center" width="33%">
-<img width="100%" src="https://raw.githubusercontent.com/phantombeast7/JobTrackr/main/public/dashboard.gif" alt="Dashboard Demo" style="border-radius: 10px;"/>
-<br/>
-<h3>📊 Smart Dashboard</h3>
-<p>Real-time analytics with interactive charts</p>
-</td>
-<td align="center" width="33%">
-<img width="100%" src="https://raw.githubusercontent.com/phantombeast7/JobTrackr/main/public/tracker.gif" alt="Tracker Demo" style="border-radius: 10px;"/>
-<br/>
-<h3>📝 Application Tracker</h3>
-<p>Elegant status management system</p>
-</td>
-<td align="center" width="33%">
-<img width="100%" src="https://raw.githubusercontent.com/phantombeast7/JobTrackr/main/public/reminder.gif" alt="Reminder Demo" style="border-radius: 10px;"/>
-<br/>
-<h3>⏰ Smart Reminders</h3>
-<p>AI-powered notification system</p>
-</td>
-</tr>
-</table>
-</div>
-
-## 🎨 **Technical Features**
+## ✨ Features
 
 <div align="center">
 
-| 🔥 Architecture | 🎯 Best Practices | 🌈 Modern Stack |
-|----------------|-------------------|-----------------|
-| Modular Design | Small, Focused Files | React + TypeScript |
-| Clean Architecture | Single Responsibility | Tailwind CSS |
-| Utility Functions | Code Reusability | Firebase |
-| Type Safety | Comprehensive Testing | AWS Integration |
+| Feature | Description |
+|---------|-------------|
+| 🎯 **Dashboard** | A clean overview of all your job applications and reminders |
+| 📝 **Application Tracker** | Add, manage, and track job applications with custom statuses |
+| ⏰ **Reminder System** | Set reminders for important events like interviews and follow-ups |
+| 📁 **Google Drive Integration** | Easily store and access your data on Google Drive |
+| 📧 **AWS SES Email Notifications** | Receive automated reminders and updates via email |
 
 </div>
 
-## ⚡ **Quick Start**
+<img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png" alt="-----------------------------------------------------" />
 
-<details>
-<summary>🔧 Installation Steps</summary>
+## 🛠️ Installation Guide
 
+### Step 1: Clone the Repository
 ```bash
-# Clone the repository
 git clone https://github.com/phantombeast7/JobTrackr.git
-
-# Navigate to project directory
 cd JobTrackr
+```
 
-# Install dependencies
+### Step 2: Install Dependencies
+Make sure you have [Node.js](https://nodejs.org/) installed. Run:
+```bash
 npm install
-
-# Start development server
-npm run dev
 ```
 
-</details>
+### Step 3: Firebase Setup
 
 <details>
-<summary>🔑 Environment Setup</summary>
+<summary>📌 Click to expand Firebase setup instructions</summary>
 
-Create `.env.local\`:
+#### Creating a Firebase Project:
 
+1. Go to the [Firebase Console](https://console.firebase.google.com/)
+2. Click on **Add Project**, follow the prompts
+3. Navigate to **Project Settings**
+
+#### Get Firebase Config Variables:
+```js
+const firebaseConfig = {
+  apiKey: YOUR_API_KEY, 
+  authDomain: YOUR_AUTH_DOMAIN,
+  projectId: YOUR_PROJECT_ID,
+  storageBucket: YOUR_STORAGE_BUCKET,
+  messagingSenderId: YOUR_MESSAGING_SENDER_ID,
+  appId: YOUR_APP_ID,
+  measurementId: YOUR_MEASUREMENT_ID
+};
+```
+
+Add to `.env.local`:
 ```env
-# Firebase Configuration
-NEXT_PUBLIC_FIREBASE_API_KEY=your_api_key
-NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_auth_domain
-NEXT_PUBLIC_FIREBASE_PROJECT_ID=your_project_id
-NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your_storage_bucket
-NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
-NEXT_PUBLIC_FIREBASE_APP_ID=your_app_id
-NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID=your_measurement_id
+NEXT_PUBLIC_FIREBASE_API_KEY=YOUR_API_KEY
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=YOUR_AUTH_DOMAIN
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=YOUR_PROJECT_ID
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=YOUR_STORAGE_BUCKET
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=YOUR_MESSAGING_SENDER_ID
+NEXT_PUBLIC_FIREBASE_APP_ID=YOUR_APP_ID
+NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID=YOUR_MEASUREMENT_ID
 
-# Google Drive Integration
-NEXT_PUBLIC_GOOGLE_DRIVE_CLIENT_ID=your_client_id
-GOOGLE_DRIVE_CLIENT_SECRET=your_client_secret
-NEXT_PUBLIC_GOOGLE_DRIVE_REDIRECT_URI=http://localhost:3000/api/auth/google-drive/callback
-
-# AWS SES Configuration
-AWS_SES_SMTP_HOST=your_smtp_host
-AWS_SES_SMTP_PORT=your_smtp_port
-AWS_SES_USER=your_ses_user
-AWS_SES_PASSWORD=your_ses_password
-AWS_SES_FROM_EMAIL=your_verified_email
+FIREBASE_PROJECT_ID=YOUR_PROJECT_ID
+FIREBASE_CLIENT_EMAIL=YOUR_CLIENT_EMAIL
+FIREBASE_PRIVATE_KEY=YOUR_PRIVATE_KEY
 ```
 
-</details>
+#### Firebase Authentication Setup:
+1. Enable **Google** and **GitHub** authentication
+2. Configure GitHub OAuth application
 
-## 📁 **Project Structure**
-
-\`\`\`bash
-src/
-├── components/         # Reusable UI components
-│   ├── ui/            # Base UI components
-│   └── features/      # Feature-specific components
-├── hooks/             # Custom React hooks
-├── lib/              # Utility functions and helpers
-├── services/         # External service integrations
-└── types/            # TypeScript type definitions
-\`\`\`
-
-## 🛡️ **Security**
-
-<details>
-<summary>Firebase Security Rules</summary>
-
-```javascript
+#### Firestore Rules:
+```js
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    // Authentication check
-    function isAuthenticated() {
+    // Helper functions
+    function isSignedIn() {
       return request.auth != null;
     }
 
-    // User ownership check
     function isOwner(userId) {
       return request.auth.uid == userId;
     }
 
-    // Collection rules
+    function isValidApplication() {
+      let data = request.resource.data;
+      return data.userId == request.auth.uid &&
+             data.companyName is string &&
+             data.jobTitle is string &&
+             data.status in ['Applied', 'Interviewing', 'Offered', 'Rejected'] &&
+             data.applicationDate is string;
+    }
+
+    function isValidReminder() {
+      let data = request.resource.data;
+      return data.userId == request.auth.uid &&
+             data.type in ['interview', 'followup'] &&
+             data.date is string &&
+             data.message is string;
+    }
+
+    // Collections rules
     match /users/{userId} {
-      allow read, write: if isAuthenticated() && isOwner(userId);
+      allow read, write: if isSignedIn() && isOwner(userId);
     }
 
     match /applications/{applicationId} {
-      allow read: if isAuthenticated();
-      allow write: if isAuthenticated() && isOwner(resource.data.userId);
+      allow create: if isSignedIn() && isValidApplication();
+      allow update: if isSignedIn() && isValidApplication();
+      allow delete: if isSignedIn() && isOwner(resource.data.userId);
+    }
+
+    match /reminders/{reminderId} {
+      allow create: if isSignedIn() && isValidReminder();
+      allow update, delete: if isSignedIn() && resource.data.userId == request.auth.uid;
+    }
+
+    match /blacklistedCompanies/{companyId} {
+      allow create: if isSignedIn() && request.resource.data.reportedBy == request.auth.uid;
+      allow update: if isSignedIn() && resource.data.reportedBy == request.auth.uid;
+      allow delete: if isSignedIn() && resource.data.reportedBy == request.auth.uid;
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
     }
   }
 }
 ```
 
+#### Firestore Indexes:
+```js
+applications	userId Ascending resumeUrl Ascending __name__ Ascending
+applications	userId Ascending createdAt Descending __name__ Descending
+reminders	sent Ascending userId Ascending scheduledFor Ascending __name__ Ascending
+reminders	userId Ascending scheduledFor Descending __name__ Descending
+```
 </details>
 
-## 🚀 **Development**
+### Step 4: Google Drive API Setup
+
+<details>
+<summary>📌 Click to expand Google Drive setup instructions</summary>
+
+1. Visit [Google Cloud Console](https://console.cloud.google.com/)
+2. Enable **Google Drive API**
+3. Create OAuth 2.0 credentials
+4. Set redirect URIs:
+
+Local:
+```
+http://localhost:3000
+http://localhost:3000/api/auth/google-drive/callback
+```
+
+Production:
+```
+https://jobtrackr7.netlify.app/
+https://jobtrackr7.netlify.app/api/auth/google-drive/callback
+```
+
+Add to `.env.local`:
+```env
+NEXT_PUBLIC_GOOGLE_DRIVE_CLIENT_ID=YOUR_GOOGLE_DRIVE_CLIENT_ID
+GOOGLE_DRIVE_CLIENT_SECRET=YOUR_GOOGLE_DRIVE_CLIENT_SECRET
+NEXT_PUBLIC_GOOGLE_DRIVE_REDIRECT_URI=http://localhost:3000/api/auth/google-drive/callback
+```
+</details>
+
+### Step 5: AWS SES Configuration
+
+<details>
+<summary>📌 Click to expand AWS SES setup instructions</summary>
+
+1. Access [AWS Console](https://aws.amazon.com/console/)
+2. Set up SES Email Identity
+3. Create SMTP credentials
+4. Add to `.env.local`:
+```env
+AWS_SES_SMTP_HOST=YOUR_SMTP_HOST
+AWS_SES_SMTP_PORT=YOUR_SMTP_PORT
+AWS_SES_USER=YOUR_SMTP_USER
+AWS_SES_PASSWORD=YOUR_SMTP_PASSWORD
+AWS_SES_FROM_EMAIL=YOUR_VERIFIED_EMAIL
+```
+</details>
+
+<img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png" alt="-----------------------------------------------------" />
+
+## 💡 Contribute
 
 <div align="center">
 
-| Command | Description |
-|---------|-------------|
-| \`npm run dev\` | Start development server |
-| \`npm run build\` | Build for production |
-| \`npm run test\` | Run test suite |
-| \`npm run lint\` | Lint code |
+We welcome contributions! Whether it's:
+
+🐛 Bug Fixes | 🎯 New Features | 💡 Suggestions
+
+Fork, Create Issue, Submit PR!
 
 </div>
 
-## 🤝 **Contributing**
+<img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png" alt="-----------------------------------------------------" />
 
-We follow these best practices:
-- Create small, focused components
-- Write clean, maintainable code
-- Follow single responsibility principle
-- Include comprehensive tests
-- Document code thoroughly
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](https://opensource.org/licenses/MIT) file for details.
 
 <div align="center">
 
-1. 🍴 Fork the repository
-2. 🌿 Create a feature branch
-3. 💻 Make your changes
-4. ✅ Run tests
-5. 📬 Submit a pull request
+### Happy Job Hunting! 🚀
 
-</div>
-
-## 💖 **Support**
-
-<div align="center">
-
-⭐️ Star this repo if you found it helpful!
-
-[Buy me a coffee](https://buymeacoffee.com/phantombeast7) if you want to support development.
-
-</div>
-
----
-
-<div align="center">
-
-Made with 💙 by [PhantomBeast7](https://github.com/phantombeast7)
-
-<img src="https://raw.githubusercontent.com/phantombeast7/JobTrackr/main/public/wave.gif" alt="Wave" width="150px" />
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=6F9EF8&center=true&vCenter=true&width=435&lines=Made+with+%E2%9D%A4%EF%B8%8F+by+JobTrackr+Team" alt="Footer Typing" />
 
 </div>
