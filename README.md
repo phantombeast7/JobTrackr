@@ -105,7 +105,7 @@ npm run dev
 <details>
 <summary>🔑 Environment Setup</summary>
 
-Create \`.env.local\`:
+Create `.env.local\`:
 
 ```env
 # Firebase Configuration
