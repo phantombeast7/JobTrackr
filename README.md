@@ -1,65 +1,65 @@
 <div align="center">
 
-# <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=30&duration=3000&pause=1000&color=6F9EF8&center=true&vCenter=true&width=435&lines=JobTrackr;Your+Job+Hunt+Companion" alt="Typing SVG" />
+# <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=40&duration=3000&pause=1000&color=6F9EF8&center=true&vCenter=true&width=600&lines=Welcome+to+JobTrackr+🚀;Your+Smart+Job+Hunt+Companion;Track%2C+Organize%2C+Succeed" alt="Typing SVG" />
 
-[![License](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
-[![Deploy](https://img.shields.io/badge/Deploy-Netlify-00C7B7?style=for-the-badge&logo=netlify)](https://jobtrackr7.netlify.app/)
-[![Firebase](https://img.shields.io/badge/Firebase-Connected-FFCA28?style=for-the-badge&logo=firebase)](https://firebase.google.com/)
-[![Status](https://img.shields.io/badge/Status-Active-success?style=for-the-badge&logo=statuspage)](https://github.com/phantombeast7/JobTrackr)
+[<img src="https://img.shields.io/badge/License-MIT-F8B739.svg?style=for-the-badge&labelColor=1C2C2E&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0iI0Y4QjczOSIgZD0iTTEyIDJjNS41MjMgMCAxMCA0LjQ3NyAxMCAxMHMtNC40NzcgMTAtMTAgMTBTMiAxNy41MjMgMiAxMiA2LjQ3NyAyIDEyIDJ6bTAgMmE4IDggMCAxMDAgMTZhOCA4IDAgMDAwLTE2eiIvPjwvc3ZnPg==">](https://opensource.org/licenses/MIT)
+[<img src="https://img.shields.io/badge/Deploy-Netlify-00C7B7?style=for-the-badge&labelColor=1C2C2E&logo=netlify">](https://jobtrackr7.netlify.app/)
+[<img src="https://img.shields.io/badge/Firebase-Connected-FFCA28?style=for-the-badge&labelColor=1C2C2E&logo=firebase">](https://firebase.google.com/)
+[<img src="https://img.shields.io/badge/Status-Active-4CAF50?style=for-the-badge&labelColor=1C2C2E&logo=statuspage">](https://github.com/phantombeast7/JobTrackr)
+
+<br/>
+
+[<img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png" />](#)
+
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&duration=3000&pause=1000&color=6F9EF8&center=true&vCenter=true&width=600&lines=Modern+Job+Application+Tracking;Seamless+Google+Drive+Integration;Smart+Reminder+System;Efficient+Organization" alt="Features Typing" />
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png" alt="-----------------------------------------------------" />
-
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=6F9EF8&center=true&vCenter=true&width=435&lines=Modern+Job+Application+Tracking;Seamless+Google+Drive+Integration;Smart+Reminder+System;Efficient+Organization" alt="Features Typing" />
-
-**JobTrackr** is a modern job tracking tool designed to streamline your job application process. Track applications, set reminders, store resumes, and access your data seamlessly with Google Drive integration. Built to help job seekers stay organized, efficient, and productive throughout their job search journey.
+<strong>JobTrackr</strong> is a modern job tracking tool designed to streamline your job application process. Track applications, set reminders, store resumes, and access your data seamlessly with Google Drive integration. Built to help job seekers stay organized, efficient, and productive throughout their job search journey.
+</p>
 
 </div>
 
-<img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png" alt="-----------------------------------------------------" />
-
-## ✨ Features
+[<img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png" />](#)
 
 <div align="center">
 
+## 🌟 Features
+
 | Feature | Description |
-|---------|-------------|
-| 🎯 **Dashboard** | A clean overview of all your job applications and reminders |
-| 📝 **Application Tracker** | Add, manage, and track job applications with custom statuses |
-| ⏰ **Reminder System** | Set reminders for important events like interviews and follow-ups |
-| 📁 **Google Drive Integration** | Easily store and access your data on Google Drive |
-| 📧 **AWS SES Email Notifications** | Receive automated reminders and updates via email |
+|:-------:|:------------|
+| <img width="32" src="https://img.icons8.com/fluency/48/dashboard-layout.png" alt="Dashboard"/> **Dashboard** | A clean overview of all your job applications and reminders |
+| <img width="32" src="https://img.icons8.com/fluency/48/task-completed.png" alt="Tracker"/> **Application Tracker** | Add, manage, and track job applications with custom statuses |
+| <img width="32" src="https://img.icons8.com/fluency/48/alarm.png" alt="Reminder"/> **Reminder System** | Set reminders for important events like interviews and follow-ups |
+| <img width="32" src="https://img.icons8.com/fluency/48/google-drive.png" alt="Drive"/> **Google Drive Integration** | Easily store and access your data on Google Drive |
+| <img width="32" src="https://img.icons8.com/fluency/48/amazon-web-services.png" alt="AWS"/> **AWS SES Email Notifications** | Receive automated reminders and updates via email |
 
 </div>
 
-<img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png" alt="-----------------------------------------------------" />
+[<img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png" />](#)
 
-## 🛠️ Installation Guide
-
-### Step 1: Clone the Repository
-```bash
-git clone https://github.com/phantombeast7/JobTrackr.git
-cd JobTrackr
-```
-
-### Step 2: Install Dependencies
-Make sure you have [Node.js](https://nodejs.org/) installed. Run:
-```bash
-npm install
-```
-
-### Step 3: Firebase Setup
+## 🚀 Quick Start Guide
 
 <details>
-<summary>📌 Click to expand Firebase setup instructions</summary>
+<summary><b>Step 1: Clone & Install</b></summary>
 
-#### Creating a Firebase Project:
+```bash
+# Clone the repository
+git clone https://github.com/phantombeast7/JobTrackr.git
+cd JobTrackr
 
-1. Go to the [Firebase Console](https://console.firebase.google.com/)
-2. Click on **Add Project**, follow the prompts
-3. Navigate to **Project Settings**
+# Install dependencies
+npm install
+```
+</details>
 
-#### Get Firebase Config Variables:
+<details>
+<summary><b>Step 2: Firebase Configuration</b></summary>
+
+### 🔥 Firebase Setup
+
+1. Create project at [Firebase Console](https://console.firebase.google.com/)
+2. Get configuration:
+
 ```js
 const firebaseConfig = {
   apiKey: YOUR_API_KEY, 
@@ -72,7 +72,9 @@ const firebaseConfig = {
 };
 ```
 
-Add to `.env.local`:
+### 📝 Environment Variables
+
+Create `.env.local`:
 ```env
 NEXT_PUBLIC_FIREBASE_API_KEY=YOUR_API_KEY
 NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=YOUR_AUTH_DOMAIN
@@ -87,11 +89,8 @@ FIREBASE_CLIENT_EMAIL=YOUR_CLIENT_EMAIL
 FIREBASE_PRIVATE_KEY=YOUR_PRIVATE_KEY
 ```
 
-#### Firebase Authentication Setup:
-1. Enable **Google** and **GitHub** authentication
-2. Configure GitHub OAuth application
+### 🔒 Firestore Rules
 
-#### Firestore Rules:
 ```js
 rules_version = '2';
 service cloud.firestore {
@@ -151,7 +150,8 @@ service cloud.firestore {
 }
 ```
 
-#### Firestore Indexes:
+### 📊 Firestore Indexes
+
 ```js
 applications	userId Ascending resumeUrl Ascending __name__ Ascending
 applications	userId Ascending createdAt Descending __name__ Descending
@@ -160,24 +160,19 @@ reminders	userId Ascending scheduledFor Descending __name__ Descending
 ```
 </details>
 
-### Step 4: Google Drive API Setup
-
 <details>
-<summary>📌 Click to expand Google Drive setup instructions</summary>
+<summary><b>Step 3: Google Drive Setup</b></summary>
 
 1. Visit [Google Cloud Console](https://console.cloud.google.com/)
-2. Enable **Google Drive API**
-3. Create OAuth 2.0 credentials
-4. Set redirect URIs:
+2. Enable Google Drive API
+3. Configure OAuth 2.0:
 
-Local:
-```
+```bash
+# Local URIs
 http://localhost:3000
 http://localhost:3000/api/auth/google-drive/callback
-```
 
-Production:
-```
+# Production URIs
 https://jobtrackr7.netlify.app/
 https://jobtrackr7.netlify.app/api/auth/google-drive/callback
 ```
@@ -190,15 +185,11 @@ NEXT_PUBLIC_GOOGLE_DRIVE_REDIRECT_URI=http://localhost:3000/api/auth/google-driv
 ```
 </details>
 
-### Step 5: AWS SES Configuration
-
 <details>
-<summary>📌 Click to expand AWS SES setup instructions</summary>
+<summary><b>Step 4: AWS SES Setup</b></summary>
 
 1. Access [AWS Console](https://aws.amazon.com/console/)
-2. Set up SES Email Identity
-3. Create SMTP credentials
-4. Add to `.env.local`:
+2. Configure SES:
 ```env
 AWS_SES_SMTP_HOST=YOUR_SMTP_HOST
 AWS_SES_SMTP_PORT=YOUR_SMTP_PORT
@@ -208,30 +199,41 @@ AWS_SES_FROM_EMAIL=YOUR_VERIFIED_EMAIL
 ```
 </details>
 
-<img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png" alt="-----------------------------------------------------" />
-
-## 💡 Contribute
+[<img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png" />](#)
 
 <div align="center">
 
-We welcome contributions! Whether it's:
+## 🤝 Contribute
 
-🐛 Bug Fixes | 🎯 New Features | 💡 Suggestions
+<table>
+<tr>
+<td align="center">
+<img width="60" src="https://img.icons8.com/fluency/96/bug.png" alt="Bug"/><br/>
+<b>Bug Fixes</b>
+</td>
+<td align="center">
+<img width="60" src="https://img.icons8.com/fluency/96/new.png" alt="Features"/><br/>
+<b>New Features</b>
+</td>
+<td align="center">
+<img width="60" src="https://img.icons8.com/fluency/96/light-on.png" alt="Ideas"/><br/>
+<b>Suggestions</b>
+</td>
+</tr>
+</table>
 
-Fork, Create Issue, Submit PR!
+[Fork](https://github.com/phantombeast7/JobTrackr/fork) • [Create Issue](https://github.com/phantombeast7/JobTrackr/issues) • [Submit PR](https://github.com/phantombeast7/JobTrackr/pulls)
 
 </div>
 
-<img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png" alt="-----------------------------------------------------" />
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](https://opensource.org/licenses/MIT) file for details.
+[<img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png" />](#)
 
 <div align="center">
 
-### Happy Job Hunting! 🚀
+## 📄 License
 
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=6F9EF8&center=true&vCenter=true&width=435&lines=Made+with+%E2%9D%A4%EF%B8%8F+by+JobTrackr+Team" alt="Footer Typing" />
+This project is licensed under the [MIT License](https://opensource.org/licenses/MIT)
+
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=25&duration=3000&pause=1000&color=6F9EF8&center=true&vCenter=true&width=435&lines=Ready+to+Start%3F;Happy+Job+Hunting!+🎯;Made+with+❤️+by+JobTrackr+Team" alt="Footer Typing" />
 
 </div>
