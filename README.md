@@ -2,96 +2,151 @@
 
 # <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=40&duration=3000&pause=1000&color=6F9EF8&center=true&vCenter=true&width=600&lines=Welcome+to+JobTrackr+🚀;Your+Smart+Job+Hunt+Companion;Track%2C+Organize%2C+Succeed" alt="Typing SVG" />
 
-[<img src="https://img.shields.io/badge/License-MIT-F8B739.svg?style=for-the-badge&labelColor=1C2C2E&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0iI0Y4QjczOSIgZD0iTTEyIDJjNS41MjMgMCAxMCA0LjQ3NyAxMCAxMHMtNC40NzcgMTAtMTAgMTBTMiAxNy41MjMgMiAxMiA2LjQ3NyAyIDEyIDJ6bTAgMmE4IDggMCAxMDAgMTZhOCA4IDAgMDAwLTE2eiIvPjwvc3ZnPg==">](https://opensource.org/licenses/MIT)
+[<img src="https://img.shields.io/badge/License-MIT-F8B739.svg?style=for-the-badge&labelColor=1C2C2E">](https://opensource.org/licenses/MIT)
 [<img src="https://img.shields.io/badge/Deploy-Netlify-00C7B7?style=for-the-badge&labelColor=1C2C2E&logo=netlify">](https://jobtrackr7.netlify.app/)
 [<img src="https://img.shields.io/badge/Firebase-Connected-FFCA28?style=for-the-badge&labelColor=1C2C2E&logo=firebase">](https://firebase.google.com/)
-[<img src="https://img.shields.io/badge/Status-Active-4CAF50?style=for-the-badge&labelColor=1C2C2E&logo=statuspage">](https://github.com/phantombeast7/JobTrackr)
-
-<br/>
-
-[<img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png" />](#)
-
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&duration=3000&pause=1000&color=6F9EF8&center=true&vCenter=true&width=600&lines=Modern+Job+Application+Tracking;Seamless+Google+Drive+Integration;Smart+Reminder+System;Efficient+Organization" alt="Features Typing" />
-
-<p align="center">
-<strong>JobTrackr</strong> is a modern job tracking tool designed to streamline your job application process. Track applications, set reminders, store resumes, and access your data seamlessly with Google Drive integration. Built to help job seekers stay organized, efficient, and productive throughout their job search journey.
-</p>
+[<img src="https://img.shields.io/badge/Status-Active-4CAF50?style=for-the-badge&labelColor=1C2C2E">](https://github.com/phantombeast7/JobTrackr)
 
 </div>
 
-[<img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png" />](#)
+## 📋 Table of Contents
 
-<div align="center">
+- [Overview](#-overview)
+- [Features](#-features)
+- [Tech Stack](#-tech-stack)
+- [Installation Steps](#-installation-steps)
+- [Project Structure](#-project-structure)
+- [Configuration Guide](#-configuration-guide)
+- [API Integration](#-api-integration)
+- [Database Schema](#-database-schema)
+- [Authentication](#-authentication)
+- [Deployment](#-deployment)
+- [Contributing](#-contributing)
+- [License](#-license)
 
-## 🌟 Features
+## 🎯 Overview
 
-| Feature | Description |
-|:-------:|:------------|
-| <img width="32" src="https://img.icons8.com/fluency/48/dashboard-layout.png" alt="Dashboard"/> **Dashboard** | A clean overview of all your job applications and reminders |
-| <img width="32" src="https://img.icons8.com/fluency/48/task-completed.png" alt="Tracker"/> **Application Tracker** | Add, manage, and track job applications with custom statuses |
-| <img width="32" src="https://img.icons8.com/fluency/48/alarm.png" alt="Reminder"/> **Reminder System** | Set reminders for important events like interviews and follow-ups |
-| <img width="32" src="https://img.icons8.com/fluency/48/google-drive.png" alt="Drive"/> **Google Drive Integration** | Easily store and access your data on Google Drive |
-| <img width="32" src="https://img.icons8.com/fluency/48/amazon-web-services.png" alt="AWS"/> **AWS SES Email Notifications** | Receive automated reminders and updates via email |
+JobTrackr is a comprehensive job application tracking system that helps job seekers manage their entire job search process efficiently. From tracking applications to managing interviews and storing important documents, JobTrackr streamlines every aspect of your job hunt.
 
-</div>
+## ✨ Features
 
-[<img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png" />](#)
+- 📊 **Interactive Dashboard**
+  - Real-time application status tracking
+  - Visual analytics and insights
+  - Customizable job search metrics
 
-## 🚀 Quick Start Guide
+- 📝 **Application Management**
+  - Track multiple job applications
+  - Custom status workflows
+  - Application history and timeline
+  - Document attachment support
 
-<details>
-<summary><b>Step 1: Clone & Install</b></summary>
+- 🔔 **Smart Notifications**
+  - Interview reminders
+  - Follow-up alerts
+  - Application deadlines
+  - Custom notification preferences
+
+- 📁 **Document Management**
+  - Resume versions control
+  - Cover letter templates
+  - Portfolio organization
+  - Seamless Google Drive integration
+
+- 📈 **Analytics & Reporting**
+  - Success rate tracking
+  - Interview performance metrics
+  - Application source analysis
+  - Custom report generation
+
+## 🛠 Tech Stack
+
+- **Frontend**: React.js, TypeScript, TailwindCSS
+- **Backend**: Node.js, Express
+- **Database**: Firebase Firestore
+- **Authentication**: Firebase Auth
+- **Storage**: Google Drive API
+- **Email Service**: AWS SES
+- **Hosting**: Netlify
+- **Analytics**: Firebase Analytics
+
+## 📥 Installation Steps
+
+### 1. Basic Setup
 
 ```bash
-# Clone the repository
+# Clone repository
 git clone https://github.com/phantombeast7/JobTrackr.git
+
+# Navigate to project
 cd JobTrackr
 
 # Install dependencies
 npm install
-```
-</details>
 
-<details>
-<summary><b>Step 2: Firebase Configuration</b></summary>
-
-### 🔥 Firebase Setup
-
-1. Create project at [Firebase Console](https://console.firebase.google.com/)
-2. Get configuration:
-
-```js
-const firebaseConfig = {
-  apiKey: YOUR_API_KEY, 
-  authDomain: YOUR_AUTH_DOMAIN,
-  projectId: YOUR_PROJECT_ID,
-  storageBucket: YOUR_STORAGE_BUCKET,
-  messagingSenderId: YOUR_MESSAGING_SENDER_ID,
-  appId: YOUR_APP_ID,
-  measurementId: YOUR_MEASUREMENT_ID
-};
+# Start development server
+npm run dev
 ```
 
-### 📝 Environment Variables
+### 2. Environment Configuration
 
-Create `.env.local`:
+Create `.env.local` file:
+
 ```env
-NEXT_PUBLIC_FIREBASE_API_KEY=YOUR_API_KEY
-NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=YOUR_AUTH_DOMAIN
-NEXT_PUBLIC_FIREBASE_PROJECT_ID=YOUR_PROJECT_ID
-NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=YOUR_STORAGE_BUCKET
-NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=YOUR_MESSAGING_SENDER_ID
-NEXT_PUBLIC_FIREBASE_APP_ID=YOUR_APP_ID
-NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID=YOUR_MEASUREMENT_ID
+# Firebase Configuration
+NEXT_PUBLIC_FIREBASE_API_KEY=your_api_key
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_auth_domain
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=your_project_id
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your_storage_bucket
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_messaging_sender_id
+NEXT_PUBLIC_FIREBASE_APP_ID=your_app_id
+NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID=your_measurement_id
 
-FIREBASE_PROJECT_ID=YOUR_PROJECT_ID
-FIREBASE_CLIENT_EMAIL=YOUR_CLIENT_EMAIL
-FIREBASE_PRIVATE_KEY=YOUR_PRIVATE_KEY
+# Google Drive API
+NEXT_PUBLIC_GOOGLE_DRIVE_CLIENT_ID=your_client_id
+GOOGLE_DRIVE_CLIENT_SECRET=your_client_secret
+NEXT_PUBLIC_GOOGLE_DRIVE_REDIRECT_URI=http://localhost:3000/api/auth/google-drive/callback
+
+# AWS SES Configuration
+AWS_SES_SMTP_HOST=your_smtp_host
+AWS_SES_SMTP_PORT=your_smtp_port
+AWS_SES_USER=your_ses_user
+AWS_SES_PASSWORD=your_ses_password
+AWS_SES_FROM_EMAIL=your_verified_email
 ```
 
-### 🔒 Firestore Rules
+## 📁 Project Structure
 
-```js
+```
+JobTrackr/
+├── src/
+│   ├── components/
+│   │   ├── dashboard/
+│   │   ├── applications/
+│   │   ├── notifications/
+│   │   └── shared/
+│   ├── pages/
+│   ├── services/
+│   ├── utils/
+│   └── styles/
+├── public/
+├── config/
+└── tests/
+```
+
+## ⚙️ Configuration Guide
+
+### Firebase Setup
+
+1. Create a new project in [Firebase Console](https://console.firebase.google.com)
+2. Enable Authentication methods:
+   - Google Sign-In
+   - Email/Password
+   - GitHub
+3. Set up Firestore Database
+4. Configure Security Rules:
+
+```javascript
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
@@ -121,7 +176,7 @@ service cloud.firestore {
              data.message is string;
     }
 
-    // Collections rules
+    // Collection rules
     match /users/{userId} {
       allow read, write: if isSignedIn() && isOwner(userId);
     }
@@ -150,90 +205,88 @@ service cloud.firestore {
 }
 ```
 
-### 📊 Firestore Indexes
+### Google Drive Integration
 
-```js
-applications	userId Ascending resumeUrl Ascending __name__ Ascending
-applications	userId Ascending createdAt Descending __name__ Descending
-reminders	sent Ascending userId Ascending scheduledFor Ascending __name__ Ascending
-reminders	userId Ascending scheduledFor Descending __name__ Descending
-```
-</details>
-
-<details>
-<summary><b>Step 3: Google Drive Setup</b></summary>
-
-1. Visit [Google Cloud Console](https://console.cloud.google.com/)
+1. Create project in [Google Cloud Console](https://console.cloud.google.com)
 2. Enable Google Drive API
-3. Configure OAuth 2.0:
+3. Configure OAuth consent screen
+4. Create credentials (OAuth 2.0 Client ID)
+5. Add authorized redirect URIs:
+   ```
+   http://localhost:3000/api/auth/google-drive/callback
+   https://jobtrackr7.netlify.app/api/auth/google-drive/callback
+   ```
 
-```bash
-# Local URIs
-http://localhost:3000
-http://localhost:3000/api/auth/google-drive/callback
+### AWS SES Configuration
 
-# Production URIs
-https://jobtrackr7.netlify.app/
-https://jobtrackr7.netlify.app/api/auth/google-drive/callback
+1. Access [AWS Management Console](https://aws.amazon.com/console/)
+2. Navigate to Simple Email Service (SES)
+3. Verify email addresses
+4. Create SMTP credentials
+5. Configure notification templates
+
+## 🔐 Authentication
+
+### Supported Methods:
+- Google Sign-In
+- Email/Password
+- GitHub OAuth
+
+### Implementation:
+```typescript
+import { auth } from './firebase-config';
+import { 
+  signInWithPopup, 
+  GoogleAuthProvider,
+  GithubAuthProvider 
+} from 'firebase/auth';
+
+// Google Sign-In
+const googleAuth = async () => {
+  const provider = new GoogleAuthProvider();
+  return signInWithPopup(auth, provider);
+};
+
+// GitHub Sign-In
+const githubAuth = async () => {
+  const provider = new GithubAuthProvider();
+  return signInWithPopup(auth, provider);
+};
 ```
 
-Add to `.env.local`:
-```env
-NEXT_PUBLIC_GOOGLE_DRIVE_CLIENT_ID=YOUR_GOOGLE_DRIVE_CLIENT_ID
-GOOGLE_DRIVE_CLIENT_SECRET=YOUR_GOOGLE_DRIVE_CLIENT_SECRET
-NEXT_PUBLIC_GOOGLE_DRIVE_REDIRECT_URI=http://localhost:3000/api/auth/google-drive/callback
-```
-</details>
+## 🚀 Deployment
 
-<details>
-<summary><b>Step 4: AWS SES Setup</b></summary>
+### Netlify Deployment Steps:
 
-1. Access [AWS Console](https://aws.amazon.com/console/)
-2. Configure SES:
-```env
-AWS_SES_SMTP_HOST=YOUR_SMTP_HOST
-AWS_SES_SMTP_PORT=YOUR_SMTP_PORT
-AWS_SES_USER=YOUR_SMTP_USER
-AWS_SES_PASSWORD=YOUR_SMTP_PASSWORD
-AWS_SES_FROM_EMAIL=YOUR_VERIFIED_EMAIL
-```
-</details>
+1. Connect GitHub repository
+2. Configure build settings:
+   ```
+   Build command: npm run build
+   Publish directory: dist
+   ```
+3. Set environment variables
+4. Deploy!
 
-[<img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png" />](#)
+## 🤝 Contributing
 
-<div align="center">
+We welcome contributions! Please follow these steps:
 
-## 🤝 Contribute
-
-<table>
-<tr>
-<td align="center">
-<img width="60" src="https://img.icons8.com/fluency/96/bug.png" alt="Bug"/><br/>
-<b>Bug Fixes</b>
-</td>
-<td align="center">
-<img width="60" src="https://img.icons8.com/fluency/96/new.png" alt="Features"/><br/>
-<b>New Features</b>
-</td>
-<td align="center">
-<img width="60" src="https://img.icons8.com/fluency/96/light-on.png" alt="Ideas"/><br/>
-<b>Suggestions</b>
-</td>
-</tr>
-</table>
-
-[Fork](https://github.com/phantombeast7/JobTrackr/fork) • [Create Issue](https://github.com/phantombeast7/JobTrackr/issues) • [Submit PR](https://github.com/phantombeast7/JobTrackr/pulls)
-
-</div>
-
-[<img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png" />](#)
-
-<div align="center">
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
 ## 📄 License
 
-This project is licensed under the [MIT License](https://opensource.org/licenses/MIT)
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=25&duration=3000&pause=1000&color=6F9EF8&center=true&vCenter=true&width=435&lines=Ready+to+Start%3F;Happy+Job+Hunting!+🎯;Made+with+❤️+by+JobTrackr+Team" alt="Footer Typing" />
+---
+
+<div align="center">
+
+### Made with ❤️ by JobTrackr Team
+
+[<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=25&duration=3000&pause=1000&color=6F9EF8&center=true&vCenter=true&width=435&lines=Ready+to+Start%3F;Happy+Job+Hunting!+🎯" alt="Footer Typing" />](https://jobtrackr7.netlify.app/)
 
 </div>
