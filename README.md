@@ -95,7 +95,7 @@
 <td>Firebase account</td>
 </tr>
 <tr>
-<td><img src="https://e7.pngegg.com/pngimages/777/274/png-clipart-google-cloud-platform-cloud-computing-microsoft-azure-business-cloud-computing-text-logo-thumbnail.png" width="20"/></td>
+<td><img src="https://image.similarpng.com/very-thumbnail/2020/06/Logo-google-cloud-icon-vector-PNG.png" width="20"/></td>
 <td>Google Cloud account</td>
 </tr>
 <tr>
