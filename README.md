@@ -368,14 +368,17 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ### 🎯 **Ready to streamline your job search?**
 
 <a href="https://jobtrackr7.netlify.app/">
-  <img src="https://img.shields.io/badge/Get_Started-00C7B7?style=for-the-badge&logo=netlify&logoColor=white&labelColor=black" alt="Get Started"/>
+  <img src="https://img.shields.io/badge/Get_Started-00C7B7?style=flat&logo=netlify&logoColor=white&labelColor=black" alt="Get Started"/>
 </a>
+
 <a href="https://github.com/phantombeast7/JobTrackr/issues">
-  <img src="https://img.shields.io/badge/Report_Bug-FF0000?style=for-the-badge&logo=github&logoColor=white&labelColor=black" alt="Report Bug"/>
+  <img src="https://img.shields.io/badge/Report_Bug-FF0000?style=flat&logo=github&logoColor=white&labelColor=black" alt="Report Bug"/>
 </a>
+
 <a href="https://github.com/phantombeast7/JobTrackr/issues">
-  <img src="https://img.shields.io/badge/Request_Feature-4CAF50?style=for-the-badge&logo=github&logoColor=white&labelColor=black" alt="Request Feature"/>
+  <img src="https://img.shields.io/badge/Request_Feature-4CAF50?style=flat&logo=github&logoColor=white&labelColor=black" alt="Request Feature"/>
 </a>
+
 
 <br/>
 <br/>
