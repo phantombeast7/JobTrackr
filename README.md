@@ -10,7 +10,7 @@
 <br/>
 <br/>
 
-<img src="https://raw.githubusercontent.com/phantombeast7/JobTrackr/main/public/logo.png" alt="JobTrackr Logo" width="200" height="200" style="border-radius: 20px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"/>
+<img src="app/favicon.ico" alt="JobTrackr Logo" width="200" height="200" style="border-radius: 20px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"/>
 
 <h2>
   <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&duration=3000&pause=1000&color=00C7B7&center=true&vCenter=true&width=435&lines=Your+Ultimate+Job+Application;Tracking+Companion" alt="Typing SVG" />
