@@ -383,12 +383,11 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 <br/>
 <br/>
 
-
 <a href="https://github.com/phantombeast7">
-  <img src="https://img.shields.io/badge/Made_with_❤️_by_phantombeast7-00C7B7?style=for-the-badge&logo=github&logoColor=white&labelColor=black" alt="Made by phantombeast7" />
+  <span style="font-family: 'Fira Code', monospace; font-size: 20px; color: #00C7B7; text-align: center; text-shadow: 0 0 5px #00C7B7, 0 0 10px #00C7B7, 0 0 20px #00C7B7;">
+    Made with ❤️ by phantombeast7
+  </span>
 </a>
-
-
 
 
 </div>
