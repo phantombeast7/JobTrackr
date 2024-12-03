@@ -1,101 +1,403 @@
-# BirdRecon: A Free Open Source Tool for Image based Bird Species Recognition
+# <div align="center"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=30&duration=3000&pause=1000&color=00C7B7&center=true&vCenter=true&width=435&lines=🎯+JobTrackr;Your+Career+Companion" alt="JobTrackr" /></div>
 
-## Introduction
+<div align="center">
 
-This repository  presents a free open-source bird identification application designed to support ornithologists and bird enthusiasts in their field research and observations with user-friendly features.
-
-The system architecture integrates Google Gemini for detailed species information and Wikimedia Commons for similar image retrieval, offering a comprehensive reference tool. Users can initiate searches using bird names or uploaded images, with the system optimized for efficient processing to ensure a seamless user experience.
-
-A key feature of this project is its open-source nature, with the entire codebase publicly available on GitHub. This approach fosters community collaboration, allowing continuous improvement and customization to meet specific research needs. The application is accessible through both mobile and web platforms, maximizing its reach and utility.
-
-This research contributes to the field of ornithology by providing a user-friendly tool that bridges the gap between amateur bird watching and professional research. The multilingual support and open-source framework make it particularly valuable for field surveys across diverse regions, potentially accelerating data collection and analysis in ornithological studies.
+<img src="https://img.shields.io/badge/License-MIT-green?style=flat&logo=opensourceinitiative&logoColor=white" alt="License MIT" />
+<img src="https://img.shields.io/badge/Firebase-Connected-FFCA28?style=flat&logo=firebase&logoColor=white" alt="Firebase Connected" />
+<img src="https://img.shields.io/badge/Google_Drive_API-Connected-34A853?style=flat&logo=googledrive&logoColor=white" alt="Google Drive API Connected" />
+<img src="https://img.shields.io/badge/AWS_SMTP-Configured-FF9900?style=flat&logo=amazonaws&logoColor=white" alt="AWS SMTP Configured" />
+<img src="https://img.shields.io/badge/Deploy-Netlify-00C7B7?style=flat&logo=netlify&logoColor=white" alt="Deploy Netlify" />
 
 
-This project involves deploying a server for bird species classification using ensemble learning, which includes two functionalities: search by bird name and search by image upload at the location BirdRecon-A-Free-Open-Source-Tool-for-Image-based-Bird-Identification/Server File/. The following steps guide you through deploying the server on Microsoft Azure, setting up the Android app, and configuring the website.Before starting after you download all the files go to this directory 
-"BreadcrumbsBirdRecon-A-Free-Open-Source-Tool-for-Image-based-Bird-Identification/Server File/Search By Image" open "ensemble_final.tflite Link"  text file and download the model from the drive as the model is a bit large in size so we have kept it in drive place the downloaded file in "BreadcrumbsBirdRecon-A-Free-Open-Source-Tool-for-Image-based-Bird-Identification/Server File/Search By Image" location .Next Follow the below steps.
+<br/>
+<br/>
 
-## Prerequisites
+<img src="/app/favicon.ico" alt="JobTrackr Logo" width="200" height="200" style="border-radius: 20px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"/>
+
+<h2>
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&duration=3000&pause=1000&color=00C7B7&center=true&vCenter=true&width=435&lines=Your+Ultimate+Job+Application;Tracking+Companion" alt="Typing SVG" />
+</h2>
+
+<p align="center">
+  <em>Track applications, set reminders, store resumes, and access your data seamlessly with Google Drive integration.</em>
+</p>
+
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
+
+</div>
+
+## <img src="https://media2.giphy.com/media/QssGEmpkyEOhBCb7e1/giphy.gif?cid=ecf05e47a0n3gi1bfqntqmob8g9aid1oyj2wr3ds3mg700bl&rid=giphy.gif" width="28"> **What is JobTrackr?**
+
+**JobTrackr** is a modern, intuitive job tracking tool designed to streamline your job application process. Built with job seekers in mind, it helps you stay organized, efficient, and productive throughout your job search journey.
+
+<div align="center">
+
+### 🎯 **Core Features**
+
+<table>
+<tr>
+<tr>
+  <td align="center">
+    <img src="https://media.giphy.com/media/3oKIPEqDGUULpEU0aQ/giphy.gif" width="60px"/><br/><b>Dashboard</b>
+  </td>
+  <td>A clean, intuitive overview of all your job applications and reminders</td>
+</tr>
+<tr>
+  <td align="center">
+    <img src="https://media.giphy.com/media/26ufnwz3wDUli7GU0/giphy.gif" width="60px"/><br/><b>Application Tracker</b>
+  </td>
+  <td>Track applications with statuses: <i>Applied</i>, <i>Interviewing</i>, <i>Offered</i>, <i>Rejected</i></td>
+</tr>
+<tr>
+  <td align="center">
+    <img src="https://media1.tenor.com/m/fYl0qOAwGUcAAAAd/mignon-urgent.gif" width="60px"/><br/><b>Reminder System</b>
+  </td>
+  <td>Smart reminders for interviews, follow-ups, and deadlines</td>
+</tr>
+<tr>
+  <td align="center">
+    <img src="https://media.giphy.com/media/xT9IgzoKnwFNmISR8I/giphy.gif" width="60px"/><br/><b>Google Drive Integration</b>
+  </td>
+  <td>Seamless document storage and access</td>
+</tr>
+<tr>
+  <td align="center">
+    <img src="https://media.giphy.com/media/l0HlQXlQ3nHyLMvte/giphy.gif" width="60px"/><br/><b>AWS SES Notifications</b>
+  </td>
+  <td>Automated email reminders and updates</td>
+</tr>
+
+</table>
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
+
+</div>
 
 
-1. Download and Install [Docker](https://docs.docker.com/get-docker/)
-2. Download and Install [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-windows?tabs=azure-cli)
-3. Create a account on [Microsoft Azure account](https://azure.microsoft.com/en-us/free/)
+## <img src="https://media.giphy.com/media/iY8CRBdQXODJSCERIr/giphy.gif" width="30"> **Getting Started**
+
+### **Prerequisites**
+
+<table>
+<tr>
+<td><img src="https://nodejs.org/static/images/logo.svg" width="20"/></td>
+<td>Node.js (v14 or higher)</td>
+</tr>
+<tr>
+<td><img src="https://raw.githubusercontent.com/npm/logos/master/npm%20logo/npm-logo-red.svg" width="20"/></td>
+<td>npm/yarn</td>
+</tr>
+<tr>
+<td><img src="https://git-scm.com/images/logos/downloads/Git-Icon-1788C.png" width="20"/></td>
+<td>Git</td>
+</tr>
+<tr>
+<td><img src="https://www.gstatic.com/mobilesdk/160503_mobilesdk/logo/2x/firebase_96dp.png" width="20"/></td>
+<td>Firebase account</td>
+</tr>
+<tr>
+<td><img src="https://www.gstatic.com/pantheon/images/welcome/supercloud.svg" width="20"/></td>
+<td>Google Cloud account</td>
+</tr>
+<tr>
+<td><img src="https://a0.awsstatic.com/libra-css/images/logos/aws_smile-header-desktop-en-white_59x35.png" width="20"/></td>
+<td>AWS account</td>
+</tr>
+</table>
+
+### **1️⃣ Clone & Install**
+
+```bash
+# Clone the repository
+git clone https://github.com/phantombeast7/JobTrackr.git
+cd JobTrackr
+
+# Install dependencies
+npm install
+```
+
+### **2️⃣ Firebase Setup**
+
+<details>
+<summary>🔥 Click to expand Firebase setup instructions</summary>
+
+#### **Create Firebase Project**
+
+1. Visit [Firebase Console](https://console.firebase.google.com/)
+2. Create new project
+3. Navigate to Project Settings
+
+#### **Firebase Configuration**
+
+```javascript
+const firebaseConfig = {
+  apiKey: YOUR_API_KEY, 
+  authDomain: YOUR_AUTH_DOMAIN,
+  projectId: YOUR_PROJECT_ID,
+  storageBucket: YOUR_STORAGE_BUCKET,
+  messagingSenderId: YOUR_MESSAGING_SENDER_ID,
+  appId: YOUR_APP_ID,
+  measurementId: YOUR_MEASUREMENT_ID
+};
+```
+
+#### **Environment Variables**
+
+Create `.env.local`:
+
+```env
+NEXT_PUBLIC_FIREBASE_API_KEY=YOUR_API_KEY
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=YOUR_AUTH_DOMAIN
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=YOUR_PROJECT_ID
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=YOUR_STORAGE_BUCKET
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=YOUR_MESSAGING_SENDER_ID
+NEXT_PUBLIC_FIREBASE_APP_ID=YOUR_APP_ID
+NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID=YOUR_MEASUREMENT_ID
+
+FIREBASE_PROJECT_ID=YOUR_PROJECT_ID
+FIREBASE_CLIENT_EMAIL=YOUR_CLIENT_EMAIL
+FIREBASE_PRIVATE_KEY=YOUR_PRIVATE_KEY
+```
+
+#### **Firestore Rules**
+
+```javascript
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Helper functions
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return request.auth.uid == userId;
+    }
+
+    function isValidApplication() {
+      let data = request.resource.data;
+      return data.userId == request.auth.uid &&
+             data.companyName is string &&
+             data.jobTitle is string &&
+             data.status in ['Applied', 'Interviewing', 'Offered', 'Rejected'] &&
+             data.applicationDate is string;
+    }
+
+    function isValidReminder() {
+      let data = request.resource.data;
+      return data.userId == request.auth.uid &&
+             data.type in ['interview', 'followup'] &&
+             data.date is string &&
+             data.message is string;
+    }
+
+    // Users collection
+    match /users/{userId} {
+      allow read, write: if isSignedIn() && isOwner(userId);
+      
+      // Allow reading user settings
+      match /settings/{settingId} {
+        allow read: if isSignedIn() && isOwner(userId);
+        allow write: if isSignedIn() && isOwner(userId);
+      }
+    }
+    
+    // Applications collection
+    match /applications/{applicationId} {
+      // Allow read operations
+      allow list: if isSignedIn();
+      allow get: if isSignedIn() && resource.data.userId == request.auth.uid;
+      
+      // Allow create with validation
+      allow create: if isSignedIn() && isValidApplication();
+      
+      // Allow update and delete for document owner
+      allow update: if isSignedIn() && 
+                   resource.data.userId == request.auth.uid &&
+                   isValidApplication();
+      allow delete: if isSignedIn() && resource.data.userId == request.auth.uid;
+    }
+
+    // Reminders collection
+    match /reminders/{reminderId} {
+      allow read: if isSignedIn() && 
+                 (resource == null || resource.data.userId == request.auth.uid);
+      allow create: if isSignedIn() && isValidReminder();
+      allow update, delete: if isSignedIn() && 
+                          resource.data.userId == request.auth.uid;
+    }
+
+    // Blacklisted Companies collection
+    match /blacklistedCompanies/{companyId} {
+      // Anyone signed in can read blacklisted companies
+      allow read: if isSignedIn();
+      // Blacklisted Companies collection
+  
+      // Users can create reports
+      allow create: if isSignedIn() && 
+                   request.resource.data.reportedBy == request.auth.uid &&
+                   request.resource.data.companyName is string &&
+                   request.resource.data.reason is string;
+      
+      // Only the reporter can update their report
+      allow update: if isSignedIn() && 
+                   resource.data.reportedBy == request.auth.uid &&
+                   resource.data.status == 'pending';
+                   
+      // Allow delete for the reporter
+  		allow delete: if isSignedIn() && resource.data.reportedBy == request.auth.uid;
+    }
+
+    // Default rule - deny everything else
+    match /{document=**} {
+      allow read, write: if false;
+    }
+    // Reminders collection
+    match /reminders/{reminderId} {
+      allow read: if request.auth != null && 
+                 resource.data.userId == request.auth.uid;
+      
+      allow create: if request.auth != null && 
+                   request.resource.data.userId == request.auth.uid;
+      
+      allow update: if request.auth != null && 
+                   resource.data.userId == request.auth.uid;
+      
+      allow delete: if request.auth != null && 
+                   resource.data.userId == request.auth.uid;
+    }
+  }
+}
+```
+
+#### **Firestore Indexes**
+
+Required indexes:
+```javascript
+Collection ID	Fields indexed                          Query scope                                             Status	
+applications	userId Ascending resumeUrl    Ascending __name__ Ascending	Collection		                      Enabled	
+applications	userId Ascending createdAt    Descending __name__ Descending	Collection		                    Enabled	
+reminders	    sent   Ascending userId       Ascending scheduledFor Ascending __name__ Ascending	Collection		Enabled	
+reminders	    userId Ascending scheduledFor Descending __name__ Descending	Collection	                    	Enabled
+```
+
+</details>
+
+### **3️⃣ Google Drive Setup**
+
+<details>
+<summary>📁 Click to expand Google Drive setup instructions</summary>
+
+1. Visit [Google Cloud Console](https://console.cloud.google.com/)
+2. Enable Google Drive API
+3. Create OAuth 2.0 credentials
+4. Configure redirect URIs:
+
+```bash
+# Local
+http://localhost:3000
+http://localhost:3000/api/auth/google-drive/callback
+
+# Production
+https://jobtrackr7.netlify.app/
+https://jobtrackr7.netlify.app/api/auth/google-drive/callback
+```
+
+5. Add to `.env.local`:
+
+```env
+NEXT_PUBLIC_GOOGLE_DRIVE_CLIENT_ID=YOUR_GOOGLE_DRIVE_CLIENT_ID
+GOOGLE_DRIVE_CLIENT_SECRET=YOUR_GOOGLE_DRIVE_CLIENT_SECRET
+NEXT_PUBLIC_GOOGLE_DRIVE_REDIRECT_URI=http://localhost:3000/api/auth/google-drive/callback
+```
+
+</details>
+
+### **4️⃣ AWS SES Setup**
+
+<details>
+<summary>📧 Click to expand AWS SES setup instructions</summary>
+
+1. Access [AWS Console](https://aws.amazon.com/console/)
+2. Configure SES:
+   - Create Email Identity
+   - Set up SMTP credentials
+3. Add to `.env.local`:
+
+```env
+AWS_SES_SMTP_HOST=YOUR_SMTP_HOST
+AWS_SES_SMTP_PORT=YOUR_SMTP_PORT
+AWS_SES_USER=YOUR_SMTP_USER
+AWS_SES_PASSWORD=YOUR_SMTP_PASSWORD
+AWS_SES_FROM_EMAIL=YOUR_VERIFIED_EMAIL
+```
+
+</details>
+
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
 
 
-## Server Deployment
+## <img src="https://media.giphy.com/media/dWesBcTLavkZuG35MI/giphy.gif" width="28"> **Preview**
 
-### Steps
+<div align="center">
 
-1. **Log in to Azure:**
-    ```sh
-    az login
-    ```
+### 🎯 **Dashboard Overview**
+<img src="/public/dashboard-preview.png" alt="Dashboard Preview" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin: 20px 0;" />
 
-2. **Log in to Azure Container Registry:**
-    ```sh
-    az acr login --name <YourContainerRegistryName>
-    ```
-    Replace `<YourContainerRegistryName>` with the name of your Azure Container Registry (e.g., `birdsdetection`).
+### 📝 **Application Tracking**
+<img src="public/applications-preview.png" alt="Applications Preview" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin: 20px 0;" />
 
-3. **Build the Docker image:**
-    ```sh
-    docker build -t <YourLocalImageName>:<Tag> .
-    ```
-    Navigate to the directory containing your Dockerfile and run the above command. Replace `<YourLocalImageName>` with a name for your local Docker image (e.g., `my_flask_app`) and `<Tag>` with a tag for the version (e.g., `v1`).
+### ⏰ **Smart Reminders**
+<img src="public/reminders-preview.png" alt="Reminders Preview" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin: 20px 0;" />
 
-4. **Tag the Docker image:**
-    ```sh
-    docker tag <YourLocalImageName>:<Tag> <YourContainerRegistryName>.azurecr.io/<YourImageName>:<Tag>
-    ```
-    Replace `<YourLocalImageName>` and `<Tag>` with the names used in the previous step. Replace `<YourContainerRegistryName>` with the name of your Azure Container Registry, and `<YourImageName>` with the desired name for the image in the registry (e.g., `my_flask_app`).
+</div>
 
-5. **Push the Docker image to Azure Container Registry:**
-    ```sh
-    docker push <YourContainerRegistryName>.azurecr.io/<YourImageName>:<Tag>
-    ```
-    Replace `<YourContainerRegistryName>`, `<YourImageName>`, and `<Tag>` with the names used in the previous steps.
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
 
-6. **Create an Azure App Service plan:**
-    ```sh
-    az appservice plan create --name <YourAppServicePlanName> --resource-group <YourResourceGroupName> --sku B1 --is-linux
-    ```
-    Replace `<YourAppServicePlanName>` with a name for your App Service plan, and `<YourResourceGroupName>` with the name of your resource group (e.g., `BirdsWebsite`).
+## 🤝 **Contributing**
 
-7. **Create a web app with Docker container:**
-    ```sh
-    az webapp create --resource-group <YourResourceGroupName> --plan <YourAppServicePlanName> --name <YourWebAppName> --deployment-container-image-name <YourContainerRegistryName>.azurecr.io/<YourImageName>:<Tag>
-    ```
-    Replace `<YourResourceGroupName>`, `<YourAppServicePlanName>`, `<YourWebAppName>`, `<YourContainerRegistryName>`, `<YourImageName>`, and `<Tag>` with the names used in the previous steps. `<YourWebAppName>` should be a unique name for your web app.
+<img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png">
 
-8. **Configure the web app to use the container registry:**
-    ```sh
-    az webapp config container set --resource-group <YourResourceGroupName> --name <YourWebAppName> --docker-custom-image-name <YourContainerRegistryName>.azurecr.io/<YourImageName>:<Tag> --docker-registry-server-url https://<YourContainerRegistryName>.azurecr.io
-    ```
-    Replace `<YourResourceGroupName>`, `<YourWebAppName>`, `<YourContainerRegistryName>`, `<YourImageName>`, and `<Tag>` with the names used in the previous steps.
+We love contributions! Here's how you can help:
 
-After deploying both functionalities, you will receive two URL endpoints, which are needed for the next steps.
+1. 🍴 Fork the repository
+2. 🌿 Create your feature branch
+3. ✍️ Commit your changes
+4. 🚀 Push to the branch
+5. 🎉 Open a Pull Request
 
-## App Setup
+See our [Contributing Guidelines](CONTRIBUTING.md) for more details.
 
-1. Download and install [Android Studio](https://developer.android.com/studio).
-2. Open Android Studio, click on "Open," navigate to the folder downloaded from GitHub, and open it.
-3. Change the endpoint URLs in the code:
-    - Go to `birds/species/birdsspeciesclassification/ui/search/SearchFragment.kt`.
-    - Change the URL at line 201 to the endpoint for "search by name of the bird."
-    - Change the URL at line 258 to the endpoint for "search by image of the bird."
+<img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png">
 
-Your app is now ready.
+## 📄 **License**
 
-## Website Setup
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-Before deploying the website, update the endpoint URL in the code:
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
 
-1. Navigate to `BirdRecon-A-Free-Open-Source-Tool-for-Image-based-Bird-Identification/Website/` and open `app.py` in a text editor.
-2. Replace the URL on line 26 with the endpoint for "search by image upload."
+<div align="center">
 
-Follow the Server Deployment steps to deploy the updated website.
+### 🎯 **Ready to streamline your job search?**
 
-## Conclusion
+<a href="https://jobtrackr7.netlify.app/">
+  <img src="https://img.shields.io/badge/Get_Started-00C7B7?style=flat&logo=netlify&logoColor=white&labelColor=black" alt="Get Started"/>
+</a>
 
-After completing all the steps, your app, website, and server will be ready for use from anywhere.
+<a href="https://github.com/phantombeast7/JobTrackr/issues">
+  <img src="https://img.shields.io/badge/Report_Bug-FF0000?style=flat&logo=github&logoColor=white&labelColor=black" alt="Report Bug"/>
+</a>
 
+<a href="https://github.com/phantombeast7/JobTrackr/issues">
+  <img src="https://img.shields.io/badge/Request_Feature-4CAF50?style=flat&logo=github&logoColor=white&labelColor=black" alt="Request Feature"/>
+</a>
+
+
+<br/>
+<br/>
+
+<a href="https://github.com/phantombeast7">
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=12&duration=3000&pause=1000&color=00C7B7&center=true&vCenter=true&width=435&lines=Made+with+❤️+by+phantombeast7" alt="Made by" />
+</a>
+
+
+</div>
