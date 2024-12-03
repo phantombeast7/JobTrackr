@@ -384,28 +384,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 <br/>
 
 <a href="https://github.com/phantombeast7">
-  <p style="font-family: 'Fira Code', monospace; font-size: 30px; text-align: center; color: white; 
-            background: linear-gradient(90deg, #00C7B7, #FF5733, #FFC300);
-            background-clip: text; -webkit-background-clip: text; 
-            animation: glow 1.5s ease-in-out infinite;">
-    Made with ❤️ by phantombeast7
-  </p>
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=25&duration=3000&pause=1000&color=00C7B7&center=true&vCenter=true&width=435&lines=Made+with+❤️+by+phantombeast7" alt="Made by phantombeast7" />
 </a>
-
-<style>
-  @keyframes glow {
-    0% {
-      text-shadow: 0 0 10px #00C7B7, 0 0 20px #FF5733, 0 0 30px #FFC300;
-    }
-    50% {
-      text-shadow: 0 0 15px #00C7B7, 0 0 25px #FF5733, 0 0 35px #FFC300;
-    }
-    100% {
-      text-shadow: 0 0 20px #00C7B7, 0 0 30px #FF5733, 0 0 40px #FFC300;
-    }
-  }
-</style>
-
-
 
 </div>
