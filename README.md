@@ -1,190 +1,265 @@
-# 🚀 Vite React TypeScript Starter
+# <div align="center">🎯 **JobTrackr**</div>
+
 <div align="center">
 
-[![Made with React](https://img.shields.io/badge/Made%20with-React-61DAFB?style=flat-square&logo=react)](https://reactjs.org)
-[![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-Styled-38B2AC?style=flat-square&logo=tailwind-css)](https://tailwindcss.com)
-[![Vite](https://img.shields.io/badge/Vite-Powered-646CFF?style=flat-square&logo=vite)](https://vitejs.dev)
-[![ESLint](https://img.shields.io/badge/ESLint-Configured-4B32C3?style=flat-square&logo=eslint)](https://eslint.org)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
+[![Deploy](https://img.shields.io/badge/Deploy-Netlify-00C7B7?style=for-the-badge&logo=netlify)](https://jobtrackr7.netlify.app/)
+[![Firebase](https://img.shields.io/badge/Firebase-Connected-FFCA28?style=for-the-badge&logo=firebase)](https://firebase.google.com/)
+[![Status](https://img.shields.io/badge/Status-Active-4CAF50?style=for-the-badge)](https://github.com/phantombeast7/JobTrackr)
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/vitejs/vite/main/docs/public/logo.svg" alt="Vite Logo" width="200"/>
+  <img src="https://raw.githubusercontent.com/phantombeast7/JobTrackr/main/public/logo.png" alt="JobTrackr Logo" width="200" height="200"/>
+</p>
+
+<p align="center">
+  <strong>Your Ultimate Job Application Tracking Companion</strong>
+</p>
+
+<p align="center">
+  <em>Track applications, set reminders, store resumes, and access your data seamlessly with Google Drive integration.</em>
 </p>
 
 </div>
 
-<p align="center">
-  A modern, lightning-fast starter template combining the power of Vite, React, TypeScript, and Tailwind CSS.
-</p>
+---
+
+## 🌟 **What is JobTrackr?**
+
+**JobTrackr** is a modern, intuitive job tracking tool designed to streamline your job application process. Built with job seekers in mind, it helps you stay organized, efficient, and productive throughout your job search journey.
+
+<div align="center">
+
+### 🎯 **Core Features**
+
+| Feature | Description |
+|---------|-------------|
+| 📊 **Dashboard** | A clean, intuitive overview of all your job applications and reminders |
+| 📝 **Application Tracker** | Track applications with statuses: *Applied*, *Interviewing*, *Offered*, *Rejected* |
+| ⏰ **Reminder System** | Smart reminders for interviews, follow-ups, and deadlines |
+| 📁 **Google Drive Integration** | Seamless document storage and access |
+| 📧 **AWS SES Notifications** | Automated email reminders and updates |
+
+</div>
 
 ---
 
-## ✨ Features
+## 🚀 **Getting Started**
 
-- ⚡️ **Lightning Fast HMR** with [Vite](https://vitejs.dev)
-- 🎯 **Type-Safe Development** with [TypeScript](https://www.typescriptlang.org/)
-- 🎨 **Utility-First CSS** with [Tailwind CSS](https://tailwindcss.com)
-- 📦 **Icon Library** with [Lucide React](https://lucide.dev)
-- 🔍 **Static Type Checking**
-- 📝 **ESLint** for code quality
-- 🚀 **Production Ready** build setup
+### **Prerequisites**
 
----
+- Node.js (v14 or higher)
+- npm/yarn
+- Git
+- Firebase account
+- Google Cloud account
+- AWS account
 
-## 🚀 Quick Start
+### **1️⃣ Clone & Install**
 
-### Prerequisites
-
-- Node.js (version 18 or higher)
-- npm or yarn or pnpm
-
-### Installation
-
-1. Clone the repository
 ```bash
-git clone <repository-url>
-cd <project-name>
-```
+# Clone the repository
+git clone https://github.com/phantombeast7/JobTrackr.git
+cd JobTrackr
 
-2. Install dependencies
-```bash
+# Install dependencies
 npm install
-# or
-yarn install
-# or
-pnpm install
 ```
 
-3. Start the development server
+### **2️⃣ Firebase Setup**
+
+<details>
+<summary>Click to expand Firebase setup instructions</summary>
+
+#### **Create Firebase Project**
+
+1. Visit [Firebase Console](https://console.firebase.google.com/)
+2. Create new project
+3. Navigate to Project Settings
+
+#### **Firebase Configuration**
+
+```javascript
+const firebaseConfig = {
+  apiKey: YOUR_API_KEY, 
+  authDomain: YOUR_AUTH_DOMAIN,
+  projectId: YOUR_PROJECT_ID,
+  storageBucket: YOUR_STORAGE_BUCKET,
+  messagingSenderId: YOUR_MESSAGING_SENDER_ID,
+  appId: YOUR_APP_ID,
+  measurementId: YOUR_MEASUREMENT_ID
+};
+```
+
+#### **Environment Variables**
+
+Create `.env.local`:
+
+```env
+NEXT_PUBLIC_FIREBASE_API_KEY=YOUR_API_KEY
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=YOUR_AUTH_DOMAIN
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=YOUR_PROJECT_ID
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=YOUR_STORAGE_BUCKET
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=YOUR_MESSAGING_SENDER_ID
+NEXT_PUBLIC_FIREBASE_APP_ID=YOUR_APP_ID
+NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID=YOUR_MEASUREMENT_ID
+
+FIREBASE_PROJECT_ID=YOUR_PROJECT_ID
+FIREBASE_CLIENT_EMAIL=YOUR_CLIENT_EMAIL
+FIREBASE_PRIVATE_KEY=YOUR_PRIVATE_KEY
+```
+
+#### **Firestore Rules**
+
+```javascript
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Helper functions
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return request.auth.uid == userId;
+    }
+
+    function isValidApplication() {
+      let data = request.resource.data;
+      return data.userId == request.auth.uid &&
+             data.companyName is string &&
+             data.jobTitle is string &&
+             data.status in ['Applied', 'Interviewing', 'Offered', 'Rejected'] &&
+             data.applicationDate is string;
+    }
+
+    function isValidReminder() {
+      let data = request.resource.data;
+      return data.userId == request.auth.uid &&
+             data.type in ['interview', 'followup'] &&
+             data.date is string &&
+             data.message is string;
+    }
+
+    // Collection rules
+    match /users/{userId} {
+      allow read, write: if isSignedIn() && isOwner(userId);
+    }
+
+    match /applications/{applicationId} {
+      allow create: if isSignedIn() && isValidApplication();
+      allow update: if isSignedIn() && isValidApplication();
+      allow delete: if isSignedIn() && isOwner(resource.data.userId);
+    }
+
+    match /reminders/{reminderId} {
+      allow create: if isSignedIn() && isValidReminder();
+      allow update, delete: if isSignedIn() && resource.data.userId == request.auth.uid;
+    }
+
+    match /blacklistedCompanies/{companyId} {
+      allow create: if isSignedIn() && request.resource.data.reportedBy == request.auth.uid;
+      allow update: if isSignedIn() && resource.data.reportedBy == request.auth.uid;
+      allow delete: if isSignedIn() && resource.data.reportedBy == request.auth.uid;
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
+```
+
+#### **Firestore Indexes**
+
+Required indexes:
+```javascript
+applications	userId Ascending resumeUrl Ascending __name__ Ascending
+applications	userId Ascending createdAt Descending __name__ Descending
+reminders	sent Ascending userId Ascending scheduledFor Ascending __name__ Ascending
+reminders	userId Ascending scheduledFor Descending __name__ Descending
+```
+
+</details>
+
+### **3️⃣ Google Drive Setup**
+
+<details>
+<summary>Click to expand Google Drive setup instructions</summary>
+
+1. Visit [Google Cloud Console](https://console.cloud.google.com/)
+2. Enable Google Drive API
+3. Create OAuth 2.0 credentials
+4. Configure redirect URIs:
+
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+# Local
+http://localhost:3000
+http://localhost:3000/api/auth/google-drive/callback
+
+# Production
+https://jobtrackr7.netlify.app/
+https://jobtrackr7.netlify.app/api/auth/google-drive/callback
 ```
 
-4. Open your browser and visit `http://localhost:5173`
+5. Add to `.env.local`:
 
----
-
-## 📁 Project Structure
-
-```
-/
-├── src/
-│   ├── components/     # React components
-│   ├── App.tsx        # Main application component
-│   ├── main.tsx       # Application entry point
-│   └── index.css      # Global styles
-├── public/            # Static assets
-├── index.html         # HTML template
-├── vite.config.ts     # Vite configuration
-├── tsconfig.json      # TypeScript configuration
-├── tailwind.config.js # Tailwind CSS configuration
-└── package.json       # Project dependencies and scripts
+```env
+NEXT_PUBLIC_GOOGLE_DRIVE_CLIENT_ID=YOUR_GOOGLE_DRIVE_CLIENT_ID
+GOOGLE_DRIVE_CLIENT_SECRET=YOUR_GOOGLE_DRIVE_CLIENT_SECRET
+NEXT_PUBLIC_GOOGLE_DRIVE_REDIRECT_URI=http://localhost:3000/api/auth/google-drive/callback
 ```
 
----
+</details>
 
-## 🛠️ Available Scripts
+### **4️⃣ AWS SES Setup**
 
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build
-- `npm run lint` - Run ESLint
+<details>
+<summary>Click to expand AWS SES setup instructions</summary>
 
----
+1. Access [AWS Console](https://aws.amazon.com/console/)
+2. Configure SES:
+   - Create Email Identity
+   - Set up SMTP credentials
+3. Add to `.env.local`:
 
-## 🎨 Styling
-
-This template uses Tailwind CSS for styling. The configuration can be found in `tailwind.config.js`.
-
-Example usage:
-```jsx
-<div className="min-h-screen bg-gray-100 flex items-center justify-center">
-  <div className="bg-white p-8 rounded-lg shadow-md">
-    <h1 className="text-2xl font-bold">Hello World!</h1>
-  </div>
-</div>
+```env
+AWS_SES_SMTP_HOST=YOUR_SMTP_HOST
+AWS_SES_SMTP_PORT=YOUR_SMTP_PORT
+AWS_SES_USER=YOUR_SMTP_USER
+AWS_SES_PASSWORD=YOUR_SMTP_PASSWORD
+AWS_SES_FROM_EMAIL=YOUR_VERIFIED_EMAIL
 ```
 
----
-
-## 🔧 Configuration
-
-### TypeScript
-
-TypeScript configuration is split into three files:
-- `tsconfig.json` - Base configuration
-- `tsconfig.app.json` - Application-specific configuration
-- `tsconfig.node.json` - Node.js specific configuration
-
-### Vite
-
-Vite configuration can be found in `vite.config.ts`. The template includes:
-- React plugin for JSX support
-- Optimized dependency handling
-
-### ESLint
-
-ESLint configuration is in `eslint.config.js` with:
-- TypeScript support
-- React Hooks rules
-- React Refresh rules
+</details>
 
 ---
 
-## 📦 Dependencies
+## 🤝 **Contributing**
 
-### Production Dependencies
-- `react` - UI library
-- `react-dom` - React rendering for web
-- `lucide-react` - Icon library
-
-### Development Dependencies
-- `vite` - Build tool and dev server
-- `typescript` - Type checking
-- `tailwindcss` - Utility-first CSS framework
-- `eslint` - Code linting
-- And more...
-
----
-
-## 🔄 Updates
-
-To update dependencies to their latest versions:
-
-```bash
-npm update
-# or
-yarn upgrade
-# or
-pnpm update
-```
-
----
-
-## 🤝 Contributing
+We love contributions! Here's how you can help:
 
 1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
+2. Create your feature branch
+3. Commit your changes
+4. Push to the branch
 5. Open a Pull Request
+
+See our [Contributing Guidelines](CONTRIBUTING.md) for more details.
 
 ---
 
-## 📄 License
+## 📄 **License**
 
-This project is licensed under the MIT License.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
 <div align="center">
 
-**Happy Coding! 💻**
+### 🎯 **Ready to streamline your job search?**
 
-[Report Bug](https://github.com/your-repo/issues) · [Request Feature](https://github.com/your-repo/issues)
+[Get Started](https://jobtrackr7.netlify.app/) · [Report Bug](https://github.com/phantombeast7/JobTrackr/issues) · [Request Feature](https://github.com/phantombeast7/JobTrackr/issues)
+
+<p align="center">Made with ❤️ by JobTrackr Team</p>
 
 </div>
