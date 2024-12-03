@@ -57,26 +57,7 @@
 
 </div>
 
-<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
 
-## <img src="https://media.giphy.com/media/dWesBcTLavkZuG35MI/giphy.gif" width="28"> **Preview**
-
-<div align="center">
-
-### 🎯 **Dashboard Overview**
-<img src="https://raw.githubusercontent.com/phantombeast7/JobTrackr/main/public/dashboard-preview.png" alt="Dashboard Preview" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin: 20px 0;" />
-
-### 📝 **Application Tracking**
-<img src="https://raw.githubusercontent.com/phantombeast7/JobTrackr/main/public/applications-preview.png" alt="Applications Preview" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin: 20px 0;" />
-
-### ⏰ **Smart Reminders**
-<img src="https://raw.githubusercontent.com/phantombeast7/JobTrackr/main/public/reminders-preview.png" alt="Reminders Preview" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin: 20px 0;" />
-
-</div>
-
-<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
-
-## <img src="https://media.giphy.com/media/iY8CRBdQXODJSCERIr/giphy.gif" width="30"> **Getting Started**
 
 ### **Prerequisites**
 
@@ -287,6 +268,26 @@ AWS_SES_FROM_EMAIL=YOUR_VERIFIED_EMAIL
 
 <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
 
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
+
+## <img src="https://media.giphy.com/media/dWesBcTLavkZuG35MI/giphy.gif" width="28"> **Preview**
+
+<div align="center">
+
+### 🎯 **Dashboard Overview**
+<img src="https://raw.githubusercontent.com/phantombeast7/JobTrackr/main/public/dashboard-preview.png" alt="Dashboard Preview" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin: 20px 0;" />
+
+### 📝 **Application Tracking**
+<img src="https://raw.githubusercontent.com/phantombeast7/JobTrackr/main/public/applications-preview.png" alt="Applications Preview" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin: 20px 0;" />
+
+### ⏰ **Smart Reminders**
+<img src="https://raw.githubusercontent.com/phantombeast7/JobTrackr/main/public/reminders-preview.png" alt="Reminders Preview" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin: 20px 0;" />
+
+</div>
+
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
+
+## <img src="https://media.giphy.com/media/iY8CRBdQXODJSCERIr/giphy.gif" width="30"> **Getting Started**
 ## 🤝 **Contributing**
 
 <img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png">
