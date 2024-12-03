@@ -140,30 +140,80 @@ service cloud.firestore {
              data.message is string;
     }
 
-    // Collection rules
+    // Users collection
     match /users/{userId} {
       allow read, write: if isSignedIn() && isOwner(userId);
+      
+      // Allow reading user settings
+      match /settings/{settingId} {
+        allow read: if isSignedIn() && isOwner(userId);
+        allow write: if isSignedIn() && isOwner(userId);
+      }
     }
-
+    
+    // Applications collection
     match /applications/{applicationId} {
+      // Allow read operations
+      allow list: if isSignedIn();
+      allow get: if isSignedIn() && resource.data.userId == request.auth.uid;
+      
+      // Allow create with validation
       allow create: if isSignedIn() && isValidApplication();
-      allow update: if isSignedIn() && isValidApplication();
-      allow delete: if isSignedIn() && isOwner(resource.data.userId);
+      
+      // Allow update and delete for document owner
+      allow update: if isSignedIn() && 
+                   resource.data.userId == request.auth.uid &&
+                   isValidApplication();
+      allow delete: if isSignedIn() && resource.data.userId == request.auth.uid;
     }
 
+    // Reminders collection
     match /reminders/{reminderId} {
+      allow read: if isSignedIn() && 
+                 (resource == null || resource.data.userId == request.auth.uid);
       allow create: if isSignedIn() && isValidReminder();
-      allow update, delete: if isSignedIn() && resource.data.userId == request.auth.uid;
+      allow update, delete: if isSignedIn() && 
+                          resource.data.userId == request.auth.uid;
     }
 
+    // Blacklisted Companies collection
     match /blacklistedCompanies/{companyId} {
-      allow create: if isSignedIn() && request.resource.data.reportedBy == request.auth.uid;
-      allow update: if isSignedIn() && resource.data.reportedBy == request.auth.uid;
-      allow delete: if isSignedIn() && resource.data.reportedBy == request.auth.uid;
+      // Anyone signed in can read blacklisted companies
+      allow read: if isSignedIn();
+      // Blacklisted Companies collection
+  
+      // Users can create reports
+      allow create: if isSignedIn() && 
+                   request.resource.data.reportedBy == request.auth.uid &&
+                   request.resource.data.companyName is string &&
+                   request.resource.data.reason is string;
+      
+      // Only the reporter can update their report
+      allow update: if isSignedIn() && 
+                   resource.data.reportedBy == request.auth.uid &&
+                   resource.data.status == 'pending';
+                   
+      // Allow delete for the reporter
+  		allow delete: if isSignedIn() && resource.data.reportedBy == request.auth.uid;
     }
 
+    // Default rule - deny everything else
     match /{document=**} {
       allow read, write: if false;
+    }
+    // Reminders collection
+    match /reminders/{reminderId} {
+      allow read: if request.auth != null && 
+                 resource.data.userId == request.auth.uid;
+      
+      allow create: if request.auth != null && 
+                   request.resource.data.userId == request.auth.uid;
+      
+      allow update: if request.auth != null && 
+                   resource.data.userId == request.auth.uid;
+      
+      allow delete: if request.auth != null && 
+                   resource.data.userId == request.auth.uid;
     }
   }
 }
