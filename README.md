@@ -384,7 +384,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 <br/>
 
 <a href="https://github.com/phantombeast7">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=25&duration=3000&pause=1000&color=00C7B7&center=true&vCenter=true&width=435&lines=Made+with+❤️+by+phantombeast7" alt="Made by phantombeast7" />
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=30&duration=3000&pause=1000&color=00C7B7&center=true&vCenter=true&width=435&lines=Made+with+❤️+by+phantombeast7" alt="Made by phantombeast7" />
 </a>
+
 
 </div>
