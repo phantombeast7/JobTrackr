@@ -275,13 +275,13 @@ AWS_SES_FROM_EMAIL=YOUR_VERIFIED_EMAIL
 <div align="center">
 
 ### 🎯 **Dashboard Overview**
-<img src="https://raw.githubusercontent.com/phantombeast7/JobTrackr/main/public/dashboard-preview.png" alt="Dashboard Preview" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin: 20px 0;" />
+<img src="/public/dashboard-preview.png" alt="Dashboard Preview" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin: 20px 0;" />
 
 ### 📝 **Application Tracking**
-<img src="https://raw.githubusercontent.com/phantombeast7/JobTrackr/main/public/applications-preview.png" alt="Applications Preview" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin: 20px 0;" />
+<img src="public/applications-preview.png" alt="Applications Preview" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin: 20px 0;" />
 
 ### ⏰ **Smart Reminders**
-<img src="https://raw.githubusercontent.com/phantombeast7/JobTrackr/main/public/reminders-preview.png" alt="Reminders Preview" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin: 20px 0;" />
+<img src="public/reminders-preview.png" alt="Reminders Preview" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin: 20px 0;" />
 
 </div>
 
