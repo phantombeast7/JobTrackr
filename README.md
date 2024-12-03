@@ -1,29 +1,30 @@
-# <div align="center">🎯 **JobTrackr**</div>
+# <div align="center"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=30&duration=3000&pause=1000&color=00C7B7&center=true&vCenter=true&width=435&lines=🎯+JobTrackr;Your+Career+Companion" alt="JobTrackr" /></div>
 
 <div align="center">
 
-[![License](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
-[![Deploy](https://img.shields.io/badge/Deploy-Netlify-00C7B7?style=for-the-badge&logo=netlify)](https://jobtrackr7.netlify.app/)
-[![Firebase](https://img.shields.io/badge/Firebase-Connected-FFCA28?style=for-the-badge&logo=firebase)](https://firebase.google.com/)
-[![Status](https://img.shields.io/badge/Status-Active-4CAF50?style=for-the-badge)](https://github.com/phantombeast7/JobTrackr)
+<img src="https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge&labelColor=black" alt="License" />
+<img src="https://img.shields.io/badge/Deploy-Netlify-00C7B7?style=for-the-badge&logo=netlify&labelColor=black" alt="Deploy" />
+<img src="https://img.shields.io/badge/Firebase-Connected-FFCA28?style=for-the-badge&logo=firebase&labelColor=black" alt="Firebase" />
+<img src="https://img.shields.io/badge/Status-Active-4CAF50?style=for-the-badge&labelColor=black" alt="Status" />
 
-<p align="center">
-  <img src="https://raw.githubusercontent.com/phantombeast7/JobTrackr/main/public/logo.png" alt="JobTrackr Logo" width="200" height="200"/>
-</p>
+<br/>
+<br/>
 
-<p align="center">
-  <strong>Your Ultimate Job Application Tracking Companion</strong>
-</p>
+<img src="https://raw.githubusercontent.com/phantombeast7/JobTrackr/main/public/logo.png" alt="JobTrackr Logo" width="200" height="200" style="border-radius: 20px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"/>
+
+<h2>
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&duration=3000&pause=1000&color=00C7B7&center=true&vCenter=true&width=435&lines=Your+Ultimate+Job+Application;Tracking+Companion" alt="Typing SVG" />
+</h2>
 
 <p align="center">
   <em>Track applications, set reminders, store resumes, and access your data seamlessly with Google Drive integration.</em>
 </p>
 
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
+
 </div>
 
----
-
-## 🌟 **What is JobTrackr?**
+## <img src="https://media2.giphy.com/media/QssGEmpkyEOhBCb7e1/giphy.gif?cid=ecf05e47a0n3gi1bfqntqmob8g9aid1oyj2wr3ds3mg700bl&rid=giphy.gif" width="28"> **What is JobTrackr?**
 
 **JobTrackr** is a modern, intuitive job tracking tool designed to streamline your job application process. Built with job seekers in mind, it helps you stay organized, efficient, and productive throughout your job search journey.
 
@@ -31,28 +32,63 @@
 
 ### 🎯 **Core Features**
 
-| Feature | Description |
-|---------|-------------|
-| 📊 **Dashboard** | A clean, intuitive overview of all your job applications and reminders |
-| 📝 **Application Tracker** | Track applications with statuses: *Applied*, *Interviewing*, *Offered*, *Rejected* |
-| ⏰ **Reminder System** | Smart reminders for interviews, follow-ups, and deadlines |
-| 📁 **Google Drive Integration** | Seamless document storage and access |
-| 📧 **AWS SES Notifications** | Automated email reminders and updates |
+<table>
+<tr>
+<td align="center"><img src="https://media.giphy.com/media/3oKIPEqDGUULpEU0aQ/giphy.gif" width="60px"/><br/><b>Dashboard</b></td>
+<td>A clean, intuitive overview of all your job applications and reminders</td>
+</tr>
+<tr>
+<td align="center"><img src="https://media.giphy.com/media/26ufnwz3wDUli7GU0/giphy.gif" width="60px"/><br/><b>Application Tracker</b></td>
+<td>Track applications with statuses: <i>Applied</i>, <i>Interviewing</i>, <i>Offered</i>, <i>Rejected</i></td>
+</tr>
+<tr>
+<td align="center"><img src="https://media.giphy.com/media/3o7TKSjRrfIPjeiVyE/giphy.gif" width="60px"/><br/><b>Reminder System</b></td>
+<td>Smart reminders for interviews, follow-ups, and deadlines</td>
+</tr>
+<tr>
+<td align="center"><img src="https://media.giphy.com/media/xT9IgzoKnwFNmISR8I/giphy.gif" width="60px"/><br/><b>Google Drive Integration</b></td>
+<td>Seamless document storage and access</td>
+</tr>
+<tr>
+<td align="center"><img src="https://media.giphy.com/media/l0HlQXlQ3nHyLMvte/giphy.gif" width="60px"/><br/><b>AWS SES Notifications</b></td>
+<td>Automated email reminders and updates</td>
+</tr>
+</table>
 
 </div>
 
----
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
 
-## 🚀 **Getting Started**
+## <img src="https://media.giphy.com/media/iY8CRBdQXODJSCERIr/giphy.gif" width="30"> **Getting Started**
 
 ### **Prerequisites**
 
-- Node.js (v14 or higher)
-- npm/yarn
-- Git
-- Firebase account
-- Google Cloud account
-- AWS account
+<table>
+<tr>
+<td><img src="https://nodejs.org/static/images/logo.svg" width="20"/></td>
+<td>Node.js (v14 or higher)</td>
+</tr>
+<tr>
+<td><img src="https://raw.githubusercontent.com/npm/logos/master/npm%20logo/npm-logo-red.svg" width="20"/></td>
+<td>npm/yarn</td>
+</tr>
+<tr>
+<td><img src="https://git-scm.com/images/logos/downloads/Git-Icon-1788C.png" width="20"/></td>
+<td>Git</td>
+</tr>
+<tr>
+<td><img src="https://www.gstatic.com/mobilesdk/160503_mobilesdk/logo/2x/firebase_96dp.png" width="20"/></td>
+<td>Firebase account</td>
+</tr>
+<tr>
+<td><img src="https://www.gstatic.com/cloud/images/social-icon-google-cloud-1200-630.png" width="20"/></td>
+<td>Google Cloud account</td>
+</tr>
+<tr>
+<td><img src="https://a0.awsstatic.com/libra-css/images/logos/aws_smile-header-desktop-en-white_59x35.png" width="20"/></td>
+<td>AWS account</td>
+</tr>
+</table>
 
 ### **1️⃣ Clone & Install**
 
@@ -68,7 +104,7 @@ npm install
 ### **2️⃣ Firebase Setup**
 
 <details>
-<summary>Click to expand Firebase setup instructions</summary>
+<summary>🔥 Click to expand Firebase setup instructions</summary>
 
 #### **Create Firebase Project**
 
@@ -140,80 +176,30 @@ service cloud.firestore {
              data.message is string;
     }
 
-    // Users collection
+    // Collections
     match /users/{userId} {
       allow read, write: if isSignedIn() && isOwner(userId);
-      
-      // Allow reading user settings
-      match /settings/{settingId} {
-        allow read: if isSignedIn() && isOwner(userId);
-        allow write: if isSignedIn() && isOwner(userId);
-      }
     }
-    
-    // Applications collection
+
     match /applications/{applicationId} {
-      // Allow read operations
-      allow list: if isSignedIn();
-      allow get: if isSignedIn() && resource.data.userId == request.auth.uid;
-      
-      // Allow create with validation
       allow create: if isSignedIn() && isValidApplication();
-      
-      // Allow update and delete for document owner
-      allow update: if isSignedIn() && 
-                   resource.data.userId == request.auth.uid &&
-                   isValidApplication();
-      allow delete: if isSignedIn() && resource.data.userId == request.auth.uid;
+      allow update: if isSignedIn() && isValidApplication();
+      allow delete: if isSignedIn() && isOwner(resource.data.userId);
     }
 
-    // Reminders collection
     match /reminders/{reminderId} {
-      allow read: if isSignedIn() && 
-                 (resource == null || resource.data.userId == request.auth.uid);
       allow create: if isSignedIn() && isValidReminder();
-      allow update, delete: if isSignedIn() && 
-                          resource.data.userId == request.auth.uid;
+      allow update, delete: if isSignedIn() && resource.data.userId == request.auth.uid;
     }
 
-    // Blacklisted Companies collection
     match /blacklistedCompanies/{companyId} {
-      // Anyone signed in can read blacklisted companies
-      allow read: if isSignedIn();
-      // Blacklisted Companies collection
-  
-      // Users can create reports
-      allow create: if isSignedIn() && 
-                   request.resource.data.reportedBy == request.auth.uid &&
-                   request.resource.data.companyName is string &&
-                   request.resource.data.reason is string;
-      
-      // Only the reporter can update their report
-      allow update: if isSignedIn() && 
-                   resource.data.reportedBy == request.auth.uid &&
-                   resource.data.status == 'pending';
-                   
-      // Allow delete for the reporter
-  		allow delete: if isSignedIn() && resource.data.reportedBy == request.auth.uid;
+      allow create: if isSignedIn() && request.resource.data.reportedBy == request.auth.uid;
+      allow update: if isSignedIn() && resource.data.reportedBy == request.auth.uid;
+      allow delete: if isSignedIn() && resource.data.reportedBy == request.auth.uid;
     }
 
-    // Default rule - deny everything else
     match /{document=**} {
       allow read, write: if false;
-    }
-    // Reminders collection
-    match /reminders/{reminderId} {
-      allow read: if request.auth != null && 
-                 resource.data.userId == request.auth.uid;
-      
-      allow create: if request.auth != null && 
-                   request.resource.data.userId == request.auth.uid;
-      
-      allow update: if request.auth != null && 
-                   resource.data.userId == request.auth.uid;
-      
-      allow delete: if request.auth != null && 
-                   resource.data.userId == request.auth.uid;
     }
   }
 }
@@ -234,7 +220,7 @@ reminders	userId Ascending scheduledFor Descending __name__ Descending
 ### **3️⃣ Google Drive Setup**
 
 <details>
-<summary>Click to expand Google Drive setup instructions</summary>
+<summary>📁 Click to expand Google Drive setup instructions</summary>
 
 1. Visit [Google Cloud Console](https://console.cloud.google.com/)
 2. Enable Google Drive API
@@ -264,7 +250,7 @@ NEXT_PUBLIC_GOOGLE_DRIVE_REDIRECT_URI=http://localhost:3000/api/auth/google-driv
 ### **4️⃣ AWS SES Setup**
 
 <details>
-<summary>Click to expand AWS SES setup instructions</summary>
+<summary>📧 Click to expand AWS SES setup instructions</summary>
 
 1. Access [AWS Console](https://aws.amazon.com/console/)
 2. Configure SES:
@@ -282,34 +268,51 @@ AWS_SES_FROM_EMAIL=YOUR_VERIFIED_EMAIL
 
 </details>
 
----
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
 
 ## 🤝 **Contributing**
 
+<img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png">
+
 We love contributions! Here's how you can help:
 
-1. Fork the repository
-2. Create your feature branch
-3. Commit your changes
-4. Push to the branch
-5. Open a Pull Request
+1. 🍴 Fork the repository
+2. 🌿 Create your feature branch
+3. ✍️ Commit your changes
+4. 🚀 Push to the branch
+5. 🎉 Open a Pull Request
 
 See our [Contributing Guidelines](CONTRIBUTING.md) for more details.
 
----
+<img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png">
 
 ## 📄 **License**
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
----
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
 
 <div align="center">
 
 ### 🎯 **Ready to streamline your job search?**
 
-[Get Started](https://jobtrackr7.netlify.app/) · [Report Bug](https://github.com/phantombeast7/JobTrackr/issues) · [Request Feature](https://github.com/phantombeast7/JobTrackr/issues)
+<a href="https://jobtrackr7.netlify.app/">
+  <img src="https://img.shields.io/badge/Get_Started-00C7B7?style=for-the-badge&logo=netlify&logoColor=white&labelColor=black" alt="Get Started"/>
+</a>
+<a href="https://github.com/phantombeast7/JobTrackr/issues">
+  <img src="https://img.shields.io/badge/Report_Bug-FF0000?style=for-the-badge&logo=github&logoColor=white&labelColor=black" alt="Report Bug"/>
+</a>
+<a href="https://github.com/phantombeast7/JobTrackr/issues">
+  <img src="https://img.shields.io/badge/Request_Feature-4CAF50?style=for-the-badge&logo=github&logoColor=white&labelColor=black" alt="Request Feature"/>
+</a>
 
-<div align="center">
-Made with ❤️ by <a href="https://github.com/phantombeast7">PhantomBeast</a>
+<br/>
+<br/>
+
+<a href="https://github.com/phantombeast7">
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=12&duration=3000&pause=1000&color=00C7B7&center=true&vCenter=true&width=435&lines=Made+with+❤️+by+phantombeast7" alt="Made by" />
+</a>
+
+<img src="https://raw.githubusercontent.com/trinib/trinib/main/.images/footer.svg" width="100%">
+
 </div>
