@@ -10,7 +10,7 @@
 <br/>
 <br/>
 
-<img src="app/favicon.ico" alt="JobTrackr Logo" width="200" height="200" style="border-radius: 20px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"/>
+<img src="/app/favicon.ico" alt="JobTrackr Logo" width="200" height="200" style="border-radius: 20px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"/>
 
 <h2>
   <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&duration=3000&pause=1000&color=00C7B7&center=true&vCenter=true&width=435&lines=Your+Ultimate+Job+Application;Tracking+Companion" alt="Typing SVG" />
@@ -59,6 +59,23 @@
 
 <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
 
+## <img src="https://media.giphy.com/media/dWesBcTLavkZuG35MI/giphy.gif" width="28"> **Preview**
+
+<div align="center">
+
+### 🎯 **Dashboard Overview**
+<img src="https://raw.githubusercontent.com/phantombeast7/JobTrackr/main/public/dashboard-preview.png" alt="Dashboard Preview" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin: 20px 0;" />
+
+### 📝 **Application Tracking**
+<img src="https://raw.githubusercontent.com/phantombeast7/JobTrackr/main/public/applications-preview.png" alt="Applications Preview" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin: 20px 0;" />
+
+### ⏰ **Smart Reminders**
+<img src="https://raw.githubusercontent.com/phantombeast7/JobTrackr/main/public/reminders-preview.png" alt="Reminders Preview" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin: 20px 0;" />
+
+</div>
+
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
+
 ## <img src="https://media.giphy.com/media/iY8CRBdQXODJSCERIr/giphy.gif" width="30"> **Getting Started**
 
 ### **Prerequisites**
@@ -81,7 +98,7 @@
 <td>Firebase account</td>
 </tr>
 <tr>
-<td><img src="![image](https://github.com/user-attachments/assets/73f6c88b-19cd-44d4-9be2-adf860c42993)" width="20"/></td>
+<td><img src="https://www.gstatic.com/cloud/images/social-icon-google-cloud-1200-630.png" width="20"/></td>
 <td>Google Cloud account</td>
 </tr>
 <tr>
