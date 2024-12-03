@@ -95,7 +95,7 @@
 <td>Firebase account</td>
 </tr>
 <tr>
-<td><img src="https://image.similarpng.com/very-thumbnail/2020/06/Logo-google-cloud-icon-vector-PNG.png" width="20"/></td>
+<td><img src="https://www.gstatic.com/pantheon/images/welcome/supercloud.svg" width="20"/></td>
 <td>Google Cloud account</td>
 </tr>
 <tr>
