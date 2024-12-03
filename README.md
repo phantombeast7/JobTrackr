@@ -2,10 +2,12 @@
 
 <div align="center">
 
-<img src="https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge&labelColor=black" alt="License" />
-<img src="https://img.shields.io/badge/Deploy-Netlify-00C7B7?style=for-the-badge&logo=netlify&labelColor=black" alt="Deploy" />
-<img src="https://img.shields.io/badge/Firebase-Connected-FFCA28?style=for-the-badge&logo=firebase&labelColor=black" alt="Firebase" />
-<img src="https://img.shields.io/badge/Status-Active-4CAF50?style=for-the-badge&labelColor=black" alt="Status" />
+<img src="https://img.shields.io/badge/License-MIT-green?style=flat&logo=opensourceinitiative&logoColor=white" alt="License MIT" />
+<img src="https://img.shields.io/badge/Firebase-Connected-FFCA28?style=flat&logo=firebase&logoColor=white" alt="Firebase Connected" />
+<img src="https://img.shields.io/badge/Google_Drive_API-Connected-34A853?style=flat&logo=googledrive&logoColor=white" alt="Google Drive API Connected" />
+<img src="https://img.shields.io/badge/AWS_SMTP-Configured-232F3E?style=flat&logo=amazonses&logoColor=white" alt="AWS SMTP Configured" />
+<img src="https://img.shields.io/badge/Deploy-Netlify-00C7B7?style=flat&logo=netlify&logoColor=white" alt="Deploy Netlify" />
+
 
 <br/>
 <br/>
