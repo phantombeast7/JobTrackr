@@ -259,12 +259,11 @@ service cloud.firestore {
 
 Required indexes:
 ```javascript
-Collection ID	Fields indexed
-Query scope		Status	
-applications	userId Ascending resumeUrl Ascending __name__ Ascending	Collection		Enabled	
-applications	userId Ascending createdAt Descending __name__ Descending	Collection		Enabled	
-reminders	sent Ascending userId Ascending scheduledFor Ascending __name__ Ascending	Collection		Enabled	
-reminders	userId Ascending scheduledFor Descending __name__ Descending	Collection		Enabled
+Collection ID	Fields indexed                          Query scope                                             Status	
+applications	userId Ascending resumeUrl    Ascending __name__ Ascending	Collection		                      Enabled	
+applications	userId Ascending createdAt    Descending __name__ Descending	Collection		                    Enabled	
+reminders	    sent   Ascending userId       Ascending scheduledFor Ascending __name__ Ascending	Collection		Enabled	
+reminders	    userId Ascending scheduledFor Descending __name__ Descending	Collection	                    	Enabled
 ```
 
 </details>
