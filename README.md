@@ -50,7 +50,7 @@
 </tr>
 <tr>
   <td align="center">
-    <img src="https://tenor.com/view/mignon-urgent-warning-gif-9045889595214928199" width="60px"/><br/><b>Reminder System</b>
+    <img src="https://media1.tenor.com/m/fYl0qOAwGUcAAAAd/mignon-urgent.gif" width="60px"/><br/><b>Reminder System</b>
   </td>
   <td>Smart reminders for interviews, follow-ups, and deadlines</td>
 </tr>
