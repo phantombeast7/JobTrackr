@@ -313,6 +313,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
   <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=12&duration=3000&pause=1000&color=00C7B7&center=true&vCenter=true&width=435&lines=Made+with+❤️+by+phantombeast7" alt="Made by" />
 </a>
 
-<img src="https://raw.githubusercontent.com/trinib/trinib/main/.images/footer.svg" width="100%">
 
 </div>
