@@ -383,9 +383,30 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 <br/>
 <br/>
 
+<style>
+  .neon {
+    font-family: 'Fira Code', monospace;
+    font-size: 20px;
+    color: #00C7B7;
+    text-align: center;
+    text-shadow: 0 0 10px #00C7B7, 0 0 20px #00C7B7, 0 0 30px #00C7B7, 0 0 40px #00C7B7;
+    animation: glow 1.5s infinite alternate;
+  }
+
+  @keyframes glow {
+    0% {
+      text-shadow: 0 0 10px #00C7B7, 0 0 20px #00C7B7, 0 0 30px #00C7B7, 0 0 40px #00C7B7;
+    }
+    100% {
+      text-shadow: 0 0 20px #00C7B7, 0 0 30px #00C7B7, 0 0 40px #00C7B7, 0 0 50px #00C7B7;
+    }
+  }
+</style>
+
 <a href="https://github.com/phantombeast7">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=12&duration=3000&pause=1000&color=00C7B7&center=true&vCenter=true&width=435&lines=Made+with+❤️+by+phantombeast7" alt="Made by" />
+  <div class="neon">Made with ❤️ by phantombeast7</div>
 </a>
+
 
 
 </div>
