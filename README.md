@@ -310,6 +310,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 [Get Started](https://jobtrackr7.netlify.app/) · [Report Bug](https://github.com/phantombeast7/JobTrackr/issues) · [Request Feature](https://github.com/phantombeast7/JobTrackr/issues)
 
-<p align="center">Made with ❤️ by JobTrackr Team</p>
-
+<div align="center">
+Made with ❤️ by <a href="https://github.com/phantombeast7">PhantomBeast</a>
 </div>
