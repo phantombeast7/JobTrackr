@@ -36,25 +36,37 @@
 
 <table>
 <tr>
-<td align="center"><img src="https://media.giphy.com/media/3oKIPEqDGUULpEU0aQ/giphy.gif" width="60px"/><br/><b>Dashboard</b></td>
-<td>A clean, intuitive overview of all your job applications and reminders</td>
+<tr>
+  <td align="center">
+    <img src="https://media.giphy.com/media/3oKIPEqDGUULpEU0aQ/giphy.gif" width="60px"/><br/><b>Dashboard</b>
+  </td>
+  <td>A clean, intuitive overview of all your job applications and reminders</td>
 </tr>
 <tr>
-<td align="center"><img src="https://media.giphy.com/media/26ufnwz3wDUli7GU0/giphy.gif" width="60px"/><br/><b>Application Tracker</b></td>
-<td>Track applications with statuses: <i>Applied</i>, <i>Interviewing</i>, <i>Offered</i>, <i>Rejected</i></td>
+  <td align="center">
+    <img src="https://media.giphy.com/media/26ufnwz3wDUli7GU0/giphy.gif" width="60px"/><br/><b>Application Tracker</b>
+  </td>
+  <td>Track applications with statuses: <i>Applied</i>, <i>Interviewing</i>, <i>Offered</i>, <i>Rejected</i></td>
 </tr>
 <tr>
-<td align="center"><img src="https://media.giphy.com/media/3o7TKSjRrfIPjeiVyE/giphy.gif" width="60px"/><br/><b>Reminder System</b></td>
-<td>Smart reminders for interviews, follow-ups, and deadlines</td>
+  <td align="center">
+    <img src="https://media.giphy.com/media/3o7TKSjRrfIPjeiVyE/giphy.gif" width="60px"/><br/><b>Reminder System</b>
+  </td>
+  <td>Smart reminders for interviews, follow-ups, and deadlines</td>
 </tr>
 <tr>
-<td align="center"><img src="https://media.giphy.com/media/xT9IgzoKnwFNmISR8I/giphy.gif" width="60px"/><br/><b>Google Drive Integration</b></td>
-<td>Seamless document storage and access</td>
+  <td align="center">
+    <img src="https://media.giphy.com/media/xT9IgzoKnwFNmISR8I/giphy.gif" width="60px"/><br/><b>Google Drive Integration</b>
+  </td>
+  <td>Seamless document storage and access</td>
 </tr>
 <tr>
-<td align="center"><img src="https://media.giphy.com/media/l0HlQXlQ3nHyLMvte/giphy.gif" width="60px"/><br/><b>AWS SES Notifications</b></td>
-<td>Automated email reminders and updates</td>
+  <td align="center">
+    <img src="https://media.giphy.com/media/l0HlQXlQ3nHyLMvte/giphy.gif" width="60px"/><br/><b>AWS SES Notifications</b>
+  </td>
+  <td>Automated email reminders and updates</td>
 </tr>
+
 </table>
 <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
 
