@@ -365,7 +365,7 @@ We love contributions! Here's how you can help:
 4. 🚀 Push to the branch
 5. 🎉 Open a Pull Request
 
-See our [Contributing Guidelines](CONTRIBUTING.md) for more details.
+
 
 <img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png">
 
